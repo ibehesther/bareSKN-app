@@ -23,14 +23,14 @@ class HomePage extends Component {
                <PageSection/>
                <PageSection/>
                <PageSection/>
-               {/* <AuthSection/> */}
-               {/* <Appointment/> */}
-               {/* <Product/> */}
-               {/* <BlogPosts/> */}
-               {/* <Blog/> */}
-               {/* <Cart/> */}
-               {/* <Payment/> */}
-               {/* <Checkout/> */}
+               <AuthSection/>
+               <Appointment/>
+               <Product/>
+               <BlogPosts/>
+               <Blog/>
+               <Cart/>
+               <Payment/>
+               <Checkout/>
               
             </>
         )
