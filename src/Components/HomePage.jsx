@@ -9,6 +9,8 @@ import Checkout from "./Checkout";
 import PageSection from "./PageSection";
 import Payment from "./Payment";
 import Product from "./Product";
+import Account from "./Account";
+import Images from "./Images";
 
 
 
@@ -16,12 +18,12 @@ class HomePage extends Component {
     // constructor(props){
     //     super(props);
     // }
+    
     render() {
         return (
+            
             <>
-               <img src={require('../images/woman.jpg')} alt=""  className="homepage-img" />
-               <PageSection/>
-               <PageSection/>
+               <Images/>
                <PageSection/>
                <AuthSection/>
                <Appointment/>
@@ -31,7 +33,7 @@ class HomePage extends Component {
                <Cart/>
                <Payment/>
                <Checkout/>
-              
+                <Account/>
             </>
         )
     }
