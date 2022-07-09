@@ -1,18 +1,22 @@
 {
   "files": {
-    "main.css": "/bareSKN/static/css/main.fd50a93f.css",
-    "main.js": "/bareSKN/static/js/main.c4966fd8.js",
+    "main.css": "/bareSKN/static/css/main.8e6ad1a3.css",
+    "main.js": "/bareSKN/static/js/main.930bb985.js",
     "static/media/woman.jpg": "/bareSKN/static/media/woman.00d29d67b6d31a51bd97.jpg",
     "static/media/cerave.png": "/bareSKN/static/media/cerave.36d39050c8e838015690.png",
     "static/media/visa.png": "/bareSKN/static/media/visa.53412106e5dd0cc322c5.png",
+    "static/media/appointment.png": "/bareSKN/static/media/appointment.1cb1823451dfb864ba6f.png",
+    "static/media/products.jpg": "/bareSKN/static/media/products.47d50a21edb9bd6781f8.jpg",
+    "static/media/products-texture.jpg": "/bareSKN/static/media/products-texture.5abc821e566d0d842137.jpg",
     "static/media/search.png": "/bareSKN/static/media/search.2550c90b4467ebb74694.png",
+    "static/media/visibility.png": "/bareSKN/static/media/visibility.6071239546cfff267813.png",
     "static/media/profile.png": "/bareSKN/static/media/profile.8cfc8dbcf6d56a167888.png",
     "index.html": "/bareSKN/index.html",
-    "main.fd50a93f.css.map": "/bareSKN/static/css/main.fd50a93f.css.map",
-    "main.c4966fd8.js.map": "/bareSKN/static/js/main.c4966fd8.js.map"
+    "main.8e6ad1a3.css.map": "/bareSKN/static/css/main.8e6ad1a3.css.map",
+    "main.930bb985.js.map": "/bareSKN/static/js/main.930bb985.js.map"
   },
   "entrypoints": [
-    "static/css/main.fd50a93f.css",
-    "static/js/main.c4966fd8.js"
+    "static/css/main.8e6ad1a3.css",
+    "static/js/main.930bb985.js"
   ]
 }
