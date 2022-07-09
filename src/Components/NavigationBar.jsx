@@ -21,16 +21,19 @@ class NavigationBar extends Component {
                 {
                     this.state.isSearchTabOpen 
                     ?
-                    <SearchNavigationBar toogleSearchTab={this.toogleSearchTab}/>
+                    <div>
+                        <LandingNavigationBar toogleSearchTab={this.toogleSearchTab} 
+                        toogleSideBar = {this.props.toogleSideBar} 
+                        isSideBarOpen={this.props.isSideBarOpen}
+                        />
+                        <SearchNavigationBar toogleSearchTab={this.toogleSearchTab}/>
+                    </div>
                     :
                     <LandingNavigationBar toogleSearchTab={this.toogleSearchTab} 
                     toogleSideBar = {this.props.toogleSideBar} 
                     isSideBarOpen={this.props.isSideBarOpen}
                     />
                 }
-                
-                {/* <SearchNavigationBar/> */}
-               
             </nav>
         );
 

@@ -12,7 +12,7 @@ function CartItem() {
                 <button className="quantity-no">&minus;</button>
                 <input type="number" name="quantity" id="" placeholder="1"/>
                 <button className="quantity-no">+</button>
-                <div className="delete-item-icon"><button>&#128465;</button></div>
+                <div className="delete-item-icon"><button>Remove</button></div>
             </div>
         </div>
     )

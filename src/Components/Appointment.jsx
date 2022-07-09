@@ -67,8 +67,11 @@ class Appointment extends Component {
                     <p className="procedure-price">$750</p>
                 </section>
                 <section>
+                    <h3>Appointment Form</h3>
+                    <div className='appointment-icon'>
+                        <img src={require("../icons/appointment.png")} alt="" />
+                    </div>
                     <form action="/" method="post" className="appointment-form">
-                        {/* <legend>Appointment</legend> */}
                         <label htmlFor="name">Name</label>
                         <input type="text" name="name" id="name" />
                         <label htmlFor="datetime">Appointment Date</label>

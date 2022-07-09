@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import './animation.css';
+import './css/index.css';
+import './css/index-tab.css';
+import './css/animation.css';
 import App from "./App";
 
 

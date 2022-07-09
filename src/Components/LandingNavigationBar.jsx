@@ -12,8 +12,15 @@ function LandingNavigationBar(props) {
                 <img id= "cart" src={require("../icons/shopping-cart.png")} alt="cart" className="navbar-icon" srcSet=""/>
                 <span id="cart-no">100</span>
             </span>
+            <span className="cart-icon-container hidden" aria-label="profile">
+                <img id= "profile" src={require("../icons/profile.png")} alt="profile" className="navbar-icon"/>
+            </span>
+            
             {props.isSideBarOpen ?
                 <div className="navbar-icon" onClick={props.toogleSideBar}>
+                    {/* <div className="navbar-line-1" style={{animationName:'navbarline1_open'}}></div>
+                    <div className="navbar-line-2" style={{display:'none'}}></div>
+                    <div className="navbar-line-3" style={{animationName:'navbarline3_open'}}></div> */}
                     <div className="navbar-line-1" style={{animationName:'navbarline1_open'}}></div>
                     <div className="navbar-line-2" style={{display:'none'}}></div>
                     <div className="navbar-line-3" style={{animationName:'navbarline3_open'}}></div>

@@ -17,6 +17,7 @@ class Login extends Component {
                         <div className="login-section">
                             <label htmlFor="loginPassword">Password</label>
                             <input type="password" name="loginPassword" id="loginPassword" />
+                            <img className='navbar-icon visible' src={require('../icons/visibility.png')} alt="" />
                         </div>
                         <button type="submit">LOGIN</button>
                     </fieldset>

@@ -8,7 +8,7 @@ class PageSection extends Component {
     // }
     render() {
         return(
-            <div>
+            <div className="page-container">
                 <section className="page-section">
                     <span className="page-section-title">OUR COLLECTIONS</span>
                     <div className="page-section-cards">
@@ -32,7 +32,9 @@ class PageSection extends Component {
                     </div>
                 </section>
                 <section className="page-section">
-                    <span className="page-subsection-title">New Stock</span>
+                    <span className="page-subsection-title">
+                        <span>NEW ARRIVALS</span>
+                    </span>
                     <div className="page-section-cards">
                         <Card/>
                         <Card/>

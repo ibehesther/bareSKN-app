@@ -37,10 +37,12 @@ class SignUp extends Component {
                         <div className="signup-section">
                             <label htmlFor="password">Password</label>
                             <input type="password" name="password" id="password" />
+                            <img className='navbar-icon visible' src={require('../icons/visibility.png')} alt="" />
                         </div>
                         <div className="signup-section">
                         <label htmlFor="confirmPassword">Confirm Password</label>
                         <input type="password" name="confirmPassword" id="confirmPassword" />
+                        <img className='navbar-icon visible' src={require('../icons/visibility.png')} alt="" />
                         </div>
                        <button type="submit">SIGN UP</button>
                     </fieldset>

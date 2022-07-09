@@ -17,6 +17,7 @@ function Blog() {
                     manner.
                 </div>
                 <div className='blog-date'>Written: <span className="blog-post-date">Wed 25th August, 2020</span></div>
+                <div className='blog-date'>Author: <span className="blog-post-date">John Doe</span></div>
             </div>
             
         </div>
