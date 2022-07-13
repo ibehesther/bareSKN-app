@@ -11,14 +11,14 @@ class SideBar extends Component {
             <aside className="sidebar-section">
                 <div className="sidebar-main-options">
                     <div className="account-section options" >
-                        <Link onClick={this.props.toogleSideBar} to={`/signup`}>
+                        <Link onClick={this.props.toogleSideBar} to={`${process.env.PUBLIC_URL}/signup`}>
                             <button className="signup">SIGN UP</button>
                         </Link>
                         <p className="login">
-                            Already have an account? <Link onClick={this.props.toogleSideBar} to={`/login`}>Login</Link>
+                            Already have an account? <Link onClick={this.props.toogleSideBar} to={`${process.env.PUBLIC_URL}/login`}>Login</Link>
                         </p>
                     </div>
-                    <Link onClick={this.props.toogleSideBar} to={`/account`} >
+                    <Link onClick={this.props.toogleSideBar} to={`${process.env.PUBLIC_URL}/account`} >
                         <div className="sidebar-profile" >
                             <img id= "profile" src={require("../icons/profile.png")} alt="profile" className="navbar-icon"/>
                             <div>

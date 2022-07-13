@@ -23,7 +23,7 @@ class Login extends Component {
                         <button type="submit">LOGIN</button>
                     </fieldset>
                 </form>
-                <p>Don't have an account? <Link to={`/signup`}>Sign up</Link></p>
+                <p>Don't have an account? <Link to={`${process.env.PUBLIC_URL}/signup`}>Sign up</Link></p>
             </div>
         );
     }

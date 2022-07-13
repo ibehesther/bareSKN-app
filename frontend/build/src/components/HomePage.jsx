@@ -23,8 +23,20 @@ class HomePage extends Component {
     render() {
         return (
             <>
+                
+               {/* <Images/>
+               <PageSection/>
+               <AuthSection/>
+               <Appointment/>
+               <Product/>
+               <BlogPosts/>
+               <Blog/>
+               <Cart/>
+               <Payment/>
+               <Checkout/> */}
+               {/* <Account/> */}
                <Routes>
-                   {/* <Route path={`${process.env.PUBLIC_URL}/`} element ={<PageSection/>} ></Route>
+                   <Route path={`${process.env.PUBLIC_URL}/`} element ={<PageSection/>} ></Route>
                    <Route path={`${process.env.PUBLIC_URL}/cart`} element ={<Cart/>} ></Route>
                    <Route path={`${process.env.PUBLIC_URL}/payment`} element = {<Payment/>}></Route>
                    <Route path={`${process.env.PUBLIC_URL}/checkout`} element={<Checkout/>}></Route>
@@ -33,17 +45,7 @@ class HomePage extends Component {
                    <Route path={`${process.env.PUBLIC_URL}/appointment`} element = {<Appointment/>}></Route>
                    <Route path={`${process.env.PUBLIC_URL}/blog`} element = {<BlogPosts/>}></Route>
                    <Route path={`${process.env.PUBLIC_URL}/signup`} element = {<SignUp/>}></Route>
-                   <Route path={`${process.env.PUBLIC_URL}/login`} element={<Login/>}></Route> */}
-                   <Route path={'/'} element ={<PageSection/>} ></Route>
-                   <Route path={`/cart`} element ={<Cart/>} ></Route>
-                   <Route path={`/payment`} element = {<Payment/>}></Route>
-                   <Route path={`/checkout`} element={<Checkout/>}></Route>
-                   <Route path={`/account`} element ={<Account/>} ></Route>
-                   <Route path={`/products`} element = {<Product/>}></Route>
-                   <Route path={`/appointment`} element = {<Appointment/>}></Route>
-                   <Route path={`/blog`} element = {<BlogPosts/>}></Route>
-                   <Route path={`/signup`} element = {<SignUp/>}></Route>
-                   <Route path={`/login`} element={<Login/>}></Route>
+                   <Route path={`${process.env.PUBLIC_URL}/login`} element={<Login/>}></Route>
                </Routes>
               
             </>

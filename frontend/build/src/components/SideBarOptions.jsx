@@ -28,10 +28,10 @@ class SideBarOptions extends Component {
     render(){
         return(
             <div className="sidebar-options">
-                <Link onClick={this.props.toogleSideBar} to={`/`}className="options"><span > HOME</span></Link>
+                <Link onClick={this.props.toogleSideBar} to={`${process.env.PUBLIC_URL}/`}className="options"><span > HOME</span></Link>
                 <div className="sidebar-products-container options">
                     <span className="sidebar-products">
-                        <Link onClick={this.props.toogleSideBar} to={`/products`} className="sidebar-title"><div > PRODUCTS</div></Link>
+                        <Link onClick={this.props.toogleSideBar} to={`${process.env.PUBLIC_URL}/products`} className="sidebar-title"><div > PRODUCTS</div></Link>
                         <div className="sidebar-show-more-icon" onClick= {this.showMore}>
                             <div className="sidebar-show-more-line-1" ref={this.showmore1} ></div>
                             <div className="sidebar-show-more-line-2" ref={this.showmore2}></div>
@@ -40,9 +40,9 @@ class SideBarOptions extends Component {
                     {this.state.productsDropDown?<SideBarProductsOptions/>: <div></div> }
                     
                 </div>
-                <Link onClick={this.props.toogleSideBar} to={`/appointment`} className="options"> <span >  APPOINTMENT</span></Link>
-                <Link onClick={this.props.toogleSideBar} to={`/blog`} className="options"><span >  BLOG</span></Link>
-                <Link onClick={this.props.toogleSideBar} to={`/about`} className="options"><span > ABOUT US</span></Link>
+                <Link onClick={this.props.toogleSideBar} to={`${process.env.PUBLIC_URL}/appointment`} className="options"> <span >  APPOINTMENT</span></Link>
+                <Link onClick={this.props.toogleSideBar} to={`${process.env.PUBLIC_URL}/blog`} className="options"><span >  BLOG</span></Link>
+                <Link onClick={this.props.toogleSideBar} to={`${process.env.PUBLIC_URL}/about`} className="options"><span > ABOUT US</span></Link>
                 
             </div>
         )

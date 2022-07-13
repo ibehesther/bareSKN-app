@@ -48,7 +48,7 @@ class SignUp extends Component {
                        <button type="submit">SIGN UP</button>
                     </fieldset>
                 </form>
-                <p >Already have an account? <Link to={`/login`}>Login</Link></p>
+                <p >Already have an account? <Link to={`${process.env.PUBLIC_URL}/login`}>Login</Link></p>
             </div>
         );
     }

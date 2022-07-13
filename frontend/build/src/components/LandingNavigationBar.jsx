@@ -4,7 +4,7 @@ function LandingNavigationBar(props) {
     return(
         <div className="nav-bar">
         <h1 className="app-name">
-            <Link to={`/`}>
+            <Link to={`${process.env.PUBLIC_URL}/`}>
                 BareSKN
             </Link>
         </h1>
@@ -13,7 +13,7 @@ function LandingNavigationBar(props) {
                 <img src={require("../icons/search.png")} alt="Search" srcSet="" className="navbar-icon"/>
             </span>
             <span className="cart-icon-container" aria-label="cart">
-               <Link to={`/cart`}>
+               <Link to={`${process.env.PUBLIC_URL}/cart`}>
                     <img id= "cart" src={require("../icons/shopping-cart.png")} alt="cart" className="navbar-icon" srcSet=""/>
                     <span id="cart-no">100</span>
                 </Link>
