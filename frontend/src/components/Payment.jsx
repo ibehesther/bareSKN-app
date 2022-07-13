@@ -93,7 +93,7 @@ class Payment extends Component{
                     </div>
                     {this.state.creditCard?  <Card/> : <div></div>}
                 </div>
-                <Link to={`${process.env.PUBLIC_URL}/checkout`}>
+                <Link to={`/checkout`}>
                     <button disabled={!this.state.payOnDelivery && !this.state.creditCard ? true : false} >
                         Confirm and continue
                     </button>

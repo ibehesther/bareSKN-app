@@ -43,7 +43,7 @@ class Cart extends Component{
                     </div>
                 </div>
                 <div className="proceed-btn-container">
-                    <Link to={`${process.env.PUBLIC_URL}/payment`}>
+                    <Link to={`/payment`}>
                         <button>Proceed to Payment &gt; &gt; </button>
                     </Link>
                 </div>
