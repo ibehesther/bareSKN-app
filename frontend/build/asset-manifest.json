@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/bareSKN/static/css/main.d49efe4e.css",
+    "main.js": "/bareSKN/static/js/main.930bb985.js",
+    "static/media/woman.jpg": "/bareSKN/static/media/woman.00d29d67b6d31a51bd97.jpg",
+    "static/media/cerave.png": "/bareSKN/static/media/cerave.36d39050c8e838015690.png",
+    "static/media/visa.png": "/bareSKN/static/media/visa.53412106e5dd0cc322c5.png",
+    "static/media/appointment.png": "/bareSKN/static/media/appointment.1cb1823451dfb864ba6f.png",
+    "static/media/products.jpg": "/bareSKN/static/media/products.47d50a21edb9bd6781f8.jpg",
+    "static/media/products-texture.jpg": "/bareSKN/static/media/products-texture.5abc821e566d0d842137.jpg",
+    "static/media/search.png": "/bareSKN/static/media/search.2550c90b4467ebb74694.png",
+    "static/media/visibility.png": "/bareSKN/static/media/visibility.6071239546cfff267813.png",
+    "static/media/profile.png": "/bareSKN/static/media/profile.8cfc8dbcf6d56a167888.png",
+    "index.html": "/bareSKN/index.html",
+    "main.d49efe4e.css.map": "/bareSKN/static/css/main.d49efe4e.css.map",
+    "main.930bb985.js.map": "/bareSKN/static/js/main.930bb985.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d49efe4e.css",
+    "static/js/main.930bb985.js"
+  ]
+}
