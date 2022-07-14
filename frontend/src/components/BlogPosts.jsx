@@ -4,7 +4,7 @@ function BlogPost() {
             <div className="blog-post-title">Skincare 101</div>
             <div className="blog-post-date">Wed 25th August, 2020</div>
             <div className="blog-post-details">
-                <img src={require('../images/woman.jpg')} alt="" srcSet="" />
+                <img src={require('../images/skincare1.jpg')} alt="" srcSet="" />
                 <div className='blog-post-text'>
                     As the name implies, this is a web store, but it’s also a resource 
                     for anyone who is ready to move beyond moisturizer and wants guidance 

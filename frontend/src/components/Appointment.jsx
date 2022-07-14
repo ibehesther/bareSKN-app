@@ -9,7 +9,7 @@ class Appointment extends Component {
     render() {
         return(
             <div className="appointment-container">
-                <Images/>
+                <Images imageType='consultation'/>
                 <p>
                     BareSKN offers a wide range of procedures by a licensed esthetician.
                     You can book an appointment today.

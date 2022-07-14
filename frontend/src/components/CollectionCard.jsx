@@ -1,17 +1,23 @@
 import { Component } from "react";
+import { Link } from "react-router-dom";
 
 class CollectionCard extends Component{
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
     }
     render(){
         return(
-            <div className="collection-card-container">
-                <p className="collection-card-name">
-                    ASIAN PRODUCTS
-                </p>
-        
-            </div>
+            <Link to={'/asian'}>
+                <div className="collection-card-parent">
+                    <div className="collection-card-child"
+                        id ={`collection-card-${this.props.collection_id}`}
+                       >
+                    </div>
+                    <p className="collection-card-name">
+                            ASIAN PRODUCTS
+                        </p>
+                </div>
+            </Link>
         )
     }
 }

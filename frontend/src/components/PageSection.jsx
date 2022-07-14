@@ -4,20 +4,25 @@ import CollectionCard from "./CollectionCard";
 import Images from "./Images";
 
 class PageSection extends Component {
-    // constructor(props) {
-    //     super(props);
-    // }
+    constructor(props) {
+        super(props);
+        this.state={
+            collection_id: [1, 2, 3, 4]
+        }
+    }
+    
     render() {
         return(
             <div className="page-container">
-                <Images/>
+                <Images imageType='skincare'/>
                 <section className="page-section">
                     <span className="page-section-title">OUR COLLECTIONS</span>
                     <div className="page-section-cards">
-                        <CollectionCard/>
-                        <CollectionCard/>
-                        <CollectionCard/>
-                        <CollectionCard/>
+                        {this.state.collection_id.map((id) => 
+                            <CollectionCard 
+                            id={id}
+                            collection_id={id}/>
+                        )}
                     </div>
                 </section>
                 <section className="page-section best">

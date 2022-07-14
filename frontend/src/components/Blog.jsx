@@ -6,7 +6,7 @@ function Blog() {
             <div className="blog-content">
                 <div className="blog-title">Skincare 101</div>
                 <div className="blog-img">
-                    <img src={require('../images/woman.jpg')} alt="" srcset="" />
+                    <img src={require('../images/skincare1.jpg')} alt="" srcset="" />
                 </div>
                 <div className='blog-text'>
                     As the name implies, this is a web store, but it’s also a resource 

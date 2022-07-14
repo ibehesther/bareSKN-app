@@ -22,6 +22,7 @@ code {
 * {
   margin: 0;
   padding: 0;
+  color: black;
 }
 a:link {
   text-decoration: none;
@@ -481,13 +482,31 @@ nav{
   grid-template-columns: repeat(2, 1fr);
   row-gap: 1em;
 }
-.collection-card-container{
-  position: relative;
+.collection-card-parent{
   width: 90%;
   margin: 0 auto;
   height: 25vh;
-  background: url('../images/products.jpg') no-repeat;
+  overflow: hidden;
+  position: relative;
+}
+.collection-card-child{
+  width: 100%;
+  height: 100%;
+  background: url('../images/skincare4.jpg') no-repeat;
   background-size: cover;
+  background-position: center;
+  -webkit-transition: all .5s ease;
+  -moz-transition: all .5s ease;
+  -o-transition: all .5s ease;
+  -ms-transition: all .5s ease;
+  transition: all .5s ease;
+}
+.collection-card-parent:hover .collection-card-child{
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
 }
 .collection-card-name {
   position: absolute;
@@ -496,6 +515,7 @@ nav{
   font-size: .6em;
   font-weight: 600;
   max-width: fit-content;
+  /* background-color: rgb(68, 50, 50); */
   background-color: white;
   padding: 1em;
   margin: 0 auto;
