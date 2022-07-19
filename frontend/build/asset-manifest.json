@@ -1,22 +1,26 @@
 {
   "files": {
-    "main.css": "/bareSKN/static/css/main.a9b2bec8.css",
-    "main.js": "/bareSKN/static/js/main.b821cf6d.js",
-    "static/media/woman.jpg": "/bareSKN/static/media/woman.00d29d67b6d31a51bd97.jpg",
+    "main.css": "/bareSKN/static/css/main.15857dd9.css",
+    "main.js": "/bareSKN/static/js/main.7ec60c65.js",
+    "static/media/consultation3.jpg": "/bareSKN/static/media/consultation3.72ae31b02d805fef6e19.jpg",
+    "static/media/skincare1.jpg": "/bareSKN/static/media/skincare1.00d29d67b6d31a51bd97.jpg",
+    "static/media/consultation1.jpg": "/bareSKN/static/media/consultation1.92c90ff96939f0f00cd5.jpg",
     "static/media/cerave.png": "/bareSKN/static/media/cerave.36d39050c8e838015690.png",
     "static/media/visa.png": "/bareSKN/static/media/visa.53412106e5dd0cc322c5.png",
     "static/media/appointment.png": "/bareSKN/static/media/appointment.1cb1823451dfb864ba6f.png",
-    "static/media/products.jpg": "/bareSKN/static/media/products.47d50a21edb9bd6781f8.jpg",
-    "static/media/products-texture.jpg": "/bareSKN/static/media/products-texture.5abc821e566d0d842137.jpg",
+    "static/media/skincare4.jpg": "/bareSKN/static/media/skincare4.47d50a21edb9bd6781f8.jpg",
+    "static/media/skincare2.jpg": "/bareSKN/static/media/skincare2.f80c416b9f4a8e4a022b.jpg",
+    "static/media/skincare3.jpg": "/bareSKN/static/media/skincare3.5abc821e566d0d842137.jpg",
+    "static/media/consultation4.jpg": "/bareSKN/static/media/consultation4.10c3df579d7659b768d3.jpg",
     "static/media/search.png": "/bareSKN/static/media/search.2550c90b4467ebb74694.png",
     "static/media/visibility.png": "/bareSKN/static/media/visibility.6071239546cfff267813.png",
     "static/media/profile.png": "/bareSKN/static/media/profile.8cfc8dbcf6d56a167888.png",
     "index.html": "/bareSKN/index.html",
-    "main.a9b2bec8.css.map": "/bareSKN/static/css/main.a9b2bec8.css.map",
-    "main.b821cf6d.js.map": "/bareSKN/static/js/main.b821cf6d.js.map"
+    "main.15857dd9.css.map": "/bareSKN/static/css/main.15857dd9.css.map",
+    "main.7ec60c65.js.map": "/bareSKN/static/js/main.7ec60c65.js.map"
   },
   "entrypoints": [
-    "static/css/main.a9b2bec8.css",
-    "static/js/main.b821cf6d.js"
+    "static/css/main.15857dd9.css",
+    "static/js/main.7ec60c65.js"
   ]
 }

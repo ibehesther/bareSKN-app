@@ -1,6 +1,12 @@
-function Footer() {
+function Footer(props) {
+    const show = props.isSideBarOpen;
+    // const showFooter=()=> {
+    //     show ? 'none': 'flex'
+    // }
     return (
-        <footer className="footer-container">
+        <footer className="footer-container" 
+        // style={{display: showFooter()}}
+        >
             <section className="footer-socials">
                 <span className="footer-title">BareSKN</span>
                 <div className="footer-brief">

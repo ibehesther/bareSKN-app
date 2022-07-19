@@ -7,12 +7,15 @@ import Blog from "./Blog";
 import BlogPosts from "./BlogPosts";
 import Cart from "./Cart";
 import Checkout from "./Checkout";
+import EditAccount from "./EditAccount";
 import Images from "./Images";
 import Login from "./Login";
+import OrderHistory from "./OrderHistory";
 import PageSection from "./PageSection";
 import Payment from "./Payment";
 import Product from "./Product";
 import SignUp from "./SignUp";
+
 
 
 
@@ -24,28 +27,19 @@ class HomePage extends Component {
         return (
             <>
                <Routes>
-                   {/* <Route path={`${process.env.PUBLIC_URL}/`} element ={<PageSection/>} ></Route>
-                   <Route path={`${process.env.PUBLIC_URL}/cart`} element ={<Cart/>} ></Route>
-                   <Route path={`${process.env.PUBLIC_URL}/payment`} element = {<Payment/>}></Route>
-                   <Route path={`${process.env.PUBLIC_URL}/checkout`} element={<Checkout/>}></Route>
-                   <Route path={`${process.env.PUBLIC_URL}/account`} element ={<Account/>} ></Route>
-                   <Route path={`${process.env.PUBLIC_URL}/products`} element = {<Product/>}></Route>
-                   <Route path={`${process.env.PUBLIC_URL}/appointment`} element = {<Appointment/>}></Route>
-                   <Route path={`${process.env.PUBLIC_URL}/blog`} element = {<BlogPosts/>}></Route>
-                   <Route path={`${process.env.PUBLIC_URL}/signup`} element = {<SignUp/>}></Route>
-                   <Route path={`${process.env.PUBLIC_URL}/login`} element={<Login/>}></Route> */}
                    <Route path={'/'} element ={<PageSection/>} ></Route>
                    <Route path={`/cart`} element ={<Cart/>} ></Route>
                    <Route path={`/payment`} element = {<Payment/>}></Route>
                    <Route path={`/checkout`} element={<Checkout/>}></Route>
                    <Route path={`/account`} element ={<Account/>} ></Route>
+                   <Route path={`/order-history`} element={<OrderHistory/>}></Route>
+                   <Route path={`/edit`} element={<EditAccount/>}></Route>
                    <Route path={`/products`} element = {<Product/>}></Route>
                    <Route path={`/appointment`} element = {<Appointment/>}></Route>
                    <Route path={`/blog`} element = {<BlogPosts/>}></Route>
                    <Route path={`/signup`} element = {<SignUp/>}></Route>
                    <Route path={`/login`} element={<Login/>}></Route>
                </Routes>
-              
             </>
         )
     }

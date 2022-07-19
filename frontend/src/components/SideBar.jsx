@@ -29,7 +29,20 @@ class SideBar extends Component {
                     </Link>
                     
                     <SideBarOptions toogleSideBar={this.props.toogleSideBar}/>
+                    <div className="sidebar-socials">
+                    <a href="https://www.google.com" target='_blank' className="fa fa-google"></a>
+                    <a href="https://www.facebook.com" target='_blank' className="fa fa-facebook"></a>
+                    <a href="https://www.twitter.com" target='_blank' className="fa fa-twitter"></a>
+                    <a href="https://www.instagram.com" target='_blank' className="fa fa-instagram"></a>
                 </div>
+                </div>
+                {/* <div className="sidebar-socials">
+                    Hello
+                    <a href="#" class="fa fa-google"></a>
+                    <a href="#" class="fa fa-facebook"></a>
+                    <a href="#" class="fa fa-twitter"></a>
+                    <a href="#" class="fa fa-instagram"></a>
+                </div> */}
             </aside>
         )
     }

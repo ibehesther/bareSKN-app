@@ -1,4 +1,5 @@
 import { Component } from "react";
+import {Link} from "react-router-dom"
 
 class Account extends Component{
     constructor(){
@@ -7,6 +8,9 @@ class Account extends Component{
     render(){
         return(
             <div className="account-container">
+                <Link to={'/edit'}>
+                    <img className='navbar-icon' src={require("../icons/edit.png")}/>
+                </Link>
                 <section className="account-heading">
                     <h2> HI JOHN</h2>
                     <p>Not you? <a href="">Logout</a></p>
@@ -26,9 +30,13 @@ class Account extends Component{
                     </div>
                     <div>
                         <p>Address</p>
-                        <p>123 Atlantic City, New Jersey.</p>
+                        <p>123 Atlantic City, New Jersey, Nigeria.</p>
                     </div>
-                    <span>Order History</span>
+                    
+                    <Link to={'/order-history'}>
+                        See order history &gt; &gt; &gt;
+                    </Link>
+                    
 
                 </section>
                 

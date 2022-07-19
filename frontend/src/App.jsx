@@ -23,26 +23,24 @@ class App extends Component {
     }
     render() {
         return(
-            // <Routes>
-                <div className='container'>
-                    <NavigationBar toogleSideBar={this.toogleSideBar}
-                    isSideBarOpen={this.state.isSideBarOpen}
-                    />
-                
-                    {this.state.isSideBarOpen?
-                        <SideBar 
-                        toogleSideBar={this.toogleSideBar}
-                        isSideBarOpen={this.state.isSideBarOpen}/> 
-                        :
-                        <main className="main-content">
-                            <HomePage/>
-                        </main>
-                    }
-                    
-                    <Footer/>
-                </div>
-            // </Routes>
+            <div className='container'>
+                <NavigationBar toogleSideBar={this.toogleSideBar}
+                isSideBarOpen={this.state.isSideBarOpen}
+                />
             
+                {this.state.isSideBarOpen?
+                    <SideBar 
+                    toogleSideBar={this.toogleSideBar}
+                    isSideBarOpen={this.state.isSideBarOpen}/> 
+                    :
+                    <main className="main-content">
+                        <HomePage/>
+                    </main>
+                }
+                
+                {/* <Footer
+                isSideBarOpen={this.state.isSideBarOpen}/>  */}
+            </div>
         )
     }
 }

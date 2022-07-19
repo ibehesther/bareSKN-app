@@ -73,6 +73,7 @@ nav{
 .app-name > a {
   color: black;
   text-decoration: none;
+  font-weight: bolder;
 }
 
 .navbar-right {
@@ -186,19 +187,18 @@ nav{
   background-color: rgb(235, 194, 175);
   background-color: rgb(255, 255, 255);
   width: 100vw;
-  height: calc(100% - 5em);
-  height: 100%;
+  height: calc(100vh - 5em);
+  /* height: 100vh; */
   position: relative;
   left: 0;
-  /* padding-bottom: 9em; */
-  display: none;
   display: block;
+  overflow: hidden;
+  overflow-y: hidden;
 }
 .sidebar-main-options {
   width: 100%;
   position: absolute;
   background-color: rgb(255, 255, 255);
-  /* display: none; */
 }
 .sidebar-options {
   /* padding: 2em 0; */
@@ -277,6 +277,21 @@ nav{
   /* animation: showmore2 1.5s 1; */
   animation-duration: .5s;
   animation-fill-mode: forwards;
+}
+.sidebar-socials{
+  display: flex;
+  flex-direction: row;
+  width: 40%;
+  padding: 1em;
+  justify-content: space-between;
+}
+.fa {
+  /* flex: 1; */
+  max-width: 3em;
+  font-size: 1.2em;
+  background-color: rgba(250, 131, 79, .6);
+  padding: .5em;
+  border-radius: 50%;
 }
 
 @keyframes showmore1 {
@@ -600,7 +615,8 @@ fieldset {
   width: 1.4em;
   height: 1.3em;
 }
-.signup-container button, .login-container button {
+.signup-container button, .login-container button, 
+.edit-account-section button {
   width: calc(100% - 2px);
   width: 100%;
   padding: .8em 1px;
@@ -1134,10 +1150,10 @@ margin-bottom: .5em;
 .payment-section {
   margin: 3em 0;
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 } 
 .payment-section > span {
-  font-size: 1.2em;
+  font-size: 1.3em;
 }
 .right {
   text-align: right;
@@ -1212,12 +1228,16 @@ input[type=radio]:checked::before{
   width: 100%;
   padding: 2em 0;
 }
+.account-container  img{
+  float: right;
+}
 .account-heading {
   width: 100%;
-  padding: 1em 0;
+  padding: 0 0 1em;
   margin: 0 auto;
   text-align: center;
   background-color: transparent;
+  clear: both;
 }
 .account-heading > h2{
   margin-bottom: .7em;
@@ -1234,7 +1254,62 @@ input[type=radio]:checked::before{
   font-weight: 700;
   text-transform: uppercase;
 }
-
+.order-history-section{
+  width: 100%;
+  
+}
+.order-history-section>div:first-child {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 70%;
+}
+.order-history-section  h1, .edit-account-section h1{
+  font-size: 1.5em;
+  font-weight: 600;
+  padding: .2em 0;
+}
+.order-history-section > .order-history-list {
+  margin: 1.5em 0;
+}
+.order-history-item-section{
+  border: 1px solid rgba(99, 99, 99, 0.2);
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-radius: 0;
+  padding: 1em 1.5em;
+  width: calc(100% - 3em);
+}
+.order-history-item-section:first-child{
+  border-radius: 10px 10px 0 0;
+}
+.order-history-item-section:last-child{
+  border-radius: 0 0 10px 10px;
+}
+.order-history-item {
+  display: flex;
+  flex-direction: row;
+  /* padding: .5em 0; */
+}
+.order-history-item > div{
+  display: flex;
+  flex-direction: column;
+  flex: 2;
+  line-height: 1.6em;
+  font-size: 1.2em;
+}
+.order-item-image {
+  width: 3.5em;
+  /* flex: 1; */
+}
+.order-history-delivered{
+  color: red;
+}
+.order-history-pending{
+  color: green;
+}
+.edit-account-section{
+  margin: 0 auto;
+}
 /*** End of CSS code for Account page  */
 
 /*** Beginning of CSS code for Footer  */
