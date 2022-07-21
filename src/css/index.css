@@ -848,11 +848,13 @@ fieldset {
   background-color: rgba(250, 131, 79, .6);
 }
 .product-desc {
-  height: 4.5em;
+  height: 5em;
   font-size: .85em;
-  padding: .2em 0;
+  margin: .5em 0;
   overflow: hidden;
   text-align: justify;
+  line-height: 1em;
+  font-size: .85em;
 }
 .more {
   font-size: .7em;

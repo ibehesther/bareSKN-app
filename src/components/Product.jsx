@@ -21,7 +21,7 @@ class Product extends Component{
             this.read_more.current.textContent = "Read less"
         }else {
             this.description.current.style.overflow = 'hidden'
-            this.description.current.style.height = '4.5em'
+            this.description.current.style.height = '5em'
             this.read_more.current.textContent = "Read more"
         }
     }
