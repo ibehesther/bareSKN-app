@@ -28,17 +28,22 @@ class HomePage extends Component {
             <>
                <Routes>
                    <Route path={'/'} element ={<PageSection/>} ></Route>
-                   <Route path={`/cart`} element ={<Cart/>} ></Route>
-                   <Route path={`/payment`} element = {<Payment/>}></Route>
-                   <Route path={`/checkout`} element={<Checkout/>}></Route>
-                   <Route path={`/account`} element ={<Account/>} ></Route>
-                   <Route path={`/order-history`} element={<OrderHistory/>}></Route>
-                   <Route path={`/edit`} element={<EditAccount/>}></Route>
-                   <Route path={`/products`} element = {<Product/>}></Route>
-                   <Route path={`/appointment`} element = {<Appointment/>}></Route>
-                   <Route path={`/blog`} element = {<BlogPosts/>}></Route>
-                   <Route path={`/signup`} element = {<SignUp/>}></Route>
-                   <Route path={`/login`} element={<Login/>}></Route>
+                   <Route path={`cart`} element ={<Cart/>} ></Route>
+                   <Route path={`payment`} element = {<Payment/>}></Route>
+                   <Route path={`checkout`} element={<Checkout/>}></Route>
+                   <Route path={`account`} element ={<Account/>} ></Route>
+                   <Route path={`order-history`} element={<OrderHistory/>}></Route>
+                   <Route path={`edit`} element={<EditAccount/>}></Route>
+                   <Route path={`products`} element = {<Product/>}></Route>
+                   <Route path={`appointment`} element = {<Appointment/>}></Route>
+                   <Route path={`blog`} element = {<BlogPosts/>}></Route>
+                   <Route path={`signup`} element = {<SignUp/>}></Route>
+                   <Route path={`login`} element={<Login/>}></Route>
+                   <Route path={'*'} element={
+                       <main style={{ padding: "1rem" }}>
+                           <p>Oops! nothing to see here.</p>
+                       </main>
+                   }></Route>
                </Routes>
             </>
         )
