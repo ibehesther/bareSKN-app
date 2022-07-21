@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/bareSKN/static/css/main.15857dd9.css",
-    "main.js": "/bareSKN/static/js/main.7ec60c65.js",
+    "main.css": "/bareSKN/static/css/main.b2856c3e.css",
+    "main.js": "/bareSKN/static/js/main.5851e5ca.js",
     "static/media/consultation3.jpg": "/bareSKN/static/media/consultation3.72ae31b02d805fef6e19.jpg",
     "static/media/skincare1.jpg": "/bareSKN/static/media/skincare1.00d29d67b6d31a51bd97.jpg",
     "static/media/consultation1.jpg": "/bareSKN/static/media/consultation1.92c90ff96939f0f00cd5.jpg",
@@ -16,11 +16,11 @@
     "static/media/visibility.png": "/bareSKN/static/media/visibility.6071239546cfff267813.png",
     "static/media/profile.png": "/bareSKN/static/media/profile.8cfc8dbcf6d56a167888.png",
     "index.html": "/bareSKN/index.html",
-    "main.15857dd9.css.map": "/bareSKN/static/css/main.15857dd9.css.map",
-    "main.7ec60c65.js.map": "/bareSKN/static/js/main.7ec60c65.js.map"
+    "main.b2856c3e.css.map": "/bareSKN/static/css/main.b2856c3e.css.map",
+    "main.5851e5ca.js.map": "/bareSKN/static/js/main.5851e5ca.js.map"
   },
   "entrypoints": [
-    "static/css/main.15857dd9.css",
-    "static/js/main.7ec60c65.js"
+    "static/css/main.b2856c3e.css",
+    "static/js/main.5851e5ca.js"
   ]
 }

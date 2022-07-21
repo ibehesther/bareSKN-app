@@ -32,10 +32,10 @@ class OrderHistory extends Component{
         return(
             <div className="order-history-section">
                 <div>
-                    <Link to={'/account'}>
+                    {/* <Link to={'/account'}>
                         <img src={require('../icons/back.png')}
                         alt='account' className="navbar-icon"/>
-                    </Link>
+                    </Link> */}
                     <h1>Order history</h1>
                 </div>
                 

@@ -288,7 +288,7 @@ nav{
 .fa {
   /* flex: 1; */
   max-width: 3em;
-  font-size: 1.2em;
+  font-size: 1.3em;
   background-color: rgba(250, 131, 79, .6);
   padding: .5em;
   border-radius: 50%;
@@ -587,7 +587,7 @@ fieldset {
 }
 .signup-section, .login-section {
   width: 100%;
-  margin: 1em 0;
+  margin: .6em 0;
   position: relative;
 }
 .signup-section > label, .login-section > label {
@@ -625,6 +625,7 @@ fieldset {
   background-color: rgba(250, 131, 79, .6);
   border: 0.2px solid rgba(250, 131, 79, .6);
   border: none;
+  
   transition: all .2s;
 }
 .signup-container button:hover, .login-container button:hover{
@@ -1266,7 +1267,7 @@ input[type=radio]:checked::before{
 }
 .order-history-section  h1, .edit-account-section h1{
   font-size: 1.5em;
-  font-weight: 600;
+  font-weight: 700;
   padding: .2em 0;
 }
 .order-history-section > .order-history-list {
