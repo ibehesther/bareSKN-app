@@ -47,7 +47,7 @@ input[type=text]:focus{
 }
 /*** Beginning of CSS code for Navigation Bar  */
 nav{
-  height: 5em;
+  height: 4em;
 }
 .nav-bar {
   display: flex;
@@ -57,7 +57,7 @@ nav{
   left: 0;
   background-color: rgba(255, 255, 255,1);
   height: 3em;
-  padding: 1em;
+  padding:  .5em 1em;
   z-index: 10;
   border: 0;
   border-bottom: .5px solid rgba(0, 0, 0, .2);
@@ -87,23 +87,26 @@ nav{
 }
 
 .navbar-line-1, .navbar-line-2, .navbar-line-3 {
-  width: 2em;
-  height: .2em;
+  width: 1.5em;
+  height: .15em;
   background-color: rgb(0,0,0);
-  background-color: rgb(92,92,92);
+  /* background-color: rgb(92,92,92); */
   margin: .3em 0;
   border-radius: 8px;
-  transition: all 1s ease-out;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
+  
 }
 
 .navbar-line-1 { 
   transform: none;
-  /* animation: navbarline1; */
   animation-duration: 1s;
   animation-fill-mode: forwards;
 }
 .navbar-line-3 {
-  /* animation: navbarline3; */
   animation-duration: 1s;
   animation-fill-mode: forwards;
 }
@@ -126,8 +129,8 @@ nav{
   
 }
 .navbar-icon {
-  width: 1.8em;
-  height: 1.8em;
+  width: 1.5em;
+  height: 1.5em;
 }
 .cart-icon-container {
   position: relative;
@@ -139,7 +142,7 @@ nav{
   background-color: rgba(225, 95, 38, 1);
   padding: .4em;
   border-radius: 50%;
-  font-size: .6em;
+  font-size: .5em;
   color: white;
   text-align: center;
   border: 2px solid white;
@@ -184,16 +187,12 @@ nav{
 
 .sidebar-section {
   z-index: 1;
-  background-color: rgb(235, 194, 175);
   background-color: rgb(255, 255, 255);
   width: 100vw;
-  height: calc(100vh - 5em);
-  /* height: 100vh; */
+  height: calc(100vh - 4em);
   position: relative;
   left: 0;
   display: block;
-  overflow: hidden;
-  overflow-y: hidden;
 }
 .sidebar-main-options {
   width: 100%;
@@ -207,12 +206,11 @@ nav{
   flex-direction: column;
 }
 .options {
-  /* height: 2em; */
+ 
   color: black;
-  padding: 1em;
-  font-size: 1.2em;
-  border: 1px solid rgba(233, 138, 96, .5);
-  /* border: .5px solid rgba(152, 105, 96, 1); */
+  padding: .6em 1em;
+  font-size: 1em;
+  /* border: .1px solid rgba(233, 138, 96, .5); */
   border-left: 0;
   border-right: 0;
   flex: 1;
@@ -228,9 +226,8 @@ nav{
   width: 100%;
   height: 80%;
   background-color: rgba(225, 225, 225, 0);
-  border: 1px solid rgba(225, 95, 38, 1);
-  color: rgba(250, 131, 79, 1);
-  /* color: rgba(0, 0, 0, .7); */
+  border: 1px solid black;
+  color: black;
   font-size: .8em;
   font-weight: bold;
 }
@@ -240,7 +237,8 @@ nav{
   color: rgba(0, 0, 0, .7);
 }
 .login > a {
-  color:rgba(250, 131, 79, .6) ;
+  /* color:rgba(250, 131, 79, .6); */
+  color: black;
 }
 .sidebar-products-container {
   display: flex;
@@ -288,9 +286,10 @@ nav{
 .fa {
   /* flex: 1; */
   max-width: 3em;
-  font-size: 1.3em;
-  background-color: rgba(250, 131, 79, .6);
+  font-size: .9em;
+  background-color: white;
   padding: .5em;
+  border: .5px solid black;
   border-radius: 50%;
 }
 
@@ -312,11 +311,10 @@ nav{
 }
 .sub-products {
   display: flex;
-  padding: 1em ;
+  padding: .5em 1em ;
   margin: .5em 0;
   font-size: .8em;
-  border: 1px solid rgba(233, 138, 96, .5);
-  /* border: .5px solid rgba(152, 105, 96, 1); */
+  /* border: 1px solid rgba(233, 138, 96, .5); */
   border-left: 0;
   border-right: 0;
   border-bottom: 0;
@@ -347,16 +345,16 @@ nav{
   font-size: .8em;
 }
 .sidebar-profile > img {
-  background-color: gray;
-  background-color: rgba(250, 131, 79, .6);
+  background-color: white;
   padding: 1.5em;
+  border: .5px solid black;
   border-radius: 50%;
   flex: 1;
   max-width: 10%;
 }
 .sidebar-profile > div {
   flex: 8;
-  max-width: 75%;
+  max-width: 70%;
 }
 /*** End of CSS code for side bar  */
 
@@ -370,7 +368,7 @@ nav{
 
 }
 .card-container:hover{
-  width: 105%;
+  width: 102%;
   border: .2px solid rgba(0, 0, 0, .05);
   box-shadow: rgba(149, 157, 165, .2) 0px 8px 24px;
   z-index: 1;
@@ -385,21 +383,22 @@ nav{
   align-items: center;
   justify-content: space-around;
   background-color: rgba(255, 255, 255, 1);
-  height: 35%;
+  /* height: 35%; */
   padding: 0 .5em;
 }
 .card-title{
-  font-size: .9em;
+  font-size: .75em;
   flex: 2;
   text-align: center;
 }
 .card-price {
-  font-size: .7em;
+  font-size: .6em;
   flex: .5;
   font-weight: bolder;
+  padding: .3em 0;
 }
 .card-add-btn {
-  padding: .2em 1.5em;
+  padding: .5em 1.5em;
   font-size: .7em;
   flex: 1;
   background-color: rgba(255, 255, 255, 0);
@@ -407,9 +406,8 @@ nav{
   transition: all .2s linear;
 }
 .card-add-btn:hover {
-  width: 9em;
-  font-size: .9em;
-  background-color: rgba(250, 131, 79, .5);
+  background-color: rgb(173, 172, 172);
+  border: 1px solid rgb(173, 172, 172);
 }
 /*** End of CSS code for Card  */
 
@@ -448,12 +446,12 @@ nav{
   scroll-behavior: smooth;
 }
 .page-section.best > p:first-child{
-  font-size: 1.2em;
+  font-size: 1em;
   font-weight: 600;
 }
 .page-section.best > p{
   text-align: center;
-  font-size: .9em;
+  font-size: .7em;
 }
 .page-section.best  .card-container{
   min-width: 70%;
@@ -473,11 +471,10 @@ nav{
   height: 60%;
 }
 .page-section-title {
-  padding: .6em 1em;
+  padding: .6em 1.2em;
   text-align: center;
   margin: 0 auto;
-  width: 80%;
-  font-size: 1.5em;
+  font-size: 1.3em;
   border-bottom: .5px solid rgba(0, 0, 0, .6) ;
 }
 
@@ -503,12 +500,14 @@ nav{
   height: 25vh;
   overflow: hidden;
   position: relative;
+  border: .5px solid rgb(248, 248, 248);
 }
 .collection-card-child{
   width: 100%;
   height: 100%;
   background: url('../images/skincare4.jpg') no-repeat;
-  background-size: cover;
+  background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSN5TOetWWbuzvEa9xD0d-L3DjXWQSn9Gq_Q&usqp=CAU") no-repeat;
+  background-size: 150px;
   background-position: center;
   -webkit-transition: all .5s ease;
   -moz-transition: all .5s ease;
@@ -525,15 +524,14 @@ nav{
 }
 .collection-card-name {
   position: absolute;
-  bottom: .1em;
+  bottom: .5em;
   right: 0;
   font-size: .6em;
   font-weight: 600;
   max-width: fit-content;
-  /* background-color: rgb(68, 50, 50); */
   background-color: white;
   padding: 1em;
-  margin: 0 auto;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 /*** End of CSS code for Page Sections  */
 
@@ -701,6 +699,10 @@ fieldset {
   }
   .appointment-container {
     padding: 1em 0;
+    font-size: .9em;
+  }
+  .appointment-container > section > h2{
+    font-size: 1.2em;
   }
   .appointment-container > section{
     font-size: .9em;
@@ -772,8 +774,9 @@ fieldset {
     margin: 1em 0;
     padding: .5em 0;
     background-color: rgba(250, 131, 79, .6);
-    border: 0;
-    color: white;
+    background-color: white;
+    color: black;
+    border: 1px solid black;
   }
 /*** End of CSS code for Appointment page */
 
@@ -787,7 +790,7 @@ fieldset {
 }
 .product-img-container, .product-details, .product-cart-details{
   width: 90%;
-  margin: 2em auto .5em;
+  margin: 0em auto .5em;
 }
 .product-img-container{
   width: 60%;
@@ -801,6 +804,7 @@ fieldset {
 .product-quantity > label {
   flex: 8;
   padding: .5em 0;
+  font-size: .85em;
 }
 .product-quantity > input, .cart-item-price > input{
   flex: 1.5;
@@ -820,7 +824,7 @@ fieldset {
   text-align: center;
 }
 .product-name {
-  font-size: 1.2em;
+  font-size: 1em;
   font-weight: 900;
 }
 .product-price {
@@ -833,32 +837,34 @@ fieldset {
   margin: 2em auto 1em;
   
 }
+.product-cart-btn > button {
+  padding: .5em 1em;
+}
 
 .product-cart-details  button{
   width: 100%;
-  padding: .5em;
-  font-size: 1.1em;
+  font-size: 1em;
   font-weight: bolder;
   background-color: rgba(255, 255, 255, 1);
-  border: 1px solid rgba(250, 131, 79, .6);
+  border: 1px solid black;
   border-radius: 2px;
   transition: all .5s;
 }
 .product-cart-details  button:hover{
-  background-color: rgba(250, 131, 79, .6);
+  background-color: rgb(144, 144, 144);
 }
 .product-desc {
   height: 5em;
-  font-size: .85em;
+  font-size: .7em;
   margin: .5em 0;
   overflow: hidden;
   text-align: justify;
   line-height: 1em;
-  font-size: .85em;
 }
 .more {
   font-size: .7em;
   color: rgb(90, 90, 250);
+  color: rgb(144, 144, 237);
   text-align: right;
 }
 /*** End of CSS code for Product page */
@@ -900,25 +906,25 @@ fieldset {
 }
 .blog-name {
   display: block;
-  font-size: 1.5em;
+  font-size: 1.2em;
   font-weight: 600;
   text-align: center;
 }
 .blog-post-container {
-  border: 1px solid rgba(0, 0, 0, .2);
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
   border-radius: 8px;
   padding: .5em;
   width: calc(100% - 1em);
-  height: 9.5em;
+  height: 9em;
   margin: 1em 0;
 }
 .blog-post-title {
-  font-size: 1.2em;
+  font-size: 1em;
   font-weight: 600;
   
 }
 .blog-post-date, .blog-date {
-  font-size: .7em;
+  font-size: .6em;
   color: rgba(0, 0, 0, .6);
 }
 .blog-date{
@@ -933,6 +939,7 @@ fieldset {
   display: flex;
   width: 100%;
   height: calc(90% - 1.9em);
+  margin: .3em 0;
   justify-content: space-between;
   justify-content: space-around;
   align-items: center;
@@ -941,15 +948,16 @@ fieldset {
   max-width: 30%;
   height: 6em;
   flex: 1;
+  border: 1px solid black;
   border-radius:50% ;
 }
 .blog-post-text {
   /* width: 100%; */
-  height: 80%;
+  height: 85%;
   max-width: 65%;
   overflow: hidden;
   flex: 5;
-  font-size: .9em;
+  font-size: .7em;
   /* white-space: nowrap; */
   /* text-overflow: ellipsis; */
 }

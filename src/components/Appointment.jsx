@@ -77,7 +77,7 @@ class Appointment extends Component {
                         <label htmlFor="datetime">Appointment Date</label>
                         <input type="datetime" name="datetime" id="" />
                         <label htmlFor="procedure">Preferred procedure(s)</label>
-                        <select name="procedure" id="" multiple>
+                        <select name="procedure" id="" multiple value={[]}>
                             <option value="skin consultaion">Skin consultation</option>
                             <option value="chemical peel">Chemical Peel</option>
                             <option value="dermabrasion">Dermabrasion</option>

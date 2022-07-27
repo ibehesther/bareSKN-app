@@ -1,6 +1,6 @@
 import {Component} from "react";
 import LandingNavigationBar from "./LandingNavigationBar";
-import SearchNavigationBar from "./SearchNavigationBar";
+import SearchTab from "./SearchTab";
 
 class NavigationBar extends Component {
     constructor(props) {
@@ -26,7 +26,7 @@ class NavigationBar extends Component {
                         toogleSideBar = {this.props.toogleSideBar} 
                         isSideBarOpen={this.props.isSideBarOpen}
                         />
-                        <SearchNavigationBar toogleSearchTab={this.toogleSearchTab}/>
+                        <SearchTab toogleSearchTab={this.toogleSearchTab}/>
                     </div>
                     :
                     <LandingNavigationBar toogleSearchTab={this.toogleSearchTab} 
