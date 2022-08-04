@@ -8,7 +8,6 @@ class NavigationBar extends Component {
         this.state = {
             isSearchTabOpen : false
         }
-        this.toogleSearchTab = this.toogleSearchTab.bind(this)
     }
     toogleSearchTab = () => {
         this.setState(

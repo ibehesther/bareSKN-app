@@ -42,7 +42,7 @@ input[type=text]:focus{
   border: none;
   outline: .2px solid rgba(250, 131, 79, 1);
 }
-.hidden {
+.hidden-sm {
   display: none;
 }
 /*** Beginning of CSS code for Navigation Bar  */
@@ -109,24 +109,6 @@ nav{
 .navbar-line-3 {
   animation-duration: 1s;
   animation-fill-mode: forwards;
-}
-@keyframes navbarline1_open {
-  from {
-    transform: none;
-  }
-  to {
-    transform: rotate(45deg) translate(.5em, .3em);
-  }
-  
-}
-@keyframes navbarline3_open {
-  from {
-    transform: none;
-  }
-  to {
-    transform: rotate(-45deg) translate(.1em, .2em);
-  }
-  
 }
 .navbar-icon {
   width: 1.5em;
@@ -198,6 +180,7 @@ nav{
   width: 100%;
   position: absolute;
   background-color: rgb(255, 255, 255);
+  padding: 1em 0;
 }
 .sidebar-options {
   /* padding: 2em 0; */
@@ -361,7 +344,8 @@ nav{
 /*** Beginning of CSS code for Card  */
 .card-container {
   width: 100%;
-  height: 40vh;
+  /* height: 40vh; */
+  height: 35vh;
   background-color: rgb(255, 255, 255);
   display: flex;
   flex-direction: column;
@@ -406,8 +390,9 @@ nav{
   transition: all .2s linear;
 }
 .card-add-btn:hover {
-  background-color: rgb(173, 172, 172);
-  border: 1px solid rgb(173, 172, 172);
+  background-color: rgba(0, 0, 0, .6);
+  color: white;
+  border: 1px solid rgba(0, 0, 0, .6);
 }
 /*** End of CSS code for Card  */
 
@@ -485,6 +470,7 @@ nav{
   font-weight: 500;
 }
 .page-subsection-title > span {
+  font-size: 1em;
   padding: .3em 0;
   font-weight: 600;
 }
@@ -500,15 +486,13 @@ nav{
   height: 25vh;
   overflow: hidden;
   position: relative;
-  border: .5px solid rgb(248, 248, 248);
+  border: .5px solid rgb(220, 220, 220);
 }
 .collection-card-child{
   width: 100%;
   height: 100%;
-  background: url('../images/skincare4.jpg') no-repeat;
-  background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSN5TOetWWbuzvEa9xD0d-L3DjXWQSn9Gq_Q&usqp=CAU") no-repeat;
-  background-size: 150px;
   background-position: center;
+  background-size: cover;
   -webkit-transition: all .5s ease;
   -moz-transition: all .5s ease;
   -o-transition: all .5s ease;
@@ -523,6 +507,7 @@ nav{
   transform: scale(1.2);
 }
 .collection-card-name {
+  text-transform: uppercase;
   position: absolute;
   bottom: .5em;
   right: 0;
@@ -544,8 +529,7 @@ nav{
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-  /* padding-bottom: 9em; */
-  margin: 1em auto 0;
+  margin: 1em auto;
 
 }
 .image-container{
@@ -567,12 +551,12 @@ nav{
 
 /*** Beginning of CSS code for Sign up page  */
 
-.signup-container, .login-container {
+.signup-container, .login-container, .edit-account-container{
   width: 100%;
   height: 100%;
-  /* padding: 0 1.1em; */
+  padding: 0 1em;
 }
-.signup-title, .login-title {
+.signup-title, .login-title, .edit-account-container > h1 {
   font-size: 1.8em;
   font-weight: 900;
   display: block;
@@ -583,28 +567,28 @@ fieldset {
   border: none;
   width: 100%;
 }
-.signup-section, .login-section {
+.signup-section, .login-section, .edit-account-section{
   width: 100%;
   margin: .6em 0;
   position: relative;
 }
-.signup-section > label, .login-section > label {
+.signup-section > label, .login-section > label, .edit-account-section > label {
  font-size: 1.2em;
  font-weight: bold;
- /* margin: 1em 0; */
 }
-.signup-section > input, .login-section > input {
+.signup-section > input, .login-section > input, .edit-account-section  input {
   display: block;
   width: calc(100% - (1em + .4px));
-  /* height: 3em; */
-  border: .2px solid rgb(9, 9, 9);
+  border: .2px solid rgb(255, 255, 255);
+  border-bottom: .2px solid rgb(0, 0, 0);
   font-size: 1.2em;
   padding: .4em .5em;
   margin: .5em 0;
+  transition: all .5s ease;
 }
-.signup-section > input:focus, .login-section > input:focus{
-  border: none;
-  outline: .2px solid rgba(250, 131, 79, 1);
+.signup-section > input:focus, .login-section > input:focus, .edit-account-section > input:focus{
+  outline: none;
+  border: .2px solid rgba(0, 0, 0, .6);
 }
 .visible {
   position: absolute;
@@ -614,27 +598,29 @@ fieldset {
   height: 1.3em;
 }
 .signup-container button, .login-container button, 
-.edit-account-section button {
-  width: calc(100% - 2px);
+.edit-account-container button {
+  
   width: 100%;
-  padding: .8em 1px;
+  padding: 1em 1px;
+  margin: .5em 0;
   font-size: 1.2em;
   color: white;
-  background-color: rgba(250, 131, 79, .6);
-  border: 0.2px solid rgba(250, 131, 79, .6);
+  background-color: rgba(0, 0, 0, .6);
   border: none;
   
   transition: all .2s;
 }
 .signup-container button:hover, .login-container button:hover{
-  font-size: 1.4em;
   font-weight: 500;
 }
 .login-container {
   height: fit-content;
   height: 15em;
 }
-
+.signup-container > p > a, .login-container > p > a,
+.account-heading > p > a, p.login > a {
+  text-decoration: underline;
+}
 /*** End of CSS code for Sign up page  */
 
 /*** Beginning of CSS code for AuthSection page  */
@@ -851,7 +837,7 @@ fieldset {
   transition: all .5s;
 }
 .product-cart-details  button:hover{
-  background-color: rgb(144, 144, 144);
+  background-color: rgba(0, 0, 0, .6);
 }
 .product-desc {
   height: 5em;
@@ -999,7 +985,7 @@ fieldset {
   font-size: 1em;
   font-weight: bolder;
   background-color: rgba(255, 255, 255, 1);
-  border: 1px solid rgba(250, 131, 79, .6);
+  border: 1px solid black;
   border-radius: 2px;
 }
 .item-price {
@@ -1036,13 +1022,12 @@ margin-bottom: .5em;
 }
 .delete-item-icon > button {
   font-size: 1em;
-  /* border: .1px solid rgba(97, 97, 97, 1); */
   border-radius: 2px;
-  background-color: white;
+  color: white;
   padding: .2em .5em;
   margin-top: .5em;
-  background-color: rgba(250, 7, 7, 0.8);
-  border: .1px solid rgba(250, 131, 79, .6);
+  background-color: rgba(0, 0, 0, .6);
+  border: none;
 }
 .proceed-btn-container {
   margin: .5em auto;
@@ -1053,7 +1038,7 @@ margin-bottom: .5em;
   padding: 1em .5em;
   border-radius: 8px;
   font-size: 1.1em;
-  background-color: rgba(250, 131, 79, .6);
+  background-color: rgba(0, 0, 0, .6);
   color: white;
   border: none;
 }
@@ -1264,6 +1249,9 @@ input[type=radio]:checked::before{
 .account-details>div>p:first-child{
   font-weight: 700;
   text-transform: uppercase;
+}
+.edit-account-container > form{
+  margin: 1.5em 0;
 }
 .order-history-section{
   width: 100%;

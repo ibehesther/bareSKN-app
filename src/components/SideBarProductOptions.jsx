@@ -3,7 +3,6 @@
 function SideBarProductsOptions(props) {
     const productOptions = [
         {option: "BY BRAND", suboption: []},
-        {option: "BY OPTION", suboption: []},
         {option: "BY CONCERN", suboption: []},
         {option: "BY SKIN TYPE", suboption: []}
     ]

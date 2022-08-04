@@ -33,7 +33,7 @@ class Account extends Component{
                         <p>123 Atlantic City, New Jersey, Nigeria.</p>
                     </div>
                     
-                    <Link to={'/order-history'}>
+                    <Link to={'/order-history'} >
                         See order history &gt; &gt; &gt;
                     </Link>
                     

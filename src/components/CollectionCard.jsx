@@ -6,15 +6,16 @@ class CollectionCard extends Component{
         super(props)
     }
     render(){
+        const {name, image_link} = this.props;
         return(
             <Link to={'/asian'}>
                 <div className="collection-card-parent">
                     <div className="collection-card-child"
-                        id ={`collection-card-${this.props.collection_id}`}
-                       >
+                    style={{backgroundImage: `url(${image_link})`}}
+                    >
                     </div>
                     <p className="collection-card-name">
-                            ASIAN PRODUCTS
+                            {name}
                         </p>
                 </div>
             </Link>

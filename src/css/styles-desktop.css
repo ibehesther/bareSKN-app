@@ -1,0 +1,20 @@
+@media screen and (min-width:1024px){
+    .hidden-sm {
+        display: block;
+    }
+    .hidden-md {
+        display: block;
+    }
+    .hidden-lg{
+        display: none;
+    }
+    .sidebar-options {
+        flex-direction: row;
+    }
+    .app-name {
+        flex: 2;
+    }
+    .navbar-center{
+        flex: 2.5;
+    }
+}

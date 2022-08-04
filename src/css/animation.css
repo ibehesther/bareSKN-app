@@ -81,3 +81,42 @@
         transform: translateX(-800px);
     }
 }
+@keyframes navbarline1_open {
+  from {
+    transform: none;
+  }
+  to {
+    transform: rotate(45deg) translate(.5em, .3em);
+  }
+  
+}
+@keyframes navbarline3_open {
+  from {
+    transform: none;
+  }
+  to {
+    transform: rotate(-45deg) translate(0em, .2em);
+  }
+  
+}
+
+@media screen and (min-width:768px) and (max-width:1200px){
+  @keyframes navbarline1_open {
+    from {
+      transform: none;
+    }
+    to {
+      transform: rotate(45deg) translate(.7em, .3em);
+    }
+    
+  }
+  @keyframes navbarline3_open {
+    from {
+      transform: none;
+    }
+    to {
+      transform: rotate(-45deg) translate(.1em, .2em);
+    }
+    
+  }
+}

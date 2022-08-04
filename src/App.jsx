@@ -14,7 +14,6 @@ class App extends Component {
         this.state = {
             isSideBarOpen : false
         }
-        this.toogleSideBar = this.toogleSideBar.bind(this);
     }
     toogleSideBar= () => {
         this.setState((state) => ({
@@ -37,9 +36,6 @@ class App extends Component {
                         <HomePage/>
                     </main>
                 }
-                
-                {/* <Footer
-                isSideBarOpen={this.state.isSideBarOpen}/>  */}
             </div>
         )
     }

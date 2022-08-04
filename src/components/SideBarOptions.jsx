@@ -41,9 +41,7 @@ class SideBarOptions extends Component {
                     
                 </div>
                 <Link onClick={this.props.toogleSideBar} to={`/appointment`} className="options"> <span >  APPOINTMENT</span></Link>
-                <Link onClick={this.props.toogleSideBar} to={`/blog`} className="options"><span >  BLOG</span></Link>
-                <Link onClick={this.props.toogleSideBar} to={`/about`} className="options"><span > ABOUT US</span></Link>
-                
+                <Link onClick={this.props.toogleSideBar} to={`/blog-posts`} className="options"><span >  BLOG</span></Link>
             </div>
         )
     }

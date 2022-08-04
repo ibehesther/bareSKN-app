@@ -1,9 +1,9 @@
-@media screen and (min-width:768px) and (max-width:1200px){
+@media screen and (min-width:768px) and (max-width:1023px){
+    nav{
+        height: 6em;
+    }
     .nav-bar{
-        /* padding: 1em 2em; */
-        padding: 1em 2.5em;
-        /* width: 90%;
-        margin: 1em auto; */
+        padding: 1.5em 2.5em;
     }
     .app-name{
         font-size: 2.5em;
@@ -23,7 +23,7 @@
         display: block;
     }
     .navbar-line-1, .navbar-line-2, .navbar-line-3{
-        width: 2.8em;
+        width: 2.5em;
         height: .3em;
         margin: .4em 0;
     }
@@ -33,6 +33,9 @@
     }
     #cancel {
         font-size: 1em;
+    }
+    .main-content {
+        margin-top: 1.5em;
     }
     .image-container{
         height: 600px;
@@ -80,11 +83,6 @@
     .card-title, .card-add-btn{
         font-size: 1.5em;
     }
-    .card-add-btn:hover {
-        /* width: 9em; */
-        font-size: 1.7em;
-        background-color: rgba(250, 131, 79, .5);
-      }
     .sidebar-profile{
         display: none;
     }
@@ -95,11 +93,14 @@
         height: 6em;
     }
     .options{
-        padding: 1.5em 1em;
+        padding: 1.2em 1em;
         font-size: 1.5em;
     }
     .login{
         font-size: .9em;
+    }
+    .signup-title, .login-title {
+        font-size: 2em;
     }
     .signup-section > label, .login-section > label,
     .signup-section > input, .login-section > input {
@@ -113,10 +114,10 @@
         font-size: 1.1em;
     }
     .appointment-container > p {
-        font-size: 1.5em;
+        font-size: 1.8em;
     }
     .appointment-container > section > div, .procedure-price {
-        font-size: 1.4em;
+        font-size: 1.5em;
         line-height: 30px;
     }
     .appointment-container h2{
@@ -176,11 +177,14 @@
     .product-cart-details button, .product-cart-details input {
         font-size: 1.5em;
     }
+    .product-cart-details button{
+        padding: 1em 0;
+    }
     .blog-name {
         font-size: 2em;
     }
     .blog-post-container {
-        height: 15em;
+        height: 18em;
     }
     .blog-post-title {
         font-size: 2em;
@@ -196,7 +200,7 @@
     .blog-post-text {
         max-width: 70%;
         font-size: 1.2em;
-        line-height: 30px;
+        line-height: 28px;
     }
     .blog-title {
         font-size: 1.5em;
@@ -224,12 +228,52 @@
     .cart-total {
         padding: .5em 0;
         font-size: 1.5em;
-        /* height: 8em; */
     }
     .total {
         font-size: 1.8em;
     }
-    /* .proceed-btn-container > button { */
-        /* fo */
-    /* } */
+    .signup-container > p, .login-container > p {
+        font-size: 1.2em;
+    }
+    
+    .signup-container button,
+     .login-container button, 
+     .edit-account-section button, 
+     .edit-account-container button{
+        font-size: 1.5em;
+        padding: 1.5em 0;
+    }
+    .hidden-sm {
+        display: block;
+    }
+    .hidden-md {
+        display: none;
+    }
+    .appointment-container > section > h2 {
+        font-size: 1.8em;
+    }
+    .fa {
+        max-width: 5em;
+        font-size: 1.8em;
+    }
+    .account-heading > h2 {
+        font-size: 2em;
+    }
+    .account-heading > p{
+        font-size: 1.2em;
+    }
+    .account-details>div>p:first-child {
+        font-size: 1.5em;
+    }
+    .account-details>div {
+        margin: 2em 0;
+        line-height: 40px;
+        font-size: 1.2em;
+    }
+    .account-details > a {
+        font-size: 1.2em;
+    }
+    .edit-account-container > form {
+        margin: 3em 0;
+    }
 }
