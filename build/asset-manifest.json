@@ -1,7 +1,9 @@
 {
   "files": {
-    "main.css": "/bareSKN-app/static/css/main.c0ff2136.css",
-    "main.js": "/bareSKN-app/static/js/main.d416d6fe.js",
+    "main.css": "/bareSKN-app/static/css/main.3fd6816f.css",
+    "main.js": "/bareSKN-app/static/js/main.d2129581.js",
+    "static/js/656.7438cb95.chunk.js": "/bareSKN-app/static/js/656.7438cb95.chunk.js",
+    "static/js/422.ed4bfefd.chunk.js": "/bareSKN-app/static/js/422.ed4bfefd.chunk.js",
     "static/media/consultation3.jpg": "/bareSKN-app/static/media/consultation3.72ae31b02d805fef6e19.jpg",
     "static/media/skincare1.jpg": "/bareSKN-app/static/media/skincare1.00d29d67b6d31a51bd97.jpg",
     "static/media/consultation1.jpg": "/bareSKN-app/static/media/consultation1.92c90ff96939f0f00cd5.jpg",
@@ -16,11 +18,13 @@
     "static/media/visibility.png": "/bareSKN-app/static/media/visibility.6071239546cfff267813.png",
     "static/media/profile.png": "/bareSKN-app/static/media/profile.8cfc8dbcf6d56a167888.png",
     "index.html": "/bareSKN-app/index.html",
-    "main.c0ff2136.css.map": "/bareSKN-app/static/css/main.c0ff2136.css.map",
-    "main.d416d6fe.js.map": "/bareSKN-app/static/js/main.d416d6fe.js.map"
+    "main.3fd6816f.css.map": "/bareSKN-app/static/css/main.3fd6816f.css.map",
+    "main.d2129581.js.map": "/bareSKN-app/static/js/main.d2129581.js.map",
+    "656.7438cb95.chunk.js.map": "/bareSKN-app/static/js/656.7438cb95.chunk.js.map",
+    "422.ed4bfefd.chunk.js.map": "/bareSKN-app/static/js/422.ed4bfefd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c0ff2136.css",
-    "static/js/main.d416d6fe.js"
+    "static/css/main.3fd6816f.css",
+    "static/js/main.d2129581.js"
   ]
 }

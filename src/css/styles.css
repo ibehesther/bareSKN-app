@@ -402,12 +402,9 @@ nav{
 }
 .page-section {
   width: 100%;
-  margin: .8em auto;
+  margin: .8em auto 0;
   display: flex;
   flex-direction: column;
-}
-.page-section.best {
-  height: 25em;
 }
 ::-webkit-scrollbar{
   appearance: none;
@@ -425,7 +422,6 @@ nav{
 .page-section.best > div {
   max-width: 100%;
   margin-top: 1em;
-  height: 19em;
   display: flex;
   overflow-x: scroll;
   scroll-behavior: smooth;
@@ -517,6 +513,24 @@ nav{
   background-color: white;
   padding: 1em;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+.products-navigation {
+  width: fit-content;
+  margin: 1em auto;
+}
+.products-navigation > span {
+  padding: 0 .8em;
+  font-size: 1.2em;
+}
+.products-navigation > button {
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, .6);
+  border-radius: 2px;
+  font-size: 1.5em;
+  width: 1.2em;
+  line-height: 32px;
+  font-weight: 600;
+  text-align: center;
 }
 /*** End of CSS code for Page Sections  */
 

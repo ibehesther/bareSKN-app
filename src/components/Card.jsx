@@ -2,7 +2,7 @@ function Card(props) {
     const {name, image_link, price} = props
     return(
         <div className="card-container">
-            <img src={image_link} alt="product" className="card-img" />
+            <img src={image_link} alt={name} className="card-img" />
             <section className="card-details">
                 <span className="card-title">{name}</span>
                 {props.rating?<span className="card-rating">&#9733;&#9733;&#9733;&#9733;</span> : <span></span>}
