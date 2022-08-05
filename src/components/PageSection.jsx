@@ -17,48 +17,34 @@ class PageSection extends Component {
     }
     
     componentDidMount(){
-        fetch('http://127.0.0.1:8080/api/v1.0/collections')
-        .then(res => res.json())
-        .then((collections) => {
-            this.setState({collections});
-        })
-        .catch(console.log);
+        const getCollections = fetch('http://127.0.0.1:8080/api/v1.0/collections')
+        .then(res => res.json());
 
-        fetch(`http://127.0.0.1:8080/api/v1.0/products?limit=10&page=${encodeURIComponent(this.state.pageNo)}`)
-        .then(res => res.json())
-        .then((products) => {
+        const getPaginatedProducts = fetch(`http://127.0.0.1:8080/api/v1.0/products?limit=10&page=${encodeURIComponent(this.state.pageNo)}`)
+        .then(res => res.json());
+
+        Promise.all([getCollections, getPaginatedProducts])
+        .then((value) => {
+            var collections = value[0];
+            var products = value[1];
             this.setState({isLoading: false});
+            this.setState({collections});
             this.setState({products});
-        })
-        .catch((error) => {
-            this.setState({isLoading: true})
+        }).catch(() => {
+            this.setState({isLoading: true});
         });
-        fetch(`http://127.0.0.1:8080/api/v1.0/products?limit=10&page=${encodeURIComponent(this.state.pageNo)}`)
-        .then(res => res.json())
-        .then((products) => {
-            this.setState({isLoading: false});
-            this.setState({products});
-        })
-        .catch((error) => {
-            this.setState({isLoading: true})
-        });
-    // fetch('http://127.0.0.1:8080/api/v1.0/collections')
-        // .then(res => res.json())
-        // .then((collections) => {
-        //     this.setState({collections})
-        // });
     }
-    // componentDidUpdate(){
-    //     fetch(`http://127.0.0.1:8080/api/v1.0/products?limit=10&page=${encodeURIComponent(this.state.pageNo)}`)
-    //     .then(res => res.json())
-    //     .then((products) => {
-    //         this.setState({isLoading: false});
-    //         this.setState({products});
-    //     })
-    //     .catch((error) => {
-    //         this.setState({isLoading: true})
-    //     });
-    // }
+    componentDidUpdate(){
+        fetch(`http://127.0.0.1:8080/api/v1.0/products?limit=10&page=${encodeURIComponent(this.state.pageNo)}`)
+        .then(res => res.json())
+        .then((products) => {
+            this.setState({isLoading: false});
+            this.setState({products});
+        })
+        .catch((error) => {
+            this.setState({isLoading: true})
+        });
+    }
         
     next = () => {
         this.setState((state) => ({pageNo: state.pageNo + 1}))
@@ -75,7 +61,7 @@ class PageSection extends Component {
         return(
             <div className="page-container">
                 <Images imageType='skincare'/>
-                <section className="page-section">
+                <section className="collection page-section">
                     <p className="page-section-title">OUR COLLECTIONS</p>
                     <div className="page-section-cards">
                         {
@@ -96,18 +82,18 @@ class PageSection extends Component {
                     <p>CHECK OUT OUR BEST SELLING PRODUCTS</p>
                     <div>
                     {
-                            this.state.isLoading ?
-                            <div>Loading...</div> 
-                            :
-                            this.state.products.map((product, key) => 
-                                <Card
-                                key={key}
-                                name = {product.name}
-                                image_link = {product.image_link}
-                                price = {product.price} 
-                                rating = {4}/>
-                            )
-                        }
+                        this.state.isLoading ?
+                        <div>Loading...</div> 
+                        :
+                        this.state.products.map((product, key) => 
+                            <Card
+                            key={key}
+                            name = {product.name}
+                            image_link = {product.image_link}
+                            price = {product.price} 
+                            rating = {4}/>
+                        )
+                    }
                     </div>
                 </section>
                 <ProductsList next= {this.next} prev={this.prev} 

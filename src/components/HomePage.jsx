@@ -1,7 +1,7 @@
 import { Component } from "react";
 import { Route, Routes } from 'react-router-dom';
 import Account from "./Account";
-import Appointment from "./Appointment";
+import Services from "./Services";
 import Blog from "./Blog";
 import BlogPosts from "./BlogPosts";
 import Cart from "./Cart";
@@ -33,7 +33,7 @@ class HomePage extends Component {
                    <Route path={`order-history`} element={<OrderHistory/>}></Route>
                    <Route path={`edit`} element={<EditAccount/>}></Route>
                    <Route path={`products`} element = {<Product/>}></Route>
-                   <Route path={`appointment`} element = {<Appointment/>}></Route>
+                   <Route path={`services`} element = {<Services/>}></Route>
                    <Route path={`blog`} element = {<Blog/>}></Route>
                    <Route path={`blog-posts`} element={<BlogPosts/>}></Route>
                    <Route path={`signup`} element = {<SignUp/>}></Route>

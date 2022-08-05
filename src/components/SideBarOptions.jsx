@@ -28,7 +28,7 @@ class SideBarOptions extends Component {
     render(){
         return(
             <div className="sidebar-options">
-                <Link onClick={this.props.toogleSideBar} to={`/`}className="options"><span > HOME</span></Link>
+                {/* <Link onClick={this.props.toogleSideBar} to={`/`}className="options"><span > HOME</span></Link> */}
                 <div className="sidebar-products-container options">
                     <span className="sidebar-products">
                         <Link onClick={this.props.toogleSideBar} to={`/products`} className="sidebar-title"><div > PRODUCTS</div></Link>
@@ -40,7 +40,7 @@ class SideBarOptions extends Component {
                     {this.state.productsDropDown?<SideBarProductsOptions/>: <div></div> }
                     
                 </div>
-                <Link onClick={this.props.toogleSideBar} to={`/appointment`} className="options"> <span >  APPOINTMENT</span></Link>
+                <Link onClick={this.props.toogleSideBar} to={`/services`} className="options"> <span >  SERVICES</span></Link>
                 <Link onClick={this.props.toogleSideBar} to={`/blog-posts`} className="options"><span >  BLOG</span></Link>
             </div>
         )

@@ -1,7 +1,7 @@
 import { Component } from "react";
 import Images from "./Images";
 
-class Appointment extends Component {
+class Services extends Component {
     constructor(props){
         super(props);
 
@@ -66,7 +66,7 @@ class Appointment extends Component {
                     </div>
                     <p className="procedure-price">$750</p>
                 </section>
-                <section>
+                {/* <section>
                     <h3>Appointment Form</h3>
                     <div className='appointment-icon'>
                         <img src={require("../icons/appointment.png")} alt="" />
@@ -87,10 +87,10 @@ class Appointment extends Component {
                         </select>
                         <button type="submit">BOOK</button>
                     </form>
-                </section>
+                </section> */}
             </div>
         );
     }
 }
 
-export default Appointment;
+export default Services;

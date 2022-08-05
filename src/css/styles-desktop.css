@@ -13,8 +13,86 @@
     }
     .app-name {
         flex: 2;
+        padding-left: 2em;
     }
     .navbar-center{
         flex: 2.5;
+        padding-right: 2em;
+    }
+    .navbar-right{
+        flex: .8;
+        padding-right: 3em;
+    }
+    .sidebar-products-option{
+        background-color: white;
+    }
+    .sub-products {
+        border: 0;
+        border-top: .5px solid black;
+    }
+    .image-container{
+        height: calc(100vh - 6em);
+    }
+    .page-section-title{
+        font-size: 1.5em;
+    }
+    .collection-card-parent{
+        height: 50vh;
+    }
+    .collection-card-name{
+        font-size: 1em;
+    }
+    .collection.page-section .page-section-cards{
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .page-section.best > p:first-child{
+        font-size: 1.4em;
+    }
+    .page-section.best > p{
+        font-size: 1em;
+    }
+    .page-section.best > div{
+        height: fit-content;
+    }
+    .page-section .page-section-cards{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .page-section.best .card-container{
+        min-width: 30%;
+        height: 25em;
+    }
+    .page-subsection-title{
+        font-size: 1.5em;
+    }
+    .card-container{
+        padding: 1.5em 0;
+        height: 50vh;
+    }
+    .card-title{
+        font-size: 1em;
+    }
+    .card-price{
+        font-size: .8em;
+    }
+    .card-add-btn{
+        padding: 1em 2em;
+        font-size: .8em;
+    }
+    .card-details{
+        height: 40%;
+        padding: 1em 0;
+    }
+    .appointment-container > p{
+        font-size: 1.6em;
+    }
+    .appointment-container > section > h2{
+        font-size: 1.5em;
+    }
+    .appointment-container > section > div, .procedure-price{
+        font-size: 1.2em;
+    }
+    .blog-post-details img{
+        max-width: 30%;
+        height: 10em;
     }
 }
