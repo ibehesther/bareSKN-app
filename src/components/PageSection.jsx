@@ -33,13 +33,33 @@ class PageSection extends Component {
         .catch((error) => {
             this.setState({isLoading: true})
         });
+        fetch(`http://127.0.0.1:8080/api/v1.0/products?limit=10&page=${encodeURIComponent(this.state.pageNo)}`)
+        .then(res => res.json())
+        .then((products) => {
+            this.setState({isLoading: false});
+            this.setState({products});
+        })
+        .catch((error) => {
+            this.setState({isLoading: true})
+        });
     // fetch('http://127.0.0.1:8080/api/v1.0/collections')
         // .then(res => res.json())
         // .then((collections) => {
         //     this.setState({collections})
         // });
     }
-    
+    // componentDidUpdate(){
+    //     fetch(`http://127.0.0.1:8080/api/v1.0/products?limit=10&page=${encodeURIComponent(this.state.pageNo)}`)
+    //     .then(res => res.json())
+    //     .then((products) => {
+    //         this.setState({isLoading: false});
+    //         this.setState({products});
+    //     })
+    //     .catch((error) => {
+    //         this.setState({isLoading: true})
+    //     });
+    // }
+        
     next = () => {
         this.setState((state) => ({pageNo: state.pageNo + 1}))
     }
@@ -51,15 +71,7 @@ class PageSection extends Component {
     }
 
     render() {
-        fetch(`http://127.0.0.1:8080/api/v1.0/products?limit=10&page=${encodeURIComponent(this.state.pageNo)}`)
-        .then(res => res.json())
-        .then((products) => {
-            this.setState({isLoading: false});
-            this.setState({products});
-        })
-        .catch((error) => {
-            this.setState({isLoading: true})
-        });
+        
         return(
             <div className="page-container">
                 <Images imageType='skincare'/>
