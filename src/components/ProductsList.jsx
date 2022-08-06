@@ -13,6 +13,7 @@ export default class ProductsList extends Component{
     }
     
     render(){
+        this.pageNo = this.props.pageNo
         return(
             <div>
                 <section className="page-section">
@@ -35,9 +36,15 @@ export default class ProductsList extends Component{
                     </div>
                 </section>
                 <div className="products-navigation">
-                    <button onClick={this.props.prev}> - </button>
-                    <span>{this.props.pageNo}</span>
-                    <button onClick={this.props.next}> + </button>
+                    <button onClick={this.props.prev}
+                    disabled={this.pageNo == 1 ? true : false}> 
+                    - 
+                    </button>
+                    <span>{this.pageNo}</span>
+                    <button onClick={this.props.next}
+                    disabled={this.pageNo == this.props.maxPage ? true : false}>
+                         + 
+                    </button>
                 </div>
             </div>
         );

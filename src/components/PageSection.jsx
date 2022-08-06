@@ -12,7 +12,8 @@ class PageSection extends Component {
             collections: [],
             products: [],
             isLoading: false,
-            pageNo: 1
+            pageNo: 0,
+            maxPage: 0
         }
     }
     
@@ -20,24 +21,37 @@ class PageSection extends Component {
         const getCollections = fetch('http://127.0.0.1:8080/api/v1.0/collections')
         .then(res => res.json());
 
-        const getPaginatedProducts = fetch(`http://127.0.0.1:8080/api/v1.0/products?limit=10&page=${encodeURIComponent(this.state.pageNo)}`)
+        const getPaginatedProducts = fetch(`http://127.0.0.1:8080/api/v1.0/products?limit=10&page=1`)
         .then(res => res.json());
 
         Promise.all([getCollections, getPaginatedProducts])
         .then((value) => {
             var collections = value[0];
-            var products = value[1];
+            var {products} = value[1];
+            var {totalLength} = value[1];
+            var {limit} = value[1];
+            var maxPage = Math.ceil(totalLength / limit);
             this.setState({isLoading: false});
             this.setState({collections});
             this.setState({products});
+            this.setState({maxPage});
+            this.setState({pageNo: 1});
         }).catch(() => {
             this.setState({isLoading: true});
         });
     }
+    shouldComponentUpdate(nextProps, nextState){
+        if(nextState.pageNo !== this.state.pageNo){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     componentDidUpdate(){
         fetch(`http://127.0.0.1:8080/api/v1.0/products?limit=10&page=${encodeURIComponent(this.state.pageNo)}`)
         .then(res => res.json())
-        .then((products) => {
+        .then(({products}) => {
             this.setState({isLoading: false});
             this.setState({products});
         })
@@ -45,15 +59,12 @@ class PageSection extends Component {
             this.setState({isLoading: true})
         });
     }
-        
+
     next = () => {
         this.setState((state) => ({pageNo: state.pageNo + 1}))
     }
     prev = () => {
-        if(this.state.pageNo > 1){
-            this.setState((state) => ({pageNo: state.pageNo - 1}))
-        }
-        
+       this.setState((state) => ({pageNo: state.pageNo - 1}))
     }
 
     render() {
@@ -97,7 +108,8 @@ class PageSection extends Component {
                     </div>
                 </section>
                 <ProductsList next= {this.next} prev={this.prev} 
-                pageNo={this.state.pageNo} products={this.state.products} isLoading={this.state.isLoading}/>
+                pageNo={this.state.pageNo} products={this.state.products}
+                isLoading={this.state.isLoading} maxPage={this.state.maxPage}/>
             </div>
         );
     }
