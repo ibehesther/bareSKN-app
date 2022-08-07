@@ -1,21 +1,29 @@
+import { useState } from "react";
+import { useEffect } from "react";
+import { DropDown } from "./DropDown";
 
 
 function SideBarProductsOptions(props) {
-    const productOptions = [
-        {option: "BY BRAND", suboption: ["a", "b", "c"]},
-        {option: "BY CONCERN", suboption: ["d", "e", "f"]},
-        {option: "BY SKIN TYPE", suboption: ["g", "h", "i"]}
-    ]
+    const [categories, setCategories] = useState([]);
+    
+    useEffect(() => {
+        fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/categories`)
+        .then((res) => res.json())
+        .then((categories) => {
+            setCategories(categories)
+        })
+    })
     
     return(
         <ul className="sidebar-products-option" >
-            {productOptions.map((option, index) => 
-                <li className="sub-products" key={index}>
-                    <span className="sidebar-products-title">{option.option}</span>
-                    <div className="sidebar-show-more-icon" >
+            {categories.map(({name, key}, index) => 
+                <li className="sub-products" key={key}>
+                    <span className="sidebar-products-title">By {name}</span>
+                    {/* <div className="sidebar-show-more-icon" >
                         <div className="sidebar-show-more-line-1" ></div>
                         <div className="sidebar-show-more-line-2"></div>
-                    </div>
+                    </div> */}
+                    <DropDown id={index}/>
                 </li>
             )}
         </ul>

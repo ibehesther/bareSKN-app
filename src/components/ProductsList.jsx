@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { Breadcrumb } from "./Breadcrumb";
 import Card from './Card';
 
 export default class ProductsList extends Component{
@@ -16,37 +17,27 @@ export default class ProductsList extends Component{
         this.pageNo = this.props.pageNo
         return(
             <div>
-                <section className="page-section">
-                    <span className="page-subsection-title">
-                        <p>NEW ARRIVALS</p>
-                    </span>
-                    <div className="page-section-cards">
-                        {
-                            this.props.isLoading ?
-                            <div>Loading...</div> 
-                            :
-                            this.props.products.map((product, key) => 
-                                <Card
-                                key={key}
-                                name = {product.name}
-                                image_link = {product.image_link}
-                                price = {product.price} />
-                            )
-                        }
-                    </div>
-                </section>
-                <div className="products-navigation">
-                    <button onClick={this.props.prev}
-                    disabled={this.pageNo == 1 ? true : false}> 
-                    - 
-                    </button>
-                    <span>{this.pageNo}</span>
-                    <button onClick={this.props.next}
-                    disabled={this.pageNo == this.props.maxPage ? true : false}>
-                         + 
-                    </button>
+                {this.props.breadcrumb && <Breadcrumb/>}
+                <div className="page-section-cards">
+                    {
+                        this.props.isLoading ?
+                        <div>Loading...</div> 
+                        :
+                        this.props.products.map(({
+                            name, image_link, price, description}, key) => 
+                            <Card
+                            key={key}
+                            name = {name}
+                            image_link = {image_link}
+                            price = {price}
+                            description = {description}
+                            />
+                        )
+                    }
                 </div>
+                
             </div>
+
         );
     }
 }

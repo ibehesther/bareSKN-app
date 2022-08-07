@@ -6,16 +6,17 @@ class CollectionCard extends Component{
         super(props)
     }
     render(){
-        const {name, image_link} = this.props;
+        const {name, image_link, collection_key:key} = this.props;
         return(
-            <Link to={'/collections'}>
+            <Link to={`collections/${name}/products`}
+                state={{name, key}}>
                 <div className="collection-card-parent">
                     <div className="collection-card-child"
                     style={{backgroundImage: `url(${image_link})`}}>
                     </div>
                     <p className="collection-card-name">
-                            {name}
-                        </p>
+                        {name}
+                    </p>
                 </div>
             </Link>
         )

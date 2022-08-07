@@ -309,6 +309,7 @@ nav{
 }
 .sidebar-products-title {
   flex: 9;
+  text-transform: uppercase;
 }
 
 .sidebar-products-option {
@@ -360,8 +361,14 @@ nav{
   box-shadow: rgba(149, 157, 165, .2) 0px 8px 24px;
   z-index: 1;
 }
-.card-img {
+.card-container > a {
   height: 60%;
+  width: 100%;
+  display: flex;
+}
+.card-img {
+  height: 100%;
+  align-self: center;
   margin: 0 auto;
 }
 .card-details {
@@ -450,9 +457,6 @@ nav{
 }
 .page-section.best  .card-add-btn{
   flex: .5;
-}
-.page-section.best img{
-  height: 60%;
 }
 .page-section-title {
   padding: .6em 1.2em;

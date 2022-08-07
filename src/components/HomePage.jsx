@@ -13,6 +13,7 @@ import PageSection from "./PageSection";
 import Payment from "./Payment";
 import Product from "./Product";
 import SignUp from "./SignUp";
+import CollectionProductsList from "./CollectionProductsList";
 
 
 
@@ -38,6 +39,8 @@ class HomePage extends Component {
                    <Route path={`blog-posts`} element={<BlogPosts/>}></Route>
                    <Route path={`signup`} element = {<SignUp/>}></Route>
                    <Route path={`login`} element={<Login/>}></Route>
+                   <Route path={`collections/:coll_name/products`} 
+                   element={<CollectionProductsList/>}></Route>
                    <Route path={'*'} element={
                        <main style={{ padding: "1rem" }}>
                            <p>Oops! nothing to see here.</p>

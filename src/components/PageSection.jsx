@@ -1,4 +1,4 @@
-import React, {Suspense, Component} from "react";
+import React, {Component} from "react";
 import Images from "./Images";
 import Card from './Card';
 import CollectionCard from "./CollectionCard";
@@ -11,17 +11,17 @@ class PageSection extends Component {
         this.state={
             collections: [],
             products: [],
-            isLoading: false,
+            isLoading: true,
             pageNo: 0,
             maxPage: 0
         }
     }
     
     componentDidMount(){
-        const getCollections = fetch('http://127.0.0.1:8080/api/v1.0/collections')
+        const getCollections = fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/collections`)
         .then(res => res.json());
 
-        const getPaginatedProducts = fetch(`http://127.0.0.1:8080/api/v1.0/products?limit=10&page=1`)
+        const getPaginatedProducts = fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/products?limit=6&page=1`)
         .then(res => res.json());
 
         Promise.all([getCollections, getPaginatedProducts])
@@ -49,13 +49,13 @@ class PageSection extends Component {
     }
 
     componentDidUpdate(){
-        fetch(`http://127.0.0.1:8080/api/v1.0/products?limit=10&page=${encodeURIComponent(this.state.pageNo)}`)
+        fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/products?limit=6&page=${encodeURIComponent(this.state.pageNo)}`)
         .then(res => res.json())
         .then(({products}) => {
             this.setState({isLoading: false});
             this.setState({products});
         })
-        .catch((error) => {
+        .catch(() => {
             this.setState({isLoading: true})
         });
     }
@@ -72,18 +72,19 @@ class PageSection extends Component {
         return(
             <div className="page-container">
                 <Images imageType='skincare'/>
-                <section className="collection page-section">
+                <section id="collection" className="collection page-section">
                     <p className="page-section-title">OUR COLLECTIONS</p>
                     <div className="page-section-cards">
                         {
                             this.state.isLoading ?
                             <div>Loading...</div> 
                             :
-                            this.state.collections.map((collection, key) => 
+                            this.state.collections.map((collection) => 
                             <CollectionCard 
                             image_link= {collection.image_link}
                             name= {collection.name}
-                            key= {key}
+                            collection_key = {collection.key}
+                            key= {collection.key}
                             />)
                         }
                     </div>
@@ -107,9 +108,27 @@ class PageSection extends Component {
                     }
                     </div>
                 </section>
-                <ProductsList next= {this.next} prev={this.prev} 
-                pageNo={this.state.pageNo} products={this.state.products}
-                isLoading={this.state.isLoading} maxPage={this.state.maxPage}/>
+                <div>
+                    <section className="page-section" id="a">
+                        <span className="page-subsection-title">
+                            <p>NEW ARRIVALS</p>
+                        </span>
+                        <ProductsList next= {this.next} prev={this.prev} 
+                        pageNo={this.state.pageNo} products={this.state.products}
+                        isLoading={this.state.isLoading} maxPage={this.state.maxPage}/>
+                        <div className="products-navigation">
+                            <button onClick={this.prev}
+                            disabled={this.state.pageNo === 1 ? true : false}> 
+                            - 
+                            </button>
+                            <span>{this.state.pageNo}</span>
+                            <button onClick={this.next}
+                            disabled={this.pageNo === this.state.maxPage ? true : false}>
+                                + 
+                            </button>
+                        </div>
+                    </section>
+                </div>
             </div>
         );
     }
