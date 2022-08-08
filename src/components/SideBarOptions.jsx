@@ -1,5 +1,6 @@
 import { Component, createRef } from "react";
 import {Link} from 'react-router-dom'
+import { DropDown } from "./DropDown";
 import SideBarProductsOptions from "./SideBarProductOptions";
 
 class SideBarOptions extends Component {
@@ -22,7 +23,6 @@ class SideBarOptions extends Component {
             this.dropdownbar1.current.style.animationName = 'showmore1'
             this.dropdownbar2.current.style.animationName = 'showmore2'
         }
-        
     }
     render(){
         return(
@@ -30,17 +30,12 @@ class SideBarOptions extends Component {
                 <Link onClick={this.props.toogleSideBar} to={`/`}className="options"><span > HOME</span></Link>
                 <div className="sidebar-products-container options">
                     <span className="sidebar-products">
-                        <Link onClick={this.props.toogleSideBar} to={`/products`} className="sidebar-title">
+                        <Link onClick={this.props.toogleSideBar} to={`/`} className="sidebar-title">
                             <div > PRODUCTS</div>
                         </Link>
-                        <div className="sidebar-show-more-icon" 
-                        onClick= {this.showMore}
-                        >
-                            <div className="sidebar-show-more-line-1" ref={this.dropdownbar1} ></div>
-                            <div className="sidebar-show-more-line-2" ref={this.dropdownbar2}></div>
-                        </div>
+                        <DropDown showMore={this.showMore} ref={{dropdownbar1:this.dropdownbar1, dropdownbar2:this.dropdownbar2}}/>
                     </span> 
-                    {this.state.productsDropDown?<SideBarProductsOptions/>: <div></div> }
+                    {this.state.productsDropDown && <SideBarProductsOptions/> }
                     
                 </div>
                 <Link onClick={this.props.toogleSideBar} to={`/services`} className="options"> <span >  SERVICES</span></Link>

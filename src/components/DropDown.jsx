@@ -1,26 +1,51 @@
-import { useRef } from "react"
+import React, { useRef, useState } from "react"
+import SideBarProductsOptions from "./SideBarProductOptions";
 
-export function DropDown(props){
+export function SubDropDown(props){
     const dropdownbar1 = useRef();
     const dropdownbar2 = useRef();
+    const {subCategoryDropDown, 
+        setSubCategoryDropDown, 
+        setSubCategoryIndex,
+        setSubCategoryDropDownList,
+        subCategoryDropDownList
+    } = props
 
     const showMore = () => {
-        // this.setState((state, props) => ({productsDropDown : !state.productsDropDown}))
-        // if (this.state.productsDropDown) {
-        //     this.dropdownbar1.current.style.animationName = 'showmore2'
-        //     this.dropdownbar2.current.style.animationName = 'showmore1'
-        // } else {
-        //     this.dropdownbar1.current.style.animationName = 'showmore1'
-        //     this.dropdownbar2.current.style.animationName = 'showmore2'
-        // }
+        setSubCategoryDropDownList.map((dropdown, index) => {
+            if(index !== props.index){
+                var setDropDown = dropdown;
+                setDropDown(false);
+            }
+        })
+        setSubCategoryIndex(props.index + 1);
+        setSubCategoryDropDown((prev) => !prev);
+        if (subCategoryDropDown) {
+            dropdownbar1.current.style.animationName = 'showmore2'
+            dropdownbar2.current.style.animationName = 'showmore1'
+        } else {
+            dropdownbar1.current.style.animationName = 'showmore1'
+            dropdownbar2.current.style.animationName = 'showmore2'
+        }
         
     }
     return(
-        <div className="sidebar-show-more-icon" 
-            onClick= {showMore}
-            >
-            <div className="sidebar-show-more-line-1" ref={dropdownbar1}></div>
-            <div className="sidebar-show-more-line-2" ref={dropdownbar2}></div>
-        </div>
+        <>
+            <div className="sidebar-show-more-icon" 
+                onClick= {showMore}
+                >
+                <div className="sidebar-show-more-line-1" ref={dropdownbar1}></div>
+                <div className="sidebar-show-more-line-2" ref={dropdownbar2}></div>
+            </div>
+        </>
     )
 }
+
+
+export const DropDown = React.forwardRef((props, ref) => (
+    <div className="sidebar-show-more-icon" 
+        onClick= {props.showMore}>
+        <div className={`sidebar-show-more-line-1 `}  ref={ref.dropdownbar1} ></div>
+        <div className="sidebar-show-more-line-2" ref={ref.dropdownbar2}></div>
+    </div>
+));
