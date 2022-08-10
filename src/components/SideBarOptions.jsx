@@ -33,9 +33,11 @@ class SideBarOptions extends Component {
                         <Link onClick={this.props.toogleSideBar} to={`/`} className="sidebar-title">
                             <div > PRODUCTS</div>
                         </Link>
-                        <DropDown showMore={this.showMore} ref={{dropdownbar1:this.dropdownbar1, dropdownbar2:this.dropdownbar2}}/>
+                        <DropDown showMore={this.showMore} 
+                        ref={{dropdownbar1:this.dropdownbar1, dropdownbar2:this.dropdownbar2}}/>
                     </span> 
-                    {this.state.productsDropDown && <SideBarProductsOptions/> }
+                    {this.state.productsDropDown &&
+                     <SideBarProductsOptions toogleSideBar={this.props.toogleSideBar}/> }
                     
                 </div>
                 <Link onClick={this.props.toogleSideBar} to={`/services`} className="options"> <span >  SERVICES</span></Link>

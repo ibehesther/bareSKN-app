@@ -1,5 +1,4 @@
 import React, { useRef, useState } from "react"
-import SideBarProductsOptions from "./SideBarProductOptions";
 
 export function SubDropDown(props){
     const dropdownbar1 = useRef();
@@ -7,8 +6,7 @@ export function SubDropDown(props){
     const {subCategoryDropDown, 
         setSubCategoryDropDown, 
         setSubCategoryIndex,
-        setSubCategoryDropDownList,
-        subCategoryDropDownList
+        setSubCategoryDropDownList
     } = props
 
     const showMore = () => {

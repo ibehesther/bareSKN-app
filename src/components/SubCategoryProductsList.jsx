@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import ProductsList from "./ProductsList";
 
-export default function CollectionProductsList(props){
+export default function SubCategoryProductsList(props){
     const location = useLocation();
-    const { key } = location.state;
+    const { index, subCategoryProducts } = location.state;
 
 
     const [name, setName] = useState('')
@@ -13,14 +13,14 @@ export default function CollectionProductsList(props){
   
     
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/collections/${encodeURIComponent(key)}/products`)
+        fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/subcategories/subcat_${encodeURIComponent(subCategoryProducts)}_0${encodeURIComponent(index)}/products`)
         .then((res) => res.json())
-        .then(({collection:name, products}) => {
+        .then(({subCategory:name, products}) => {
             setIsLoading(false);
             setName(name);
             setProducts(products);
         }).catch(() => setIsLoading(true));
-    }, []);
+    }, [index, subCategoryProducts]);
     return (
         <div>
             <section className="page-section">

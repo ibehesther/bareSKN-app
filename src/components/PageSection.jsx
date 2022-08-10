@@ -3,6 +3,7 @@ import Images from "./Images";
 import Card from './Card';
 import CollectionCard from "./CollectionCard";
 import ProductsList from "./ProductsList";
+import {CollectionsLoading } from "./Loading";
 
 
 class PageSection extends Component {
@@ -74,39 +75,43 @@ class PageSection extends Component {
                 <Images imageType='skincare'/>
                 <section id="collection" className="collection page-section">
                     <p className="page-section-title">OUR COLLECTIONS</p>
-                    <div className="page-section-cards">
+                   
                         {
                             this.state.isLoading ?
-                            <div>Loading...</div> 
+                            <CollectionsLoading/>
                             :
-                            this.state.collections.map((collection) => 
+                            <div className="page-section-cards">
+                            {this.state.collections.map((collection) => 
                             <CollectionCard 
                             image_link= {collection.image_link}
                             name= {collection.name}
                             collection_key = {collection.key}
                             key= {collection.key}
-                            />)
+                            />)}
+                             </div>
                         }
-                    </div>
+                   
                 </section>
                 <section className="page-section best">
                     <p>BareSKN's  MOST WANTED</p>
                     <p>CHECK OUT OUR BEST SELLING PRODUCTS</p>
-                    <div>
+                   
                     {
                         this.state.isLoading ?
-                        <div>Loading...</div> 
+                        <CollectionsLoading/>
                         :
-                        this.state.products.map((product, key) => 
-                            <Card
-                            key={key}
-                            name = {product.name}
-                            image_link = {product.image_link}
-                            price = {product.price} 
-                            rating = {4}/>
-                        )
+                        <div>
+                            {this.state.products.map((product, key) => 
+                                <Card
+                                key={key}
+                                name = {product.name}
+                                image_link = {product.image_link}
+                                price = {product.price} 
+                                rating = {4}/>
+                            )}
+                        </div>
                     }
-                    </div>
+                    
                 </section>
                 <div>
                     <section className="page-section" id="a">
@@ -117,15 +122,18 @@ class PageSection extends Component {
                         pageNo={this.state.pageNo} products={this.state.products}
                         isLoading={this.state.isLoading} maxPage={this.state.maxPage}/>
                         <div className="products-navigation">
-                            <button onClick={this.prev}
-                            disabled={this.state.pageNo === 1 ? true : false}> 
-                            - 
-                            </button>
-                            <span>{this.state.pageNo}</span>
-                            <button onClick={this.next}
-                            disabled={this.pageNo === this.state.maxPage ? true : false}>
-                                + 
-                            </button>
+                            {!this.state.isLoading &&
+                            <>
+                                <button onClick={this.prev}
+                                disabled={this.state.pageNo === 1 ? true : false}> 
+                                - 
+                                </button>
+                                <span>{this.state.pageNo}</span>
+                                <button onClick={this.next}
+                                disabled={this.pageNo === this.state.maxPage ? true : false}>
+                                    + 
+                                </button>
+                            </>}
                         </div>
                     </section>
                 </div>

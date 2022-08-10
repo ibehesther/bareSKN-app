@@ -1,6 +1,7 @@
 import { Component } from "react";
 import { Breadcrumb } from "./Breadcrumb";
 import Card from './Card';
+import {ProductsLoading } from "./Loading";
 
 export default class ProductsList extends Component{
     constructor(props){
@@ -9,20 +10,18 @@ export default class ProductsList extends Component{
             products: [],
         }
     }
-    componentDidMount(){
-        
-    }
     
     render(){
         this.pageNo = this.props.pageNo
         return(
             <div>
                 {this.props.breadcrumb && <Breadcrumb/>}
-                <div className="page-section-cards">
-                    {
-                        this.props.isLoading ?
-                        <div>Loading...</div> 
-                        :
+                {
+                    this.props.isLoading ?
+                    <ProductsLoading/>
+                    :
+                    <div className="page-section-cards">
+                        {
                         this.props.products.map(({
                             name, image_link, price, description}, key) => 
                             <Card
@@ -32,10 +31,9 @@ export default class ProductsList extends Component{
                             price = {price}
                             description = {description}
                             />
-                        )
-                    }
-                </div>
-                
+                        )}
+                    </div>
+                }
             </div>
 
         );

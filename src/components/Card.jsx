@@ -12,7 +12,7 @@ function Card(props) {
                 <span className="card-title">{name}</span>
                 {props.rating?<span className="card-rating">&#9733;&#9733;&#9733;&#9733;</span> : <span></span>}
                 <span className="card-price"> ${price}</span>
-                <button className="card-add-btn">Add to Cart</button>
+                <button className="card-add-btn secondary-btn">Add to Cart</button>
             </section>
         </div>
     )

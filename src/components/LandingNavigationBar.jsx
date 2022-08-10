@@ -3,9 +3,9 @@ import {Link } from 'react-router-dom';
 import SideBarOptions from './SideBarOptions'
 
 function LandingNavigationBar(props) {
-    const bar1 = useRef();
-    const bar2 = useRef();
-    const bar3 = useRef();
+    // const bar1 = useRef();
+    // const bar2 = useRef();
+    // const bar3 = useRef();
 
     return(
         <div className="nav-bar">

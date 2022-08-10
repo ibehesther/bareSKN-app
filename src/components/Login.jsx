@@ -24,6 +24,9 @@ class Login extends Component {
                     </fieldset>
                 </form>
                 <p>Don't have an account? <Link to={`/signup`}>Sign up</Link></p>
+                <p className="seperator"><span></span>or <span></span></p> 
+                <button type="submit" className="secondary-btn">GUEST LOGIN</button>
+
             </div>
         );
     }

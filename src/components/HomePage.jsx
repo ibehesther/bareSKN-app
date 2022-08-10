@@ -14,6 +14,7 @@ import Payment from "./Payment";
 import Product from "./Product";
 import SignUp from "./SignUp";
 import CollectionProductsList from "./CollectionProductsList";
+import SubCategoryProductsList from "./SubCategoryProductsList";
 
 
 
@@ -41,6 +42,8 @@ class HomePage extends Component {
                    <Route path={`login`} element={<Login/>}></Route>
                    <Route path={`collections/:coll_name/products`} 
                    element={<CollectionProductsList/>}></Route>
+                   <Route path={`subcategories/:coll_name/products`} 
+                   element={<SubCategoryProductsList/>}></Route>
                    <Route path={'*'} element={
                        <main style={{ padding: "1rem" }}>
                            <p>Oops! nothing to see here.</p>

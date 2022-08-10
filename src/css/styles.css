@@ -45,6 +45,20 @@ input[type=text]:focus{
 .hidden-sm {
   display: none;
 }
+.primary-btn {
+
+}
+.secondary-btn.secondary-btn {
+  color: black;
+  font-weight: bolder;
+  background-color: rgba(255, 255, 255, 1);
+  border: 1px solid black;
+  border-radius: 2px;
+  transition: all .5s;
+}
+.secondary-btn:hover{
+  background-color: rgba(0, 0, 0, .6);
+}
 /*** Beginning of CSS code for Navigation Bar  */
 nav{
   height: 4em;
@@ -395,15 +409,8 @@ nav{
   padding: .5em 1.5em;
   font-size: .7em;
   flex: 1;
-  background-color: rgba(255, 255, 255, 0);
-  border: 1px solid rgb(224, 209, 209);
-  transition: all .2s linear;
 }
-.card-add-btn:hover {
-  background-color: rgba(0, 0, 0, .6);
-  color: white;
-  border: 1px solid rgba(0, 0, 0, .6);
-}
+
 /*** End of CSS code for Card  */
 
 /*** Beginning of CSS code for Page Sections  */
@@ -610,6 +617,19 @@ fieldset {
 .signup-section > input:focus, .login-section > input:focus, .edit-account-section > input:focus{
   outline: none;
   border: .2px solid rgba(0, 0, 0, .6);
+}
+.seperator{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 2em 0;
+}
+.seperator > span{
+  min-width: 46%;
+  height: 1px;
+  background-color: black;
+  margin: 0 auto;
 }
 .visible {
   position: absolute;
@@ -844,21 +864,11 @@ fieldset {
   
 }
 .product-cart-btn > button {
+  font-size: 1.2em;
   padding: .5em 1em;
+  width: 100%;
 }
 
-.product-cart-details  button{
-  width: 100%;
-  font-size: 1em;
-  font-weight: bolder;
-  background-color: rgba(255, 255, 255, 1);
-  border: 1px solid black;
-  border-radius: 2px;
-  transition: all .5s;
-}
-.product-cart-details  button:hover{
-  background-color: rgba(0, 0, 0, .6);
-}
 .product-desc {
   height: 5em;
   font-size: .7em;
@@ -1400,3 +1410,45 @@ input[type=radio]:checked::before{
   
 }
 /*** End of CSS code for Footer  */
+
+/* Style for Loading section */
+.loading-container {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 1em;
+  grid-row-gap: 1em;
+  padding: 1em 0;
+}
+.loading-section {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+@keyframes shine {
+  to {
+    background-position-x: -200%;
+  }
+}
+.loading-card-image,
+.loading-section h2,
+.loading-section p {
+  background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+  border-radius: 5px;
+  background-size: 200% 100%;
+  animation: 1s shine linear infinite;
+}
+.loading-card-image {
+  height: 10em;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.loading-card-content {
+  padding: 1em;
+}
+.loading-section h2 {
+  height: 1em;
+}
+.loading-section p {
+  height: 2em;
+  width: 80%;
+}

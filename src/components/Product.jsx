@@ -45,7 +45,7 @@ function Product(){
                     <button className="quantity-no">+</button>
                 </div>
                 <div className="product-cart-btn">
-                    <button>Add to Cart</button>
+                    <button className="secondary-btn">Add to Cart</button>
                 </div>
             </div>
         </div>
