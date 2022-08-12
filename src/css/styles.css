@@ -184,11 +184,14 @@ nav{
 .sidebar-section {
   z-index: 1;
   background-color: rgb(255, 255, 255);
-  width: 100vw;
   height: calc(100vh - 4em);
   position: relative;
   left: 0;
   display: block;
+  border-right: .1px solid rgba(0,0,0, .6);
+  transition: all .5s linear;
+  width: 0;
+  opacity: 0;
 }
 .sidebar-main-options {
   width: 100%;
@@ -326,11 +329,20 @@ nav{
   text-transform: uppercase;
 }
 
-.sidebar-products-option {
-  transition: height 1.5s;
+.sidebar-products-option{
+  height: 0;
+  opacity: 0;
+  transition: all .5s linear;
   display: block;
-  /* display: none; */
 }
+.sidebar-show {
+  height: 100%;
+  opacity: 1;
+}
+.sidebar-hide {
+  display: none !important;
+}
+
 .sidebar-profile {
   display: flex;
   flex-direction: row;

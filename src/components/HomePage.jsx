@@ -20,9 +20,9 @@ import SubCategoryProductsList from "./SubCategoryProductsList";
 
 
 class HomePage extends Component {
-    // constructor(props){
-    //     super(props);
-    // }
+    constructor(props){
+        super(props);
+    }
     render() {
         return (
             <>

@@ -35,7 +35,7 @@ function SideBarProductsOptions(props) {
     }, [subCategoryIndex]);
 
     return(
-        <ul className="sidebar-products-option" >
+        <ul className={`sidebar-products-option ${props.show && "sidebar-show"}`} >
             { isLoading ? 
             <div className="sub-products"> Loading... </div>
             :
@@ -50,8 +50,7 @@ function SideBarProductsOptions(props) {
                     setSubCategoryDropDown={setSubCategoryDropDownList[index]}
                     setSubCategoryIndex={setSubCategoryIndex}/>
                 </li>
-                {subCategoryDropDownList[index] &&
-                <ul className="sidebar-products-option" >
+                <ul className={`sidebar-products-option ${subCategoryDropDownList[index] && "sidebar-show"}`} >
                     {subCategories.map(({name, key}, sub_index) => 
                         <li className="sub-products" key={key}>
                             <Link  onClick={props.toogleSideBar} 
@@ -66,7 +65,7 @@ function SideBarProductsOptions(props) {
                             </Link>
                         </li>
                     )}
-                </ul>}
+                </ul>
             </div>
             )}
         </ul>
