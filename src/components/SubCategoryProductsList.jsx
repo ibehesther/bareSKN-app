@@ -22,7 +22,7 @@ export default function SubCategoryProductsList(props){
         }).catch(() => setIsLoading(true));
     }, [index, subCategoryProducts]);
     return (
-        <div>
+        <div style={{width: "100%"}}>
             <section className="page-section">
                 <span className="page-subsection-title">
                     <p>{name}</p>

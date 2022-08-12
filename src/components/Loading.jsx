@@ -3,7 +3,7 @@ function LoadingCard(){
         <div className="loading-section">
             <div className="loading-card-image"></div>
             <div className="loading-card-content">
-                <h2></h2>
+                <h2>{}</h2>
                 <p></p>
             </div>
         </div>

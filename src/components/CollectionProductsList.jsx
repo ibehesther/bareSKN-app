@@ -22,7 +22,7 @@ export default function CollectionProductsList(props){
         }).catch(() => setIsLoading(true));
     }, []);
     return (
-        <div>
+        <div style={{width: "100%"}}>
             <section className="page-section">
                 <span className="page-subsection-title">
                     <p>{name}</p>

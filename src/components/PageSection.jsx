@@ -75,7 +75,6 @@ class PageSection extends Component {
                 <Images imageType='skincare'/>
                 <section id="collection" className="collection page-section">
                     <p className="page-section-title">OUR COLLECTIONS</p>
-                   
                         {
                             this.state.isLoading ?
                             <CollectionsLoading/>
