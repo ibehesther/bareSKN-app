@@ -6,12 +6,13 @@ import ProductsList from "./ProductsList";
 import {CollectionsLoading } from "./Loading";
 
 
-class PageSection extends Component {
+class LandingPage extends Component {
     constructor(props) {
         super(props);
         this.state={
             collections: [],
             products: [],
+            higestRatedProducts: [],
             isLoading: true,
             pageNo: 0,
             maxPage: 0
@@ -25,18 +26,23 @@ class PageSection extends Component {
         const getPaginatedProducts = fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/products?limit=6&page=1`)
         .then(res => res.json());
 
-        Promise.all([getCollections, getPaginatedProducts])
+        const getHighestRatedProducts = fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/products?rating=highest`)
+        .then(res => res.json());
+
+        Promise.all([getCollections, getPaginatedProducts, getHighestRatedProducts])
         .then((value) => {
             var collections = value[0];
             var {products} = value[1];
             var {totalLength} = value[1];
             var {limit} = value[1];
+            var {products: highestRatedProducts} = value[2];
             var maxPage = Math.ceil(totalLength / limit);
             this.setState({isLoading: false});
             this.setState({collections});
             this.setState({products});
             this.setState({maxPage});
             this.setState({pageNo: 1});
+            this.setState({highestRatedProducts});
         }).catch(() => {
             this.setState({isLoading: true});
         });
@@ -48,9 +54,8 @@ class PageSection extends Component {
             return false;
         }
     }
-
     componentDidUpdate(){
-        fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/products?limit=6&page=${encodeURIComponent(this.state.pageNo)}`)
+        fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/products?limit=6&page=${encodeURIComponent(this.state.pageNo + 1)}`)
         .then(res => res.json())
         .then(({products}) => {
             this.setState({isLoading: false});
@@ -100,7 +105,7 @@ class PageSection extends Component {
                         <CollectionsLoading/>
                         :
                         <div>
-                            {this.state.products.map((product, key) => 
+                            {this.state.highestRatedProducts.map((product, key) => 
                                 <Card
                                 key={key}
                                 name = {product.name}
@@ -129,7 +134,7 @@ class PageSection extends Component {
                                 </button>
                                 <span>{this.state.pageNo}</span>
                                 <button onClick={this.next}
-                                disabled={this.pageNo === this.state.maxPage ? true : false}>
+                                disabled={this.state.pageNo === this.state.maxPage ? true : false}>
                                     + 
                                 </button>
                             </>}
@@ -142,4 +147,4 @@ class PageSection extends Component {
 
 }
 
-export default PageSection;
+export default LandingPage;

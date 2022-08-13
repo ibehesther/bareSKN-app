@@ -9,7 +9,7 @@ import Checkout from "./Checkout";
 import EditAccount from "./EditAccount";
 import Login from "./Login";
 import OrderHistory from "./OrderHistory";
-import PageSection from "./PageSection";
+import LandingPage from "./LandingPage";
 import Payment from "./Payment";
 import Product from "./Product";
 import SignUp from "./SignUp";
@@ -27,7 +27,7 @@ class HomePage extends Component {
         return (
             <>
                <Routes>
-                   <Route path={'/'} element ={<PageSection/>} ></Route>
+                   <Route path={'/'} element ={<LandingPage/>} ></Route>
                    <Route path={`cart`} element ={<Cart/>} ></Route>
                    <Route path={`payment`} element = {<Payment/>}></Route>
                    <Route path={`checkout`} element={<Checkout/>}></Route>
