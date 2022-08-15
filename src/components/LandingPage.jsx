@@ -12,7 +12,7 @@ class LandingPage extends Component {
         this.state={
             collections: [],
             products: [],
-            higestRatedProducts: [],
+            highestRatedProducts: [],
             isLoading: true,
             pageNo: 0,
             maxPage: 0
@@ -23,7 +23,7 @@ class LandingPage extends Component {
         const getCollections = fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/collections`)
         .then(res => res.json());
 
-        const getPaginatedProducts = fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/products?limit=6&page=1`)
+        const getPaginatedProducts = fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/products?limit=6&page=${encodeURIComponent(1)}`)
         .then(res => res.json());
 
         const getHighestRatedProducts = fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/products?rating=highest`)
@@ -41,23 +41,25 @@ class LandingPage extends Component {
             this.setState({collections});
             this.setState({products});
             this.setState({maxPage});
-            this.setState({pageNo: 1});
+            this.setState((state) =>({pageNo: 1}));
             this.setState({highestRatedProducts});
-        }).catch(() => {
+        }).catch((err) => {
             this.setState({isLoading: true});
+            console.log(err)
         });
     }
     shouldComponentUpdate(nextProps, nextState){
-        if(nextState.pageNo !== this.state.pageNo){
+        if(nextState.pageNo !== this.state.pageNo || nextState.products !== this.state.products){
             return true;
         }else{
             return false;
         }
     }
     componentDidUpdate(){
-        fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/products?limit=6&page=${encodeURIComponent(this.state.pageNo + 1)}`)
+        fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/products?limit=6&page=${encodeURIComponent(this.state.pageNo)}`)
         .then(res => res.json())
         .then(({products}) => {
+            console.log(products)
             this.setState({isLoading: false});
             this.setState({products});
         })
@@ -120,7 +122,7 @@ class LandingPage extends Component {
                 <div>
                     <section className="page-section" id="a">
                         <span className="page-subsection-title">
-                            <p>NEW ARRIVALS</p>
+                            <p>ALL PRODUCTS</p>
                         </span>
                         <ProductsList next= {this.next} prev={this.prev} 
                         pageNo={this.state.pageNo} products={this.state.products}
