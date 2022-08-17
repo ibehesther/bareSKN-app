@@ -56,10 +56,10 @@ class LandingPage extends Component {
         }
     }
     componentDidUpdate(){
+        console.log("rendering")
         fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/products?limit=6&page=${encodeURIComponent(this.state.pageNo)}`)
         .then(res => res.json())
         .then(({products}) => {
-            console.log(products)
             this.setState({isLoading: false});
             this.setState({products});
         })

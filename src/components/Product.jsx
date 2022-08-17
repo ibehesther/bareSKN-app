@@ -1,5 +1,6 @@
 import {useState, useRef } from "react";
 import { useLocation } from "react-router-dom";
+import { Breadcrumb } from "./Breadcrumb";
 
 
 function Product(){
@@ -8,7 +9,7 @@ function Product(){
     const desc = useRef();
     const read_more = useRef();
     const location = useLocation();
-    const {name, image_link, price, description} = location.state;
+    const {name, image_link, price, description, group_name} = location.state;
 
     const showMore= () => {
         setShowMore((prev) => !prev);
@@ -26,6 +27,7 @@ function Product(){
    
     return(
         <div className="product-container">
+            {group_name && <Breadcrumb group_name = {group_name}  name={name}/>}
             <div className="product-img-container">
                 <img src={image_link} alt="product" className="product-img"  />
             </div>

@@ -27,7 +27,7 @@ class SideBarOptions extends Component {
     render(){
         return(
             <div className="sidebar-options">
-                <Link onClick={this.props.toogleSideBar} to={`/`}className="options"><span > HOME</span></Link>
+                <Link onClick={this.props.toogleSideBar} to={`/`} className="options"><span > HOME</span></Link>
                 <div className="sidebar-products-container options">
                     <span className="sidebar-products">
                         <Link onClick={this.props.toogleSideBar} to={`/`} className="sidebar-title">

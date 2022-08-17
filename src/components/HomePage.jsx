@@ -34,7 +34,7 @@ class HomePage extends Component {
                    <Route path={`account`} element ={<Account/>} ></Route>
                    <Route path={`order-history`} element={<OrderHistory/>}></Route>
                    <Route path={`edit`} element={<EditAccount/>}></Route>
-                   <Route path={`products`} element = {<Product/>}></Route>
+                   <Route path={`products/:id`} element = {<Product/>}></Route>
                    <Route path={`services`} element = {<Services/>}></Route>
                    <Route path={`blog`} element = {<Blog/>}></Route>
                    <Route path={`blog-posts`} element={<BlogPosts/>}></Route>

@@ -15,7 +15,7 @@ export default class ProductsList extends Component{
         this.pageNo = this.props.pageNo
         return(
             <div>
-                {this.props.breadcrumb && <Breadcrumb/>}
+                {this.props.group_name && <Breadcrumb group_name={this.props.group_name}/>}
                 {
                     this.props.isLoading ?
                     <ProductsLoading/>
@@ -23,13 +23,15 @@ export default class ProductsList extends Component{
                     <div className="page-section-cards">
                         {
                         this.props.products.map(({
-                            name, image_link, price, description}, key) => 
+                           _id, name, image_link, price, description}, key) => 
                             <Card
                             key={key}
+                            _id={_id}
                             name = {name}
                             image_link = {image_link}
                             price = {price}
                             description = {description}
+                            group_name={this.props.group_name}
                             />
                         )}
                     </div>

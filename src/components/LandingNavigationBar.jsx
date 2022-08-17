@@ -10,9 +10,12 @@ function LandingNavigationBar(props) {
     return(
         <div className="nav-bar">
         <h1 className="app-name">
-            <Link onClick={props.isSideBarOpen && props.toogleSideBar}  to={`/`}>
+            {/* <Link onClick={props.isSideBarOpen && props.toogleSideBar}  to={`/`}>
                 BareSKN
-            </Link>
+            </Link> */}
+            <a onClick={props.isSideBarOpen && props.toogleSideBar}  href='/bareSKN-app/'>
+                BareSKN
+            </a>
         </h1>
         <div className="navbar-center hidden-sm hidden-md">
             <SideBarOptions/>

@@ -28,7 +28,7 @@ export default function SubCategoryProductsList(props){
                     <p>{name}</p>
                 </span>
                 <ProductsList isLoading={isLoading}
-                products={products} breadcrumb={true}/>
+                products={products} group_name={name}/>
             </section>
         </div>
     );

@@ -56,8 +56,8 @@ function SideBarProductsOptions(props) {
                             <Link  onClick={props.toogleSideBar} 
                             to={`subcategories/subcat_${encodeURIComponent(subCategoryProducts[index])}_0${encodeURIComponent(sub_index +1)}/products`}
                             state={{key, 
-                                index: sub_index + 1,
-                                subCategoryProducts:subCategoryProducts[index]}}
+                            index: sub_index + 1,
+                            subCategoryProducts:subCategoryProducts[index]}}
                             >
                                 <span className="sidebar-products-title" style={{padding: "0 1em"}}>
                                     {name}

@@ -27,7 +27,7 @@ export default function CollectionProductsList(props){
                 <span className="page-subsection-title">
                     <p>{name}</p>
                 </span>
-                <ProductsList isLoading={isLoading}
+                <ProductsList isLoading={isLoading} group_name={name}
                 products={products} breadcrumb={true}/>
             </section>
         </div>

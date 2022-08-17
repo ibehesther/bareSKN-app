@@ -59,6 +59,20 @@ input[type=text]:focus{
 .secondary-btn:hover{
   background-color: rgba(0, 0, 0, .6);
 }
+.breadcrumb{
+  display: inline-block;
+  padding: .5em 0;
+}
+.breadcrumb>a{
+  font-weight: 500;
+}
+.breadcrumb>a.active{
+  font-weight: 600;
+}
+.breadcrumb-divider {
+  padding: 0 .3em;
+  font-weight: 900;
+}
 /*** Beginning of CSS code for Navigation Bar  */
 nav{
   height: 4em;
@@ -333,9 +347,10 @@ nav{
   height: 0;
   opacity: 0;
   transition: all .5s linear;
-  display: block;
+  display: none;
 }
 .sidebar-show {
+  display: block;
   height: 100%;
   opacity: 1;
 }
