@@ -157,18 +157,23 @@ nav{
   text-align: center;
   border: 2px solid white;
 }
-.navbar-search-tab {
+
+.navbar-search-tab-container {
   width: 90vw;
   z-index: 1;
   position: fixed;
   top: 5.5em;
   right: 0;
   left: 0;
+  margin: 0 auto;
   background-color: rgba(255, 255, 255,1);
+  border-radius: 10px;
+}
+.navbar-search-tab {
+  
   /* background-color: rgb(242,242,242); */
   height: 3em;
   padding: .5em;
-  margin: 0 auto;
   display: flex;
   border: .2px solid rgba(0, 0, 0, .4);
   border-radius: 10px;
@@ -177,10 +182,21 @@ nav{
 .search-tab {
   flex: 5;
   height: 92%;
+  width: 100%;
   font-size: 1em;
   padding: 0 .5em;
   background-color: rgb(242,242,242);
   border: none;
+}
+.navbar-search-result>ul{
+  list-style: none;
+}
+.navbar-search-result li{
+  /* height: 3em; */
+  padding: .8em 1em;
+  border: .2px solid rgba(0, 0, 0, .8);
+  border-top: 0;
+  border-radius: 0 0 2px 2px;
 }
 #search-tab:focus {
   outline: none;
@@ -838,8 +854,6 @@ fieldset {
 
 .product-container{
   width: 100%;
-  padding: 2em 0 0;
-  /* height: calc(100vh - 5em); */
 }
 .product-img-container, .product-details, .product-cart-details{
   width: 90%;

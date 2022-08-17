@@ -5,7 +5,7 @@ function Card(props) {
     return(
         <div className="card-container">
             <Link to={`/products/${_id}`}
-            state={{name, image_link, price, description, group_name}}>
+            state={{ name, image_link, price, description, group_name}}>
                 <img src={image_link} alt={name} className="card-img" />
             </Link>
             <section className="card-details">

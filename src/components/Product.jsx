@@ -29,7 +29,7 @@ function Product(){
         <div className="product-container">
             {group_name && <Breadcrumb group_name = {group_name}  name={name}/>}
             <div className="product-img-container">
-                <img src={image_link} alt="product" className="product-img"  />
+                <img src={image_link} alt={name} className="product-img"  />
             </div>
             <div className="product-details">
                 <p className="product-name">{name}</p>
