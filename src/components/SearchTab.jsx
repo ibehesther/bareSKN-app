@@ -1,4 +1,4 @@
-import { useEffect, useState, Component} from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 function SearchTab(props){
@@ -7,16 +7,15 @@ function SearchTab(props){
     
     const handleChange =(e) => {
         e.preventDefault();
-       setSearchTerm(e.target.value)
+        setSearchTerm(e.target.value);
     }
     useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/products?search_term=${encodeURIComponent(searchTerm)}`)
-    .then((res) => res.json())
-    .then(({products}) => {
-        console.log(products)
-        setProducts(products);
-    }).catch(console.log)
-   }, [searchTerm])
+        fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/products?search_term=${encodeURIComponent(searchTerm)}`)
+        .then((res) => res.json())
+        .then(({products}) => {
+            setProducts(products);
+        }).catch(console.log)
+    }, [searchTerm]);
     
     return(
         <div className="navbar-search-tab-container">
@@ -29,15 +28,17 @@ function SearchTab(props){
                 <button id="cancel" onClick={props.toogleSearchTab}>CANCEL</button>
             </div>
             <div className="navbar-search-result">
-                <ul>
-                   {products.map(({_id, name, image_link, price, description}, index) => 
-                <li key={index}>
-                    <Link onClick={props.toogleSearchTab} to={`/products/${_id}`} 
-                    state={{ name, image_link, price, description}}>
-                     {name}
-                    </Link>
-                </li>
-                )}
+                <ul> 
+                   { (searchTerm.length > 1 && products.length == 0) ?
+                   <li>No products found</li>:
+                   products.map(({_id, name, image_link, price, description}, index) => 
+                        <li key={index}>
+                            <Link onClick={props.toogleSearchTab} to={`/products/${_id}`} 
+                            state={{ name, image_link, price, description}}>
+                            {name}
+                            </Link>
+                        </li>
+                    )}
                 </ul>
             </div>
         </div>
