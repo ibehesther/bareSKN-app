@@ -1,7 +1,9 @@
 import { Component } from "react";
+import { useSelector } from "react-redux";
 import {Link } from 'react-router-dom';
 
 function CartItem() {
+    
     return(
         <div className="cart-item-container">
             <img src={require('../images/cerave.png')} alt="" srcset="" />
@@ -19,19 +21,22 @@ function CartItem() {
     )
 }
 
-class Cart extends Component{
-    constructor(props){
-        super(props)
-    }
-    render(){
-        return(
-            <div className="cart-container">
-                <div className="cart-items">
-                    <CartItem/>
-                    <CartItem/>
-                    <CartItem/>
-                    <CartItem/>
-                </div>
+function Cart (props){
+    const {cartItems} = useSelector((store) => store.cart)
+    console.log(cartItems);
+    return(
+        <div className="cart-container">
+            <div className="cart-items">
+                {cartItems.length ? 
+                cartItems.map((items) => {
+                    <CartItem key={items._id}/>
+                })
+                : 
+                <div style={{margin: "1em auto", textAlign: "center"}}> Cart is empty! </div>}
+            </div>
+            {cartItems.length ?
+            <>
+                <hr />
                 <div className="cart-total">
                     <div className="cart-total-details">
                         <p>Shipping fee: </p>
@@ -46,11 +51,11 @@ class Cart extends Component{
                     <Link to={`/payment`}>
                         <button>Proceed to Payment &gt; &gt; </button>
                     </Link>
-                </div>
-                
-               
-            </div>
-        )
-    }
+                </div> 
+            </> : <></>
+            }
+        </div>
+    )
+
 }
 export default Cart;

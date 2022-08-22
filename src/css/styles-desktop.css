@@ -95,4 +95,22 @@
         max-width: 30%;
         height: 10em;
     }
+    .product-img-container{
+        width: 20%;
+    }
+    .product-img-container{
+        margin:1em auto
+    }
+    .product-desc {
+        font-size: 1em;
+    }
+    .product-details, .product-cart-details{
+        width: 60%;
+    }
+    .product-quantity > button, .cart-item-price > button{
+        flex: .5;
+    }
+    .product-quantity > input{
+        flex: .5;
+    }
 }

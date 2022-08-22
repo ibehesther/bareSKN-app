@@ -5,19 +5,17 @@ import './css/styles.css';
 import './css/styles-tablet.css';
 import './css/styles-desktop.css';
 import './css/animation.css';
+import { store } from './redux/store.js'
+import { Provider } from "react-redux"
 import App from "./App";
-
-// fetch('http://127.0.0.1:8080/api/v1.0')
-// .then(res => res.json())
-// .then(console.log('working'));
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter 
-    basename={'/bareSKN-app'}
-    >
-      <App/>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter basename={'/bareSKN-app'}>
+        <App/>
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );
