@@ -8,12 +8,10 @@ function SideBar(props){
         const sidebar_style= sidebar.current.style;
         if(props.isSideBarOpen){
             sidebar_style.width = "100vw";
-            sidebar_style.height = "100%";
             sidebar_style.opacity = "1";
         } else{
             sidebar_style.width = "0";
             sidebar_style.opacity = "0";
-            sidebar_style.height="0";
         }
     })
     return(

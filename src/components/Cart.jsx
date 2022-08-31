@@ -5,15 +5,8 @@ import { getCart, updateCart} from "../redux/features/cart/cartSlice";
 import { removeFromCart, increase, decrease } from '../redux/features/cart/cartSlice';
 
 function CartItem(props) {
-    const {isLoading, ...cart  } = useSelector((store) => store.cart)
     const {dispatch, _id, name,  price, quantity, image_link} = props;
     
-    useEffect(() =>  {
-        dispatch(getCart());
-    }, []);
-    useEffect(() => {
-        dispatch(updateCart(cart));
-    }, [cart.total])
     return(
         <div className="cart-item-container">
             <img src={image_link} alt="" srcset="" />
@@ -43,8 +36,18 @@ function CartItem(props) {
 }
 
 function Cart (props){
-    const {cartItems, amount, total, isLoading} = useSelector((store) => store.cart)
+    const  {cartItems, amount } = useSelector((store) => store.cart)
     const dispatch = useDispatch();
+
+    const { isLoading: loading, ...cart  } = useSelector((store) => store.cart)
+    useEffect(() =>  {
+        dispatch(getCart());
+    }, []);
+
+    useEffect(() => {
+        dispatch(updateCart(cart));
+    }, [cart.cartItems]);
+
     return(
         <div className="cart-container">
             <div className="cart-items">

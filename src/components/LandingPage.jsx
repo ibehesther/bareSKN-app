@@ -19,7 +19,6 @@ function LandingPage(){
 
     const dispatch = useDispatch();
     useEffect(() => {
-        console.log(cart);
         const getCollections = fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/collections`)
         .then(res => res.json());
 
@@ -50,9 +49,11 @@ function LandingPage(){
     useEffect(() =>  {
         dispatch(getCart());
     }, []);
+
     useEffect(() => {
         dispatch(updateCart(cart));
-    }, [cart.total])
+    }, [cart.cartItems]);
+
     const next = () => {
         setPageNo((pageNo) => pageNo+1)
     }

@@ -1,20 +1,20 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 // export const createCart = createAsyncThunk('cart/createCart', async() => {
-//     return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/cart/01xAE5`
+//     return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/carts/01xAE5`
 //     , {method: "POST"})
 //     .then(res => res.json())
 //     .catch((err) => console.log(err))
 // });
 
 export const getCart = createAsyncThunk('cart/getCart', async(arg, {rejectWithValue}) => {
-    return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/cart/01xAE5`)
+    return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/carts/01xAE5`)
     .then(res => res.json())
     .catch((err) => rejectWithValue(err.response.data))
 });
 
 export const updateCart = createAsyncThunk('cart/updateCart', async(cart, {rejectWithValue}) => {
-    return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/cart/01xAE5`, 
+    return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/carts/01xAE5`, 
     {method: "PATCH", 
         body: JSON.stringify(cart),
         headers: {
@@ -68,11 +68,12 @@ const cartSlice = createSlice({
             state.cartItems = cartItems;
         },
         removeFromCart: (state, { payload }) => {
+            console.log("Removing from cart...");
             var cartItems = state.cartItems;
             const { _id, price, quantity } = payload;
+            cartItems = cartItems.filter((item) => item._id !== _id);
             state.amount -= (quantity * price);
             state.total -= quantity;
-            cartItems = cartItems.filter((item) => item._id !== _id);
             state.cartItems = cartItems;
         },
         increase: (state, { payload }) => {
@@ -97,8 +98,7 @@ const cartSlice = createSlice({
                     item.quantity -= 1;
                 }
             })
-            cartItems = cartItems.filter((item) =>item.quantity > 0)
-            
+            cartItems = cartItems.filter((item) =>item.quantity > 0);
             state.cartItems = cartItems;
         }
     },

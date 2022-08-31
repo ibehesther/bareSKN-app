@@ -13,23 +13,14 @@ function App (){
     return(
         <div className='container'>
             <NavigationBar toogleSideBar={toogleSideBar}
-            isSideBarOpen={isSideBarOpen}
-            />
-            {/* {isSideBarOpen? */}
+            isSideBarOpen={isSideBarOpen}/>
+            <main className='main-content'>
                 <SideBar 
                 toogleSideBar={toogleSideBar}
-                isSideBarOpen={isSideBarOpen}/> 
-                
-                <main className={`main-content
-                 ${isSideBarOpen && "sidebar-hide"}`}>
-                    <HomePage/>
-                </main>
-            {/* } */}
-            {/* <main className="main-content">
-                <SideBar toogleSideBar={toogleSideBar}
-                isSideBarOpen={isSideBarOpen}/>
-                <HomePage isSideBarOpen={isSideBarOpen}/>
-            </main> */}
+                isSideBarOpen={isSideBarOpen}
+                /> 
+                <HomePage/>
+            </main>
         </div>
     )
 }
