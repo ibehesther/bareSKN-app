@@ -1,29 +1,29 @@
-import React, {Component} from "react";
+import React, {useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Images from "./Images";
 import Card from './Card';
 import CollectionCard from "./CollectionCard";
 import ProductsList from "./ProductsList";
 import {CollectionsLoading } from "./Loading";
+import { getCart, updateCart} from "../redux/features/cart/cartSlice";
 
 
-class LandingPage extends Component {
-    constructor(props) {
-        super(props);
-        this.state={
-            collections: [],
-            products: [],
-            highestRatedProducts: [],
-            isLoading: true,
-            pageNo: 0,
-            maxPage: 0
-        }
-    }
-    
-    componentDidMount(){
+function LandingPage(){
+    const {isLoading: loading, ...cart  } = useSelector((store) => store.cart)
+    const [collections, setCollections] = useState([]);
+    const [products, setProducts] = useState([]);
+    const [highestRatedProducts, setHighestRatedProducts] = useState([]);
+    const [isLoading, setIsLoading] = useState([]);
+    const [pageNo, setPageNo] = useState(1);
+    const [maxPage, setMaxPage] = useState(0);
+
+    const dispatch = useDispatch();
+    useEffect(() => {
+        console.log(cart);
         const getCollections = fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/collections`)
         .then(res => res.json());
 
-        const getPaginatedProducts = fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/products?limit=6&page=${encodeURIComponent(1)}`)
+        const getPaginatedProducts = fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/products?limit=6&page=${encodeURIComponent(pageNo)}`)
         .then(res => res.json());
 
         const getHighestRatedProducts = fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/products?rating=highest`)
@@ -37,116 +37,97 @@ class LandingPage extends Component {
             var {limit} = value[1];
             var {products: highestRatedProducts} = value[2];
             var maxPage = Math.ceil(totalLength / limit);
-            this.setState({isLoading: false});
-            this.setState({collections});
-            this.setState({products});
-            this.setState({maxPage});
-            this.setState((state) =>({pageNo: 1}));
-            this.setState({highestRatedProducts});
+            setIsLoading(false);
+            setCollections(collections);
+            setProducts(products);
+            setMaxPage(maxPage);
+            setHighestRatedProducts(highestRatedProducts);
         }).catch((err) => {
-            this.setState({isLoading: true});
-            console.log(err)
+            setIsLoading(true);
         });
+    }, [pageNo]);
+
+    useEffect(() =>  {
+        dispatch(getCart());
+    }, []);
+    useEffect(() => {
+        dispatch(updateCart(cart));
+    }, [cart.total])
+    const next = () => {
+        setPageNo((pageNo) => pageNo+1)
     }
-    shouldComponentUpdate(nextProps, nextState){
-        if(nextState.pageNo !== this.state.pageNo || nextState.products !== this.state.products){
-            return true;
-        }else{
-            return false;
-        }
-    }
-    componentDidUpdate(){
-        // console.log("rendering")
-        fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/products?limit=6&page=${encodeURIComponent(this.state.pageNo)}`)
-        .then(res => res.json())
-        .then(({products}) => {
-            this.setState({isLoading: false});
-            this.setState({products});
-        })
-        .catch(() => {
-            this.setState({isLoading: true})
-        });
+    const prev = () => {
+       setPageNo((pageNo) => pageNo-1)
     }
 
-    next = () => {
-        this.setState((state) => ({pageNo: state.pageNo + 1}))
-    }
-    prev = () => {
-       this.setState((state) => ({pageNo: state.pageNo - 1}))
-    }
-
-    render() {
-        
-        return(
-            <div className="page-container">
-                <Images imageType='skincare'/>
-                <section id="collection" className="collection page-section">
-                    <p className="page-section-title">OUR COLLECTIONS</p>
-                        {
-                            this.state.isLoading ?
-                            <CollectionsLoading/>
-                            :
-                            <div className="page-section-cards">
-                            {this.state.collections.map((collection) => 
+    return(
+        <div className="page-container">
+            <Images imageType='skincare'/>
+            <section id="collection" className="collection page-section">
+                <p className="page-section-title">OUR COLLECTIONS</p>
+                    {
+                        isLoading ?
+                        <CollectionsLoading/>
+                        :
+                        <div className="page-section-cards">
+                            {collections.map((collection) => 
                             <CollectionCard 
                             image_link= {collection.image_link}
                             name= {collection.name}
                             collection_key = {collection.key}
                             key= {collection.key}
                             />)}
-                             </div>
-                        }
-                   
-                </section>
-                <section className="page-section best">
-                    <p>BareSKN's  MOST WANTED</p>
-                    <p>CHECK OUT OUR BEST SELLING PRODUCTS</p>
-                   
-                    {
-                        this.state.isLoading ?
-                        <CollectionsLoading/>
-                        :
-                        <div>
-                            {this.state.highestRatedProducts.map((product, key) => 
-                                <Card
-                                key={key}
-                                name = {product.name}
-                                image_link = {product.image_link}
-                                price = {product.price} 
-                                rating = {4}/>
-                            )}
                         </div>
                     }
-                    
+                
+            </section>
+            <section className="page-section best">
+                <p>BareSKN's  MOST WANTED</p>
+                <p>CHECK OUT OUR BEST SELLING PRODUCTS</p>
+                
+                {
+                    isLoading ?
+                    <CollectionsLoading/>
+                    :
+                    <div>
+                        {highestRatedProducts.map((product, key) => 
+                            <Card
+                            key={key}
+                            name = {product.name}
+                            image_link = {product.image_link}
+                            price = {product.price} 
+                            rating = {4}/>
+                        )}
+                    </div>
+                }
+                
+            </section>
+            <div>
+                <section className="page-section" id="a">
+                    <span className="page-subsection-title">
+                        <p>ALL PRODUCTS</p>
+                    </span>
+                    <ProductsList next= {next} prev={prev} 
+                    pageNo={pageNo} products={products}
+                    isLoading={isLoading} maxPage={maxPage}/>
+                    <div className="products-navigation">
+                        {!isLoading &&
+                        <>
+                            <button onClick={prev}
+                            disabled={pageNo === 1 ? true : false}> 
+                            - 
+                            </button>
+                            <span>{pageNo}</span>
+                            <button onClick={next}
+                            disabled={pageNo === maxPage ? true : false}>
+                                + 
+                            </button>
+                        </>}
+                    </div>
                 </section>
-                <div>
-                    <section className="page-section" id="a">
-                        <span className="page-subsection-title">
-                            <p>ALL PRODUCTS</p>
-                        </span>
-                        <ProductsList next= {this.next} prev={this.prev} 
-                        pageNo={this.state.pageNo} products={this.state.products}
-                        isLoading={this.state.isLoading} maxPage={this.state.maxPage}/>
-                        <div className="products-navigation">
-                            {!this.state.isLoading &&
-                            <>
-                                <button onClick={this.prev}
-                                disabled={this.state.pageNo === 1 ? true : false}> 
-                                - 
-                                </button>
-                                <span>{this.state.pageNo}</span>
-                                <button onClick={this.next}
-                                disabled={this.state.pageNo === this.state.maxPage ? true : false}>
-                                    + 
-                                </button>
-                            </>}
-                        </div>
-                    </section>
-                </div>
             </div>
-        );
-    }
-
+        </div>
+    );
 }
 
 export default LandingPage;

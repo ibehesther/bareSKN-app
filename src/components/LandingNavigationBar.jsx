@@ -5,7 +5,7 @@ import {useSelector} from "react-redux";
 
 function LandingNavigationBar(props) {
     // Get state properties from redux store
-    const { amount } = useSelector((store) => store.cart)
+    const { total } = useSelector((store) => store.cart)
     
     return(
         <div className="nav-bar">
@@ -27,7 +27,7 @@ function LandingNavigationBar(props) {
                 <span className="cart-icon-container" aria-label="cart">
                 <Link onClick={props.isSideBarOpen && props.toogleSideBar} to={`/cart`}>
                         <img id= "cart" src={require("../icons/shopping-cart.png")} alt="cart" className="navbar-icon" srcSet=""/>
-                        <span id="cart-no">{amount}</span>
+                        {total > 0 && <span id="cart-no">{total}</span>}
                     </Link>
                 </span>
                 {props.isSideBarOpen ?
