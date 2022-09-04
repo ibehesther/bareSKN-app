@@ -20,10 +20,6 @@ class SignUp extends Component {
                             <input type="text" name="lastName" id="lastName" />
                         </div>
                         <div className="signup-section">
-                            <label htmlFor="username">Username</label>
-                            <input type="text" name="username" id="username" />
-                        </div>
-                        <div className="signup-section">
                             <label htmlFor="email">Email</label>
                             <input type="email" name="email" id="email" />
                         </div>

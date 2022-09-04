@@ -6,7 +6,7 @@
         padding: 1.5em 2.5em;
     }
     .app-name{
-        font-size: 2.5em;
+        font-size: 2.2em;
         flex: 3;
     }
     .navbar-icon{
@@ -27,8 +27,8 @@
         height: .3em;
         margin: .4em 0;
     }
-    .navbar-search-tab{
-        top: 4em;
+    .navbar-search-tab-container{
+        top: 5em;
         font-size: 1.5em;
     }
     #cancel {
@@ -74,6 +74,18 @@
     .page-subsection-title > span {
         font-size: 1.5em;
     }
+    .products-navigation > button{
+        width: 1.5em;
+        font-size: 2em;
+        line-height: 36px;
+        padding: .2em 0;
+    }
+    .products-navigation > span{
+        font-size: 1.8em;
+    }
+    .cart-item-container{
+        height: 35%;
+    }
     .card-price {
         flex: 1;
     }
@@ -81,7 +93,7 @@
         font-size: 1.2em;
     }
     .card-title, .card-add-btn{
-        font-size: 1.5em;
+        font-size: 1.2em;
     }
     .sidebar-profile{
         display: none;
@@ -210,13 +222,13 @@
         line-height: 40px;
     }
     .cart-item-container > img {
-        width: 10em;
+        width: 8em;
     }
     .cart-item-name {
-        font-size: 1.6em;
+        font-size: 1.3em;
     }
     .item-price {
-        font-size: 1.2em;
+        font-size: 1em;
     }
     .cart-item-price > button, .cart-item-price > input{
         font-size: 1.5em;
@@ -229,8 +241,9 @@
         padding: .5em 0;
         font-size: 1.5em;
     }
-    .total {
-        font-size: 1.8em;
+    .proceed-btn-container button, 
+    .payment-container button{
+        font-size: 1.5em;
     }
     .signup-container > p, .login-container > p {
         font-size: 1.2em;

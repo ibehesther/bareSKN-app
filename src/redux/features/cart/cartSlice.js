@@ -15,7 +15,8 @@ export const getCart = createAsyncThunk('cart/getCart', async(arg, {rejectWithVa
 
 export const updateCart = createAsyncThunk('cart/updateCart', async(cart, {rejectWithValue}) => {
     return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/carts/01xAE5`, 
-    {method: "PATCH", 
+        {
+        method: "PATCH", 
         body: JSON.stringify(cart),
         headers: {
             "Content-type": "application/json"

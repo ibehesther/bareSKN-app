@@ -45,9 +45,9 @@ input[type=text]:focus{
 .hidden-sm {
   display: none;
 }
-.primary-btn {
+/* .primary-btn {
 
-}
+} */
 .secondary-btn.secondary-btn {
   color: black;
   font-weight: bolder;
@@ -101,7 +101,7 @@ nav{
 .app-name > a {
   color: black;
   text-decoration: none;
-  font-weight: bolder;
+  font-weight: 900;
 }
 
 .navbar-right {
@@ -232,15 +232,15 @@ nav{
   transition: all .5s linear;
 }
 .sidebar-options {
-  display: none;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+  margin-top: 5em;
 }
 .options {
   color: black;
-  padding: .6em 1em;
+  padding: 1.5em 1em;
   font-size: 1em;
-  /* border: .1px solid rgba(233, 138, 96, .5); */
   border-left: 0;
   border-right: 0;
   flex: 1;
@@ -1121,7 +1121,7 @@ fieldset {
 
   .checkout-container {
     width: 100%;
-    padding: 2em 0;
+    padding: 1em 0 2em;
   }
   .checkout-review {
     margin: 1em 0;
