@@ -1,9 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from 'react-router-dom';
-import { getCart, updateCart} from "../redux/features/cart/cartSlice";
-import { removeFromCart, increase, decrease } from '../redux/features/cart/cartSlice';
-
+import { getCart, updateCart, removeFromCart, increase, decrease} from "../redux/features/cart/cartSlice";
 function CartItem(props) {
     const {dispatch, _id, name,  price, quantity, image_link} = props;
     

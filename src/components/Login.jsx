@@ -1,11 +1,16 @@
 import { Component } from "react";
 import {Link} from 'react-router-dom';
-import { useDispatch } from "react-redux";
-import { login } from "../redux/features/user/userSlice"
+import { useDispatch, useSelector } from "react-redux";
+import { login, getUser } from "../redux/features/user/userSlice"
+import { useEffect } from "react";
 
 function Login(props){
     const dispatch = useDispatch();
-
+    const { email, password } = useSelector((store) => store.user)
+    useEffect(() => {
+        console.log(email, password)
+        dispatch(getUser({email, password}))
+    }, [password])
     return(
         <div className="login-container">
             <span className="login-title">Login</span>

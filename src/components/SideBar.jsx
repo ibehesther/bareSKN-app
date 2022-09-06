@@ -7,6 +7,7 @@ function SideBar(props){
     const { id } = useSelector((store) => store.user)
     const sidebar = useRef();
     useEffect(() => {
+        console.log(id);
         const sidebar_style= sidebar.current.style;
         if(props.isSideBarOpen){
             sidebar_style.width = "100vw";

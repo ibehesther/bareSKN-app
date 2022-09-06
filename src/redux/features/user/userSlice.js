@@ -1,20 +1,22 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-const getUser = createAsyncThunk("user/getUser", async(user, {rejectWithValue}) => {
-    return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/users`,
+export const getUser = createAsyncThunk("user/getUser", async(user, {rejectWithValue}) => {
+    console.log(JSON.stringify(user))
+    return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/users/login`,
     {
-        method: "PATCH", 
+        method: "POST", 
         body: JSON.stringify(user),
         headers: {
             "Content-type": "application/json"
         }
     })
     .then(res => res.json())
-    .catch((err) => rejectWithValue(err.response.data))
+    .catch((err) => console.log(err))
 })
 
 const initialState = {
     id: null,
+    password: null,
     first_name: null,
     last_name: null,
     email: null,
@@ -29,8 +31,16 @@ const userSlice = createSlice({
         login: (state, {payload}) => {
             const {e} = payload;
             e.preventDefault();
-            console.log(e.target.elements.login_email.value);
-            console.log(e.target.elements.login_password.value);
+            const email = e.target.elements.login_email.value;
+            const password = e.target.elements.login_password.value;
+            if(email && password){
+                console.log("Value entered")
+                console.log(email, password)
+                state.email = email;
+                state.password = password;
+            }else{
+                console.log("No value entered")
+            }
             
         }
     },
@@ -38,8 +48,20 @@ const userSlice = createSlice({
         [getUser.pending]: (state) => {
             state.isloading = true;
         },
-        [getUser.fulfilled]: (state) => {
+        [getUser.fulfilled]: (state, {payload}) => {
+            console.log("Getting user...")
             state.isloading = false;
+            console.log(payload)
+            const{
+                _id: id, first_name, last_name, email,  phone_number, address 
+            } = payload[0];
+            state.id = id;
+            state.first_name = first_name;
+            state.last_name = last_name;
+            state.email = email;
+            state.phone_number = phone_number;
+            state.address = address;
+            state.password = null;
         },
         [getUser.rejected]: (state) => {
             state.isloading = true;
@@ -47,6 +69,8 @@ const userSlice = createSlice({
     }
 })
 
+// "email": "admin@example.com",
+// "password": "admin_password"
 
 export default userSlice.reducer;
 export const { login } = userSlice.actions;
