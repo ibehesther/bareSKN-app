@@ -17,21 +17,26 @@ import CollectionProductsList from "./CollectionProductsList";
 import SubCategoryProductsList from "./SubCategoryProductsList";
 import { useSelector, useDispatch } from "react-redux";
 import { getCart, updateCart} from "../redux/features/cart/cartSlice";
-
+import { getUser, verifyJWT } from '../redux/features/user/userSlice';
 
 
 function HomePage(props){
     const {isLoading: loading, ...cart  } = useSelector((store) => store.cart);
+    const { id, email, password} = useSelector(store => store.user);
     const dispatch = useDispatch();
     
     useEffect(() =>  {
         dispatch(getCart());
+        dispatch(verifyJWT());
     }, []);
 
     useEffect(() => {
         dispatch(updateCart(cart));
     }, [cart.cartItems]);
 
+    // useEffect(() => {
+    //     dispatch(verifyJWT());
+    // }, []);
     return (
         <>
             <Routes>

@@ -8,8 +8,10 @@ import {CollectionsLoading } from "./Loading";
 import { getCart, updateCart} from "../redux/features/cart/cartSlice";
 
 
+
 function LandingPage(){
-    const {isLoading: loading, ...cart  } = useSelector((store) => store.cart)
+    const {isLoading: loading, ...cart  } = useSelector((store) => store.cart);
+   
     const [collections, setCollections] = useState([]);
     const [products, setProducts] = useState([]);
     const [highestRatedProducts, setHighestRatedProducts] = useState([]);
@@ -53,7 +55,7 @@ function LandingPage(){
     useEffect(() => {
         dispatch(updateCart(cart));
     }, [cart.cartItems]);
-
+    
     const next = () => {
         setPageNo((pageNo) => pageNo+1)
     }

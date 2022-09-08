@@ -14,6 +14,19 @@ export const getUser = createAsyncThunk("user/getUser", async(user, {rejectWithV
     .catch((err) => console.log(err))
 })
 
+export const verifyJWT = createAsyncThunk("user/verifyJWT", async() => {
+    const token = localStorage.getItem("token");
+    return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/users/verify_jwt`,
+    {
+        method: "GET",
+        headers: {
+            "authorization": `Bearer ${token}`
+        }
+    })
+    .then(res => res.json())
+    .catch((err) => console.log(err))
+})
+
 const initialState = {
     id: null,
     password: null,
@@ -51,19 +64,47 @@ const userSlice = createSlice({
         [getUser.fulfilled]: (state, {payload}) => {
             console.log("Getting user...")
             state.isloading = false;
-            console.log(payload)
-            const{
-                _id: id, first_name, last_name, email,  phone_number, address 
-            } = payload[0];
-            state.id = id;
-            state.first_name = first_name;
-            state.last_name = last_name;
-            state.email = email;
-            state.phone_number = phone_number;
-            state.address = address;
-            state.password = null;
+            if(payload){
+                const{
+                    _id: id, first_name, last_name, email,  phone_number, address 
+                } = payload.user;
+
+                state.id = id;
+                state.first_name = first_name;
+                state.last_name = last_name;
+                state.email = email;
+                state.phone_number = phone_number;
+                state.address = address;
+                state.password = null;
+                localStorage.setItem("token", payload.token);
+            }
+            
         },
         [getUser.rejected]: (state) => {
+            state.isloading = true;
+        },
+        [verifyJWT.pending]: (state) => {
+            state.isloading = true;
+        },
+        [verifyJWT.fulfilled]: (state, {payload}) => {
+            console.log("Verifying token...")
+            state.isloading = false;
+            if(payload){
+                const{
+                    _id: id, first_name, last_name, email,  phone_number, address 
+                } = payload.user;
+
+                state.id = id;
+                state.first_name = first_name;
+                state.last_name = last_name;
+                state.email = email;
+                state.phone_number = phone_number;
+                state.address = address;
+                localStorage.setItem("token", payload.token);
+            }
+            console.log(payload);
+        },
+        [verifyJWT.rejected]: (state) => {
             state.isloading = true;
         }
     }
