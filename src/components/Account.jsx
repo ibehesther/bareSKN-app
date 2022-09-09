@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { getUser } from '../redux/features/user/userSlice';
+import { getUser, logout } from '../redux/features/user/userSlice';
 
 function Account(props){
     const dispatch = useDispatch();
@@ -16,7 +16,11 @@ function Account(props){
             </Link>
             <section className="account-heading">
                 <h2> HI {first_name}</h2>
-                <p>Not you? <a href="">Logout</a></p>
+                <p>Not you? 
+                    <Link  to="/" onClick={() => dispatch(logout())}>
+                        Logout
+                    </Link>
+                </p>
             </section>
             <section className="account-details">
                 <div>

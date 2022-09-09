@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const getUser = createAsyncThunk("user/getUser", async(user, {rejectWithValue}) => {
-    console.log(JSON.stringify(user))
     return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/users/login`,
     {
         method: "POST", 
@@ -20,7 +19,7 @@ export const verifyJWT = createAsyncThunk("user/verifyJWT", async() => {
     {
         method: "GET",
         headers: {
-            "authorization": `Bearer ${token}`
+            "Authorization": `Bearer ${token}`
         }
     })
     .then(res => res.json())
@@ -42,19 +41,29 @@ const userSlice = createSlice({
     initialState,
     reducers: {
         login: (state, {payload}) => {
+            console.log("Logging in...")
             const {e} = payload;
             e.preventDefault();
             const email = e.target.elements.login_email.value;
             const password = e.target.elements.login_password.value;
             if(email && password){
                 console.log("Value entered")
-                console.log(email, password)
                 state.email = email;
                 state.password = password;
             }else{
                 console.log("No value entered")
             }
-            
+        },
+        logout: (state) => {
+            console.log("Logging out...")
+            localStorage.removeItem("token");
+            state.id= null;
+            state.password= null;
+            state.first_name= null;
+            state.last_name= null;
+            state.email= null;
+            state.phone_number= null;
+            state.address= null;
         }
     },
     extraReducers: {
@@ -64,7 +73,7 @@ const userSlice = createSlice({
         [getUser.fulfilled]: (state, {payload}) => {
             console.log("Getting user...")
             state.isloading = false;
-            if(payload){
+            if(payload.user && payload.token){
                 const{
                     _id: id, first_name, last_name, email,  phone_number, address 
                 } = payload.user;
@@ -102,7 +111,6 @@ const userSlice = createSlice({
                 state.address = address;
                 localStorage.setItem("token", payload.token);
             }
-            console.log(payload);
         },
         [verifyJWT.rejected]: (state) => {
             state.isloading = true;
@@ -110,8 +118,6 @@ const userSlice = createSlice({
     }
 })
 
-// "email": "admin@example.com",
-// "password": "admin_password"
 
 export default userSlice.reducer;
-export const { login } = userSlice.actions;
+export const { login, logout } = userSlice.actions;

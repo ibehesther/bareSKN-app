@@ -1,22 +1,21 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
+export const createCart = createAsyncThunk('cart/createCart', async(owner_id) => {
+    console.log(owner_id);
+    return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/carts/${owner_id}`
+    , {method: "POST"})
+    .then(res => res.json())
+    .catch((err) => console.log(err))
+});
 
-// export const createCart = createAsyncThunk('cart/createCart', async() => {
-//     return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/carts/01xAE5`
-//     , {method: "POST"})
-//     .then(res => res.json())
-//     .catch((err) => console.log(err))
-// });
-
-export const getCart = createAsyncThunk('cart/getCart', async(arg, {rejectWithValue}) => {
-    return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/carts/01xAE5`)
+export const getCart = createAsyncThunk('cart/getCart', async(owner_id, {rejectWithValue}) => {
+    return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/carts/${owner_id}`)
     .then(res => res.json())
     .catch((err) => rejectWithValue(err.response.data))
 });
 
-export const updateCart = createAsyncThunk('cart/updateCart', async(cart, {rejectWithValue}) => {
-    return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/carts/01xAE5`, 
-        {
+export const updateCart = createAsyncThunk('cart/updateCart', async({id:owner_id, cart} , {rejectWithValue}) => {
+    return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/carts/${owner_id}`, {
         method: "PATCH", 
         body: JSON.stringify(cart),
         headers: {
@@ -41,6 +40,7 @@ const cartSlice = createSlice({
     reducers: {
         addToCart: (state, {payload}) => {
             console.log("Adding to cart...");
+            // console.log(state)
             const cartItems = state.cartItems;
             const { _id, name, image_link, price  } = payload;
             if(cartItems.length){
@@ -66,7 +66,6 @@ const cartSlice = createSlice({
                 state.amount += (newItem.quantity * newItem.price);
                 state.total += 1;
             }
-            
             state.cartItems = cartItems;
         },
         removeFromCart: (state, { payload }) => {
@@ -118,6 +117,7 @@ const cartSlice = createSlice({
         },
         [getCart.rejected]: (state) => {
             state.isLoading=true;
+
         },
         [updateCart.pending]: (state) => {
             state.isLoading=true;

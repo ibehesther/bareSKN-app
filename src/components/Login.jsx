@@ -1,20 +1,20 @@
-import { Component } from "react";
 import {Link} from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
-import { login, getUser } from "../redux/features/user/userSlice"
+import { login, getUser } from "../redux/features/user/userSlice";
+import { createCart } from "../redux/features/cart/cartSlice";
 import { useEffect } from "react";
 
 function Login(props){
     const dispatch = useDispatch();
-    const { email, password } = useSelector((store) => store.user)
+    const { id, email, password } = useSelector((store) => store.user)
     useEffect(() => {
-        console.log(email, password)
-        dispatch(getUser({email, password}))
+        dispatch(getUser({email, password}));
+        // dispatch(createCart(id));
     }, [password])
     return(
         <div className="login-container">
             <span className="login-title">Login</span>
-            <form  onSubmit={(e) =>{return dispatch(login({e}))}}>
+            <form  onSubmit={(e) =>{return dispatch(login({e}))}} >
                 <fieldset>
                     <div className="login-section">
                         <label htmlFor="login_email">Email</label>

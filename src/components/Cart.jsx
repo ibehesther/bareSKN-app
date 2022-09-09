@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from 'react-router-dom';
-import { getCart, updateCart, removeFromCart, increase, decrease} from "../redux/features/cart/cartSlice";
+import { removeFromCart, increase, decrease} from "../redux/features/cart/cartSlice";
 function CartItem(props) {
     const {dispatch, _id, name,  price, quantity, image_link} = props;
     
@@ -37,14 +37,7 @@ function Cart (props){
     const  {cartItems, amount } = useSelector((store) => store.cart)
     const dispatch = useDispatch();
 
-    const { isLoading: loading, ...cart  } = useSelector((store) => store.cart)
-    useEffect(() =>  {
-        dispatch(getCart());
-    }, []);
-
-    useEffect(() => {
-        dispatch(updateCart(cart));
-    }, [cart.cartItems]);
+    const { isLoading: loading, ...cart  } = useSelector((store) => store.cart);
 
     return(
         <div className="cart-container">
