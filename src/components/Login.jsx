@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
-import { login, getUser } from "../redux/features/user/userSlice";
+import { login, getUser, getGuest } from "../redux/features/user/userSlice";
 import { createCart } from "../redux/features/cart/cartSlice";
 import { useEffect } from "react";
 
@@ -30,7 +30,9 @@ function Login(props){
             </form>
             <p>Don't have an account? <Link to={`/signup`}>Sign up</Link></p>
             <p className="seperator"><span></span>or <span></span></p> 
-            <button type="submit" className="secondary-btn">GUEST LOGIN</button>
+            <button onClick={() => dispatch(getGuest())} className="secondary-btn">
+                GUEST LOGIN
+            </button>
 
         </div>
     );

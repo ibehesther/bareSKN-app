@@ -1,11 +1,11 @@
 import {Link} from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { getUser, logout } from '../redux/features/user/userSlice';
+import { getUser,deleteUser, logout } from '../redux/features/user/userSlice';
 
 function Account(props){
     const dispatch = useDispatch();
-    const { id, first_name, last_name, email, phone_number, address, password} = useSelector(store => store.user);
+    const { id,type, first_name, last_name, email, phone_number, address, password} = useSelector(store => store.user);
     useEffect(() => {
         dispatch(getUser({email, password}));
     }, [id])
@@ -17,7 +17,15 @@ function Account(props){
             <section className="account-heading">
                 <h2> HI {first_name}</h2>
                 <p>Not you? 
-                    <Link  to="/" onClick={() => dispatch(logout())}>
+                    <Link  to="/" onClick={() => {
+                        console.log(type)
+                        if(type === "guest"){
+                            dispatch(deleteUser(id))
+                            dispatch(logout())
+                        }else{
+                            dispatch(logout())
+                        }
+                        }}>
                         Logout
                     </Link>
                 </p>

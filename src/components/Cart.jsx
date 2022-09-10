@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from 'react-router-dom';
 import { removeFromCart, increase, decrease} from "../redux/features/cart/cartSlice";
@@ -7,7 +7,7 @@ function CartItem(props) {
     
     return(
         <div className="cart-item-container">
-            <img src={image_link} alt="" srcset="" />
+            <img src={image_link} alt={name} srcSet="" />
             <div className="cart-item-name">
                 <p >{name}</p>
                 <div className="item-price">${price * quantity}</div>
@@ -18,7 +18,7 @@ function CartItem(props) {
                 onClick={() => dispatch(decrease({_id, price}))}>
                     &minus;
                 </button>
-                <input type="number" name="quantity" id="" placeholder="1" value={quantity}/>
+                <input type="number" name="quantity" id="" placeholder="1" value={quantity} readOnly/>
                 <button className="quantity-no"
                 onClick={() => dispatch(increase({_id, price}))}>
                     +
@@ -33,16 +33,14 @@ function CartItem(props) {
     )
 }
 
-function Cart (props){
+function Cart (){
     const  {cartItems, amount } = useSelector((store) => store.cart)
     const dispatch = useDispatch();
-
-    const { isLoading: loading, ...cart  } = useSelector((store) => store.cart);
 
     return(
         <div className="cart-container">
             <div className="cart-items">
-                {cartItems.length ? 
+                {cartItems && cartItems.length ? 
                 cartItems.map((item) => 
                     <CartItem 
                     key={item._id} 
@@ -56,7 +54,7 @@ function Cart (props){
                 : 
                 <div style={{margin: "1em auto", textAlign: "center"}}> Cart is empty! </div>}
             </div>
-            {cartItems.length ?
+            {cartItems  && cartItems.length?
             <>
                 <div className="cart-total">
                     <div className="cart-total-details">

@@ -40,7 +40,6 @@ const cartSlice = createSlice({
     reducers: {
         addToCart: (state, {payload}) => {
             console.log("Adding to cart...");
-            // console.log(state)
             const cartItems = state.cartItems;
             const { _id, name, image_link, price  } = payload;
             if(cartItems.length){
