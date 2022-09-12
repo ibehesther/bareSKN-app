@@ -235,7 +235,7 @@ nav{
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  margin-top: 5em;
+  margin-top: 1.5em;
 }
 .options {
   color: black;
@@ -380,7 +380,7 @@ nav{
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 1em;
+  margin: 1em;
 }
 .sidebar-profile .username {
   font-size: 1.2em;
@@ -388,6 +388,7 @@ nav{
 }
 .sidebar-profile .user-email {
   font-size: .8em;
+  overflow-wrap: break-word;
 }
 .sidebar-profile > img {
   background-color: white;
@@ -622,6 +623,9 @@ nav{
 
 /*** Beginning of CSS code for Sign up page  */
 
+.error, .required{
+  color: rgb(250, 65, 65);
+}
 .signup-container, .login-container, .edit-account-container{
   width: 100%;
   height: 100%;
@@ -1295,6 +1299,7 @@ input[type=radio]:checked::before{
 
 .account-container {
   width: 100%;
+  max-width: 100%;
   padding: 2em 0;
 }
 .account-container  img{
@@ -1312,6 +1317,7 @@ input[type=radio]:checked::before{
   margin-bottom: .7em;
 }
 .account-details {
+  max-width: 100%;
   margin: 2em 0;
   line-height: 25px;
   background-color: white;
@@ -1319,9 +1325,13 @@ input[type=radio]:checked::before{
 .account-details>div {
   margin: 1em 0;
 }
+
 .account-details>div>p:first-child{
   font-weight: 700;
   text-transform: uppercase;
+}
+.account-details>div>p{
+  overflow-wrap: break-word;
 }
 .edit-account-container > form{
   margin: 1.5em 0;

@@ -6,9 +6,7 @@ import { getUser,deleteUser, logout } from '../redux/features/user/userSlice';
 function Account(props){
     const dispatch = useDispatch();
     const { id,type, first_name, last_name, email, phone_number, address, password} = useSelector(store => store.user);
-    useEffect(() => {
-        dispatch(getUser({email, password}));
-    }, [id])
+    
     return(
         <div className="account-container">
             <Link to={'/edit'}>
@@ -18,7 +16,6 @@ function Account(props){
                 <h2> HI {first_name}</h2>
                 <p>Not you? 
                     <Link  to="/" onClick={() => {
-                        console.log(type)
                         if(type === "guest"){
                             dispatch(deleteUser(id))
                             dispatch(logout())

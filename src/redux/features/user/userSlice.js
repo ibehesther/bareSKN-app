@@ -52,7 +52,8 @@ const initialState = {
     phone_number: null,
     address: null,
     type: null,
-    isloading: true
+    isloading: true,
+    error: false
 }
 const userSlice = createSlice({
     name: "user",
@@ -65,11 +66,8 @@ const userSlice = createSlice({
             const email = e.target.elements.login_email.value;
             const password = e.target.elements.login_password.value;
             if(email && password){
-                console.log("Value entered")
                 state.email = email;
                 state.password = password;
-            }else{
-                console.log("No value entered")
             }
         },
         logout: (state) => {
@@ -91,6 +89,7 @@ const userSlice = createSlice({
         [getUser.fulfilled]: (state, {payload}) => {
             console.log("Getting user...")
             state.isloading = false;
+            state.error = false;
             if(payload.user && payload.token){
                 const{
                     _id: id, first_name, last_name, email,  phone_number, address, type
@@ -105,6 +104,8 @@ const userSlice = createSlice({
                 state.type= type;
                 state.password = null;
                 localStorage.setItem("token", payload.token);
+            }else if (payload.error){
+                state.error = true;
             }
             
         },

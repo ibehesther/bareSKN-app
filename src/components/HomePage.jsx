@@ -22,16 +22,21 @@ import { verifyJWT } from '../redux/features/user/userSlice';
 
 function HomePage(props){
     const {isLoading: loading, ...cart  } = useSelector((store) => store.cart);
-    const { id, email, password} = useSelector((store) => store.user);
+    const { id } = useSelector((store) => store.user);
     const dispatch = useDispatch();
     
     useEffect(() =>  {
         dispatch(verifyJWT());
-        dispatch(getCart(id));
+        if(id){
+            dispatch(getCart(id));
+        }
+       
     }, [id]);
 
     useEffect(() => {
-        dispatch(updateCart({id, cart}));
+        // if(id){
+            dispatch(updateCart({id, cart}));
+        // }
     }, [id, cart.cartItems]);
 
     return (

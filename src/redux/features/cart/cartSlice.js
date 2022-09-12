@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const createCart = createAsyncThunk('cart/createCart', async(owner_id) => {
-    console.log(owner_id);
+    
     return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/carts/${owner_id}`
     , {method: "POST"})
     .then(res => res.json())
@@ -103,7 +103,19 @@ const cartSlice = createSlice({
         }
     },
     extraReducers: {
-        [getCart.pending]: (state) => {
+        [createCart.pending]: (state) => {
+            state.isLoading=true;
+        },
+        [createCart.fulfilled]: (state, {payload}) => {
+            state.isLoading=false;
+            console.log(payload);
+            // const {_id, cartItems, amount, total} = action.payload;
+            // state.id = _id;
+            // state.cartItems= cartItems;
+            // state.amount= amount;
+            // state.total= total;
+        },
+        [createCart.pending]: (state) => {
             state.isLoading=true;
         },
         [getCart.fulfilled]: (state, action) => {
