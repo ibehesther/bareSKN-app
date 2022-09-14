@@ -1,10 +1,12 @@
-import React from "react";
+import React, {useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from 'react-router-dom';
-import { removeFromCart, increase, decrease} from "../redux/features/cart/cartSlice";
+import { getCart, removeFromCart, increase, decrease} from "../redux/features/cart/cartSlice";
 function CartItem(props) {
     const {dispatch, _id, name,  price, quantity, image_link} = props;
     
+   
+
     return(
         <div className="cart-item-container">
             <img src={image_link} alt={name} srcSet="" />
@@ -35,8 +37,12 @@ function CartItem(props) {
 
 function Cart (){
     const  {cartItems, amount } = useSelector((store) => store.cart)
+    const { id } = useSelector((store) => store.user);
     const dispatch = useDispatch();
-
+    useEffect(() =>  {
+        console.log(id)
+        dispatch(getCart(id));
+    }, [id]);
     return(
         <div className="cart-container">
             <div className="cart-items">

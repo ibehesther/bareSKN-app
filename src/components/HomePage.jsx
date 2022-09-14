@@ -27,16 +27,12 @@ function HomePage(props){
     
     useEffect(() =>  {
         dispatch(verifyJWT());
-        if(id){
-            dispatch(getCart(id));
-        }
+        dispatch(getCart(id));
        
     }, [id]);
 
     useEffect(() => {
-        // if(id){
-            dispatch(updateCart({id, cart}));
-        // }
+        dispatch(updateCart({id, cart}));
     }, [id, cart.cartItems]);
 
     return (

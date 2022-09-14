@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { login, getUser, getGuest } from "../redux/features/user/userSlice";
-import { createCart } from "../redux/features/cart/cartSlice";
+import { createCart, getCart } from "../redux/features/cart/cartSlice";
 import { useEffect, useState } from "react";
 
 function Login(props){
@@ -53,6 +53,10 @@ function Login(props){
         }
     }
 
+    useEffect(() =>  {
+        dispatch(getCart(id));
+    }, [id]);
+    
     useEffect(() => {
         if (type == "guest"){
             dispatch(createCart(id));
