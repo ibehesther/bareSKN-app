@@ -84,7 +84,6 @@ function Login(props){
                         <label htmlFor="login_password">Password <span className="required">*</span></label>
                         <input type="password" name="login_password" id="login_password" 
                         onChange={(e) => handleChange(e)} value={inputPassword} />
-                        <img className='navbar-icon visible' src={require('../icons/visibility.png')} alt="" />
                         <p className='error'>{passwordError}</p>
                     </div>
                     {error && <p className='error'>There is a problem with your email or password, try again!</p>}

@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const createCart = createAsyncThunk('cart/createCart', async(owner_id) => {
-    console.log(owner_id);
     return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/carts/${owner_id}`
     , {method: "POST"})
     .then(res => res.json())
@@ -113,7 +112,6 @@ const cartSlice = createSlice({
             state.isLoading=true;
         },
         [getCart.fulfilled]: (state, action) => {
-            console.log(action.payload)
             state.isLoading=false
             const {_id, cartItems, amount, total} = action.payload;
             state.id = _id;

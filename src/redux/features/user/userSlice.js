@@ -1,5 +1,18 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
+
+export const createUser = createAsyncThunk("user/createUser", async(user, {rejectWithValue}) => {
+    return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/users`,
+    {
+        method: "POST", 
+        body: JSON.stringify(user),
+        headers: {
+            "Content-type": "application/json"
+        }
+    })
+    .then(res => res.json())
+    .catch((err) => rejectWithValue(err.response.data))
+})
 export const getUser = createAsyncThunk("user/getUser", async(user, {rejectWithValue}) => {
     return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/users/login`,
     {
@@ -10,7 +23,7 @@ export const getUser = createAsyncThunk("user/getUser", async(user, {rejectWithV
         }
     })
     .then(res => res.json())
-    .catch((err) => console.log(err))
+    .catch((err) => rejectWithValue(err.response.data))
 })
 export const getGuest = createAsyncThunk("user/getGuest", async(user, {rejectWithValue}) => {
     return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/users/guest`,
@@ -18,7 +31,7 @@ export const getGuest = createAsyncThunk("user/getGuest", async(user, {rejectWit
         method: "POST"
     })
     .then(res => res.json())
-    .catch((err) => console.log(err))
+    .catch((err) => rejectWithValue(err.response.data))
 })
 
 export const deleteUser = createAsyncThunk("user/deleteUser", async(user_id, {rejectWithValue}) => {
@@ -27,10 +40,10 @@ export const deleteUser = createAsyncThunk("user/deleteUser", async(user_id, {re
         method: "DELETE"
     })
     .then(res => res.json())
-    .catch((err) => console.log(err))
+    .catch((err) => rejectWithValue(err.response.data))
 })
 
-export const verifyJWT = createAsyncThunk("user/verifyJWT", async() => {
+export const verifyJWT = createAsyncThunk("user/verifyJWT", async(user,{rejectWithValue}) => {
     const token = localStorage.getItem("token");
     return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/users/verify_jwt`,
     {
@@ -40,7 +53,7 @@ export const verifyJWT = createAsyncThunk("user/verifyJWT", async() => {
         }
     })
     .then(res => res.json())
-    .catch((err) => console.log(err))
+    .catch((err) => rejectWithValue(err.response.data))
 })
 
 const initialState = {
@@ -54,7 +67,8 @@ const initialState = {
     type: null,
     isloading: true,
     error: false
-}
+};
+
 const userSlice = createSlice({
     name: "user",
     initialState,
@@ -83,6 +97,34 @@ const userSlice = createSlice({
         }
     },
     extraReducers: {
+        [createUser.pending]: (state) => {
+            state.isloading = true;
+        },
+        [createUser.fulfilled]: (state, {payload}) => {
+            console.log("Creating user...")
+            state.isloading = false;
+            state.error = false;
+            if(payload.user && payload.token){
+                const{
+                    _id: id, first_name, last_name, email,  phone_number, address, type
+                } = payload.user;
+
+                state.id = id;
+                state.first_name = first_name;
+                state.last_name = last_name;
+                state.email = email;
+                state.phone_number = phone_number;
+                state.address = address;
+                state.type= type;
+                state.password = null;
+                localStorage.setItem("token", payload.token);
+            }else if (payload.error){
+                state.error = true;
+            }
+        },
+        [createUser.rejected]: (state) => {
+            state.isloading = true;
+        },
         [getUser.pending]: (state) => {
             state.isloading = true;
         },
@@ -107,7 +149,6 @@ const userSlice = createSlice({
             }else if (payload.error){
                 state.error = true;
             }
-            
         },
         [getUser.rejected]: (state) => {
             state.isloading = true;
@@ -133,7 +174,6 @@ const userSlice = createSlice({
                 state.password = null;
                 localStorage.setItem("token", payload.token);
             }
-            
         },
         [getGuest.rejected]: (state) => {
             state.isloading = true;
