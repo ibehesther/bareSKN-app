@@ -106,14 +106,7 @@ function SignUp(props){
     const handleFormSubmission =(e) => {
         e.preventDefault();
         if(validateForm()){
-            // Reset all input fields
-            // setFirstName("");
-            // setLastName("");
-            // setEmail("");
-            // setAddress("");
-            // setPhoneNo("");
-            // setPassword("");
-            // setConfirmPassword("");
+            
             // Create a new user
             console.log("Submiting Form")
             const user = {
@@ -125,7 +118,16 @@ function SignUp(props){
     }
 
     useEffect(() => {
-        console.log(error);
+        if(!error){
+            // Reset all input fields
+            setFirstName("");
+            setLastName("");
+            setEmail("");
+            setAddress("");
+            setPhoneNo("");
+            setPassword("");
+            setConfirmPassword(""); 
+        }
     }, [error]);
 
     useEffect(() => {
