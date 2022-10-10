@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 
 export const createUser = createAsyncThunk("user/createUser", async(user, {rejectWithValue}) => {
-    return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/users`,
+    return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/signup`,
     {
         method: "POST", 
         body: JSON.stringify(user),
@@ -14,7 +14,7 @@ export const createUser = createAsyncThunk("user/createUser", async(user, {rejec
     .catch((err) => rejectWithValue(err.response.data))
 })
 export const getUser = createAsyncThunk("user/getUser", async(user, {rejectWithValue}) => {
-    return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/users/login`,
+    return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/login`,
     {
         method: "POST", 
         body: JSON.stringify(user),
@@ -26,7 +26,7 @@ export const getUser = createAsyncThunk("user/getUser", async(user, {rejectWithV
     .catch((err) => rejectWithValue(err.response.data))
 })
 export const getGuest = createAsyncThunk("user/getGuest", async(user, {rejectWithValue}) => {
-    return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/users/guest`,
+    return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/guest`,
     {
         method: "POST"
     })
@@ -45,7 +45,7 @@ export const deleteUser = createAsyncThunk("user/deleteUser", async(user_id, {re
 
 export const verifyJWT = createAsyncThunk("user/verifyJWT", async(user,{rejectWithValue}) => {
     const token = localStorage.getItem("token");
-    return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/users/verify_jwt`,
+    return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/verify_jwt`,
     {
         method: "GET",
         headers: {
