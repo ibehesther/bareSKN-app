@@ -1241,6 +1241,16 @@ fieldset {
   row-gap: 1em;
   margin: 2em 0;
 }
+#card-reset {
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+  padding: 2px 10px;
+  width: fit-content;
+  height: fit-content;
+  font-size: 30px;
+  font-weight: 900;
+}
 .credit-card-form > div {
   flex: 1;
   display: flex;

@@ -67,8 +67,8 @@ function Cart (){
                         <p className="total">Total :</p>
                     </div>
                     <div className="cart-total-price">
-                        <p>$10.00</p>
-                        <p className="total">${amount + 10} </p>
+                        <p>$20.00</p>
+                        <p className="total">${amount + 20} </p>
                     </div>
                 </div>
                 <div className="proceed-btn-container">

@@ -91,7 +91,7 @@ function LandingPage(){
                             name = {product.name}
                             image_link = {product.image_link}
                             price = {product.price} 
-                            rating = {4}/>
+                            rating = {product.rating}/>
                         )}
                     </div>
                 }

@@ -8,21 +8,25 @@ export const createCart = createAsyncThunk('cart/createCart', async(owner_id) =>
 });
 
 export const getCart = createAsyncThunk('cart/getCart', async(owner_id, {rejectWithValue}) => {
-    return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/carts/${owner_id}`)
-    .then(res => res.json())
-    .catch((err) => rejectWithValue(err.response.data))
+    if(owner_id){
+        return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/carts/${owner_id}`)
+        .then(res => res.json())
+        .catch((err) => rejectWithValue(err.response.data))
+    }
 });
 
 export const updateCart = createAsyncThunk('cart/updateCart', async({id:owner_id, cart} , {rejectWithValue}) => {
-    return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/carts/${owner_id}`, {
-        method: "PATCH", 
-        body: JSON.stringify(cart),
-        headers: {
-            "Content-type": "application/json"
-        }
-    })
-    .then(res => res.json())
-    .catch((err) => rejectWithValue(err.response.data))
+    if(owner_id){
+        return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/carts/${owner_id}`, {
+            method: "PATCH", 
+            body: JSON.stringify(cart),
+            headers: {
+                "Content-type": "application/json"
+            }
+        })
+        .then(res => res.json())
+        .catch((err) => rejectWithValue(err.response.data))
+    }
 });
 
 var initialState = {
@@ -111,13 +115,15 @@ const cartSlice = createSlice({
         [createCart.pending]: (state) => {
             state.isLoading=true;
         },
-        [getCart.fulfilled]: (state, action) => {
+        [getCart.fulfilled]: (state, {payload}) => {
             state.isLoading=false
-            const {_id, cartItems, amount, total} = action.payload;
-            state.id = _id;
-            state.cartItems= cartItems;
-            state.amount= amount;
-            state.total= total;
+            if (payload){
+                const {_id, cartItems, amount, total} = payload;
+                state.id = _id;
+                state.cartItems= cartItems;
+                state.amount= amount;
+                state.total= total;
+            }
         },
         [getCart.rejected]: (state) => {
             state.isLoading=true;

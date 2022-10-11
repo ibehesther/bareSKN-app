@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import {createUser} from "../redux/features/user/userSlice";
 import { createCart } from '../redux/features/cart/cartSlice';
@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 
 function SignUp(props){
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { id, error } = useSelector((store) => store.user)
     // Form field values
     const [firstName, setFirstName] = useState("");
@@ -114,6 +115,7 @@ function SignUp(props){
                 phone_number: phoneNo, password
             }
             dispatch(createUser(user));
+            navigate("/")
         }
     }
 

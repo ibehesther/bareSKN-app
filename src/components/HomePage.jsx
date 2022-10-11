@@ -18,11 +18,12 @@ import SubCategoryProductsList from "./SubCategoryProductsList";
 import { useSelector, useDispatch } from "react-redux";
 import { getCart, updateCart} from "../redux/features/cart/cartSlice";
 import { verifyJWT } from '../redux/features/user/userSlice';
+import Success from "./Success";
 
 
 function HomePage(props){
     const {isLoading: loading, ...cart  } = useSelector((store) => store.cart);
-    const { id } = useSelector((store) => store.user);
+    const { id, type } = useSelector((store) => store.user);
     const dispatch = useDispatch();
     
     useEffect(() =>  {
@@ -55,6 +56,7 @@ function HomePage(props){
                 element={<CollectionProductsList/>}></Route>
                 <Route path={`subcategories/:coll_name/products`} 
                 element={<SubCategoryProductsList/>}></Route>
+                <Route path={"/success"} element={<Success/>}></Route>
                 <Route path={'*'} element={
                     <main style={{ padding: "1rem" }}>
                         <p>Oops! nothing to see here.</p>

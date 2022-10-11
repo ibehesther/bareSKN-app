@@ -15,7 +15,7 @@ function Account(props){
             <section className="account-heading">
                 <h2> HI {first_name}</h2>
                 <p>Not you? 
-                    <Link  to="/" onClick={() => {
+                    <a  href="/bareSKN-app" onClick={() => {
                         if(type === "guest"){
                             dispatch(deleteUser(id))
                             dispatch(logout())
@@ -24,7 +24,7 @@ function Account(props){
                         }
                         }}>
                         Logout
-                    </Link>
+                    </a>
                 </p>
             </section>
             <section className="account-details">

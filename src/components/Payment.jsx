@@ -1,51 +1,99 @@
-import { useState, Component } from "react";
+import { useRef, useState, Component  } from "react";
 import {Link } from 'react-router-dom';
 
 function CardDetails(props) {
-    const [expiryDate, setExpiryDate] = useState();
+    const cardNo = useRef();
+    const cardExpStart = useRef();
+    const cardExpEnd = useRef();
+    const cardCVV = useRef();
+    const submit = useRef();
+    let [cardType, setCardType] = useState('')
+    let [expiryDate, setExpiryDate] = useState();
     const handleChange =(e) => {
         const name = e.target.name;
         const value = e.target.value;
-        console.log(name, value)
         switch(name){
-            case("card-exp-start"):
-                if(value.length === 2){
-
+            case("card_no"):
+                if(value.length == 16){
+                    cardExpStart.current.focus();
+                    cardNo.current.disabled = true
                 }
+                if(value.match(/^4/)){
+                    setCardType("Visa");
+                }
+                else if (value.match(/^51/) || value.match(/^55/)){
+                    setCardType("MasterCard");
+                }
+                else{
+                    setCardType("")
+                }
+                props.saveCardType(cardType);
+                break;
+            case("card_exp_start"):
+                if( cardNo.current.value.length < 16){
+                    setCardType("");
+                    props.saveCardType(cardType);
+                }
+                if(value.length == 2){
+                    cardExpStart.current.disabled = true
+                    cardExpEnd.current.focus();
+                }
+                break;
+            case("card_exp_end"):
+                if(value.length == 2){
+                    cardExpEnd.current.disabled = true
+                    cardCVV.current.focus()
+                }
+                break;
+            case("card_cvv"):
+                if(value.length == 3){
+                    cardCVV.current.disabled = true
+                }
+                break;
         }
         props.saveCardDetails(name, value);
     }
+
+    const enableFields = () => {
+        cardNo.current.disabled = false;
+        cardExpStart.current.disabled = false;
+        cardExpEnd.current.disabled = false;
+        cardCVV.current.disabled = false;
+    }
     return(
-        <form className="credit-card-form">
+        <form className="">
+            <button type="reset" id="card-reset" onClick={() => enableFields()}>&#8635;</button>
+            <div className="credit-card-form">
             <div>
-                <label htmlFor="card-no">
+                <label htmlFor="card_no">
                     Card number
                 </label>
-                <input type="number" name="card-no" id="" 
+                <input type="number" name="card_no" id="" ref={cardNo} disabled={false}
                     placeholder="**** **** **** ****" onChange={(e) => handleChange(e)}/>
             </div>
             <div>
-                <label htmlFor="card-exp-start">
+                <label htmlFor="card_exp_start">
                     Expiration date
                 </label>
                 <div className="card-exp-date">
-                    <input type="number" name="card-exp-start" id="" value={expiryDate} minLength={2} maxLength={2}
-                        placeholder="MM" onChange={(e) => {
+                    <input type="number" name="card_exp_start" id=""
+                        ref={cardExpStart} placeholder="MM" onChange={(e) => {
                             handleChange(e);
                         }}/>
                     <span >/</span>
-                    <input type="number" name="card-exp-end" id="" value={expiryDate} minLength={4} maxLength={4}
-                        placeholder="YYYY" onChange={(e) => {
+                    <input type="number" name="card_exp_end" id=""
+                        ref={cardExpEnd} placeholder="YY" onChange={(e) => {
                             handleChange(e);
                         }}/>
                 </div>
             </div>
             <div>
-                <label htmlFor="card-cvv">
+                <label htmlFor="card_cvv">
                     Security code
                 </label>
-                <input type="number" name="card-cvv" id="" minLength={3} maxLength={3}
-                    placeholder="CVV" onChange={(e) => handleChange(e)}/>
+                <input type="number" name="card_cvv" id="" minLength={3} maxLength={3}
+                    ref={cardCVV} placeholder="CVV" onChange={(e) => handleChange(e)}/>
+            </div>
             </div>
         </form>
     )
@@ -60,19 +108,27 @@ class Payment extends Component{
 
         }
     }
+    
+    cardDetails = () => {
+        let { card_no, card_exp_start, card_exp_end, cardType } = this.state;
+        return { card_no, card_exp_start, card_exp_end, cardType };
+    }
+
     selectPayOnDeliveryOption = () =>{
         this.setState((state) => ({payOnDelivery:!state.payOnDelivery}))
         if(this.selectCreditCardOption){
+            this.setState({cardType : "None"})
             this.setState({creditCard:false})
         }
         if (!this.state.payOnDelivery){
             document.querySelector('#delivery').className = "payment-section"
-            document.querySelector(".card-container").className = 'hidden'
+            if ( document.querySelector(".card-container")){
+                document.querySelector(".card-container").className = 'hidden'
+            }
         }else{
             document.querySelector("#delivery").className = 'payment-section'
             document.querySelector("#card").className = 'payment-section'
         }
-        
     }
     selectCreditCardOption = () =>{
         this.setState((state) => ({creditCard:!state.creditCard}))
@@ -88,15 +144,24 @@ class Payment extends Component{
     }
 
     saveCardDetails = (name, value) => {
-        this.setState({[name]: value})
-        console.log(this.state)
+        this.setState({[name]: value});
     }
 
-    checkCardDetails = () => {
-
+    saveCardType = (type) => {
+        this.setState({cardType: type})
     }
-
+    
+    checkCardValidity = () => {
+        let { card_no, card_exp_start, card_exp_end, card_cvv, cardType} = this.state;
+        if(card_no && card_exp_start && card_exp_end && card_cvv && cardType) {
+            return true
+        }else{
+            return false
+        }
+    }
+   
     render(){
+        console.log(this.state.cardType)
         return(
             <div className="payment-container ">
                 <h3>Choose a payment method</h3>
@@ -120,14 +185,16 @@ class Payment extends Component{
                             Credit card
                         </span>
                         <span className="payment-icon-container right">
-                            <img  className= 'payment-icon'src={require('../icons/mastercard.png')} alt="" />
-                            <img  className= 'payment-icon'src={require('../icons/visa.png')} alt="" />
+                            {this.state.cardType == "MasterCard" && <img  className= 'payment-icon'src={require('../icons/mastercard.png')} alt="" />}
+                            {this.state.cardType == "Visa" && <img  className= 'payment-icon'src={require('../icons/visa.png')} alt="" />}
                         </span>
                     </div>
-                    {this.state.creditCard && <CardDetails saveCardDetails={this.saveCardDetails}/> }
+                    {this.state.creditCard && <CardDetails saveCardDetails={this.saveCardDetails} saveCardType={this.saveCardType}/> }
                 </div>
-                <Link to={`/checkout`}>
-                    <button disabled={!this.state.payOnDelivery && !this.state.creditCard ? true : false} >
+                <Link  to={`/checkout`}
+                    state={this.cardDetails()}
+                    >
+                    <button disabled={!this.state.payOnDelivery && !this.checkCardValidity()? true : false}>
                         Confirm and continue
                     </button>
                 </Link>

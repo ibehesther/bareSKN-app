@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { login, getUser, getGuest } from "../redux/features/user/userSlice";
 import { createCart, getCart } from "../redux/features/cart/cartSlice";
 import { useEffect, useState } from "react";
 
 function Login(props){
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [inputEmailSelected, setInputEmailSelected] = useState(false);
     const [inputPasswordSelected, setInputPasswordSelected] = useState(false);
     const [inputEmail, setInputEmail] = useState("");
@@ -59,7 +61,10 @@ function Login(props){
     
     useEffect(() => {
         if (type == "guest"){
+            console.log(id, type, email, password)
+            console.log("Creating new cart for", id)
             dispatch(createCart(id));
+        //    (() => navigate("/"))();
         }
     }, [id]);
 
@@ -71,6 +76,7 @@ function Login(props){
                 const correctInput = checkInputEntered(e);
                 if(correctInput){  
                     dispatch(login({e}));
+                    navigate("/")
                 }
                 }} >
                 <fieldset>
@@ -91,9 +97,10 @@ function Login(props){
                 </fieldset>
             </form>
             <p>Don't have an account? <Link to={`/signup`}>Sign up</Link></p>
-            <p className="seperator"><span></span>or <span></span></p> 
+            <p className="seperator"><span></span>or <span></span></p>
             <button onClick={() => {
                 dispatch(getGuest());
+                
             }} className="secondary-btn">
                 GUEST LOGIN
             </button>
