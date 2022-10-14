@@ -1524,3 +1524,19 @@ input[type=radio]:checked::before{
   height: 2em;
   width: 80%;
 }
+
+.success-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5em 0 0;
+}
+.success-container > img {
+  width: 15em;
+  margin: 0 auto 1em;
+}
+.success-container > h1{
+  font-size: 1.2em;
+  text-align: center;
+}

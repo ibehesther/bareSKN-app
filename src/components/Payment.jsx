@@ -161,7 +161,6 @@ class Payment extends Component{
     }
    
     render(){
-        console.log(this.state.cardType)
         return(
             <div className="payment-container ">
                 <h3>Choose a payment method</h3>

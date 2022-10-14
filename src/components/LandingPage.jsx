@@ -5,12 +5,10 @@ import Card from './Card';
 import CollectionCard from "./CollectionCard";
 import ProductsList from "./ProductsList";
 import {CollectionsLoading } from "./Loading";
-import { getCart, updateCart} from "../redux/features/cart/cartSlice";
-
 
 
 function LandingPage(){
-    const {isLoading: loading,id, ...cart  } = useSelector((store) => store.cart);
+    const { isLoading: loading, id } = useSelector((store) => store.cart);
    
     const [collections, setCollections] = useState([]);
     const [products, setProducts] = useState([]);
@@ -110,12 +108,12 @@ function LandingPage(){
                         <>
                             <button onClick={prev}
                             disabled={pageNo === 1 ? true : false}> 
-                            - 
+                                &lt;
                             </button>
                             <span>{pageNo}</span>
                             <button onClick={next}
                             disabled={pageNo === maxPage ? true : false}>
-                                + 
+                                &gt;
                             </button>
                         </>}
                     </div>

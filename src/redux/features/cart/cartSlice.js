@@ -1,26 +1,41 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const createCart = createAsyncThunk('cart/createCart', async(owner_id) => {
+    const token = localStorage.getItem("token");
     return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/carts/${owner_id}`
-    , {method: "POST"})
+    ,{
+        method: "POST",
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
+    })
     .then(res => res.json())
     .catch((err) => console.log(err))
 });
 
 export const getCart = createAsyncThunk('cart/getCart', async(owner_id, {rejectWithValue}) => {
+    const token = localStorage.getItem("token");
     if(owner_id){
-        return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/carts/${owner_id}`)
+        return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/carts/${owner_id}`,
+        {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        })
         .then(res => res.json())
         .catch((err) => rejectWithValue(err.response.data))
     }
 });
 
 export const updateCart = createAsyncThunk('cart/updateCart', async({id:owner_id, cart} , {rejectWithValue}) => {
+    const token = localStorage.getItem("token");
     if(owner_id){
         return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/carts/${owner_id}`, {
             method: "PATCH", 
             body: JSON.stringify(cart),
             headers: {
+                "Authorization": `Bearer ${token}`,
                 "Content-type": "application/json"
             }
         })
