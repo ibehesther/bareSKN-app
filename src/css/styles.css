@@ -431,13 +431,14 @@ nav{
   margin: 0 auto;
 }
 .card-details {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
   background-color: rgba(255, 255, 255, 1);
-  /* height: 35%; */
-  padding: 0 .5em;
+  height: 40%;
+  padding: 0 .5em 3em;
 }
 .card-title{
   font-size: .75em;
@@ -454,6 +455,8 @@ nav{
   padding: .5em 1.5em;
   font-size: .7em;
   flex: 1;
+  position: absolute;
+  bottom : 1em;
 }
 
 /*** End of CSS code for Card  */
