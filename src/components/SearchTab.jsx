@@ -20,7 +20,7 @@ function SearchTab(props){
     return(
         <div className="navbar-search-tab-container">
             <div className="navbar-search-tab">
-                <form action="/" className="search-tab">
+                <form action="/" className="search-tab" onSubmit={(e) => { e.preventDefault(); return false}}>
                     <input type="text" name="Search" value={searchTerm}
                      id="search-tab" className="search-tab" 
                      placeholder="Search" onChange={(e) => handleChange(e)}/>

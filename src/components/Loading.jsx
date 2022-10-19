@@ -1,6 +1,6 @@
-function LoadingCard(){
+function LoadingCard(props){
     return(
-        <div className="loading-section">
+        <div className={`loading-section ${props.className && props.className}`}>
             <div className="loading-card-image"></div>
             <div className="loading-card-content">
                 <h2>{}</h2>
@@ -17,6 +17,8 @@ export function ProductsLoading(){
             <LoadingCard/>
             <LoadingCard/>
             <LoadingCard/>
+            <LoadingCard className="hidden-sm"/>
+            <LoadingCard className="hidden-sm"/>
         </div>
     )
 }
@@ -25,6 +27,8 @@ export function CollectionsLoading(){
         <div className="loading-container">
             <LoadingCard/>
             <LoadingCard/>
+            <LoadingCard className="hidden-sm"/>
+            <LoadingCard className="hidden-sm"/>
         </div>
     )
 }

@@ -27,6 +27,9 @@
         height: .3em;
         margin: .4em 0;
     }
+    .sidebar-section {
+        padding-top: 5em;
+    }
     .navbar-search-tab-container{
         top: 5em;
         font-size: 1.5em;
@@ -91,12 +94,21 @@
     }
     .card-rating, .card-price{
         font-size: 1.2em;
+        margin-bottom: 1em;
     }
     .card-title, .card-add-btn{
         font-size: 1.2em;
     }
-    .sidebar-profile{
+    /* .sidebar-profile{
         display: none;
+    } */
+    .sidebar-main-options{
+        padding: 2em 1em;
+        width: calc(100% - 2em);
+    }
+    .sidebar-profile > img {
+        max-width: 15%;
+        height: auto;
     }
     .signup{
         font-size: 1em;

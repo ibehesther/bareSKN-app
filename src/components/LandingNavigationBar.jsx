@@ -1,10 +1,11 @@
 import { useRef } from 'react';
-import {Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import SideBarOptions from './SideBarOptions';
 import {useSelector} from "react-redux";
 
 function LandingNavigationBar(props) {
     // Get state properties from redux store
+    const { id } = useSelector((store) => store.user)
     const { total } = useSelector((store) => store.cart)
     
     return(
@@ -20,7 +21,7 @@ function LandingNavigationBar(props) {
                     <img src={require("../icons/search.png")} alt="Search" srcSet="" className="navbar-icon"/>
                 </span>
                 <span className="cart-icon-container hidden-sm" aria-label="profile">
-                    <Link to ='/account' onClick={props.isSideBarOpen && props.toogleSideBar}>
+                    <Link to ={ id ? '/account' : '/login'} onClick={props.isSideBarOpen && props.toogleSideBar}>
                     <img id= "profile" src={require("../icons/profile.png")} alt="profile" className="navbar-icon"/>
                     </Link>
                 </span>

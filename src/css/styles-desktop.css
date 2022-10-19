@@ -10,6 +10,7 @@
     }
     .sidebar-options {
         flex-direction: row;
+        margin-top: 0;
     }
     .app-name {
         flex: 2;
@@ -54,8 +55,8 @@
     .page-section.best > div{
         height: fit-content;
     }
-    .page-section .page-section-cards{
-        grid-template-columns: repeat(2, 1fr);
+    .page-section .page-section-cards, .loading-container{
+        grid-template-columns: repeat(4, 1fr);
     }
     .page-section.best .card-container{
         min-width: 30%;
@@ -70,17 +71,23 @@
     }
     .card-title{
         font-size: 1em;
+        flex: 1;
     }
     .card-price{
         font-size: .8em;
+        flex: 1;
+        margin-bottom: 1em;
     }
     .card-add-btn{
         padding: 1em 2em;
         font-size: .8em;
     }
     .card-details{
-        height: 40%;
+        height: 50%;
         padding: 1em 0;
+    }
+    .options {
+        padding: 15px ;
     }
     .appointment-container > p{
         font-size: 1.6em;
