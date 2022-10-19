@@ -437,19 +437,19 @@ nav{
   align-items: center;
   justify-content: space-around;
   background-color: rgba(255, 255, 255, 1);
-  height: 40%;
+  height: 18%;
   padding: 0 .5em 3em;
 }
 .card-title{
   font-size: .75em;
-  flex: 2;
+  flex: 1;
   text-align: center;
 }
 .card-price {
   font-size: .6em;
   flex: .5;
   font-weight: bolder;
-  padding: .3em 0;
+  padding: 0;
 }
 .card-add-btn {
   padding: .5em 1.5em;

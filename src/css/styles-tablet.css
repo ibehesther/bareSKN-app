@@ -30,6 +30,13 @@
     .sidebar-section {
         padding-top: 5em;
     }
+
+    .sidebar-profile .username{
+        font-size: 1.8em;
+    }
+    .sidebar-profile .user-email{
+        font-size: 1.2em;
+    }
     .navbar-search-tab-container{
         top: 5em;
         font-size: 1.5em;
@@ -71,9 +78,6 @@
         height: 28em;
         padding: .5em 0;
     }
-    .page-section {
-        margin: 5em auto;
-    }
     .page-subsection-title > span {
         font-size: 1.5em;
     }
@@ -91,6 +95,9 @@
     }
     .card-price {
         flex: 1;
+    }
+    .card-details{
+        height: 30%;
     }
     .card-rating, .card-price{
         font-size: 1.2em;
@@ -160,9 +167,6 @@
     .appointment-form > label {
         font-size: 2em;
         margin: .5em 0;
-    }
-    .appointment-container > section:last-child{
-        height: 60em;
     }
     .appointment-form > input, .appointment-form > select {
         font-size: 1.8em;

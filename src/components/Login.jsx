@@ -100,6 +100,7 @@ function Login(props){
             <p className="seperator"><span></span>or <span></span></p>
             <button onClick={() => {
                 dispatch(getGuest());
+                navigate('/');
                 
             }} className="secondary-btn">
                 GUEST LOGIN

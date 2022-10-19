@@ -23,11 +23,9 @@ function SideBarProductsOptions(props) {
         fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/categories`)
         .then((res) => res.json())
         .then((categories) => {
-            console.log(categories)
             setCategories(categories);
             setIsLoading(false);
         }).catch(() => setIsLoading(true));
-        console.log(subCategoryIndex)
         fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/subcategories/cat_0${encodeURIComponent(subCategoryIndex)}`)
         .then((res) => res.json())
         .then(({subCategories}) => {
