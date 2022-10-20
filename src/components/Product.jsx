@@ -1,15 +1,20 @@
 import {useState, useRef } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { addToCart} from "../redux/features/cart/cartSlice";
 import { Breadcrumb } from "./Breadcrumb";
+
 
 
 function Product(){
     const [show_more, setShowMore] = useState(false);
-
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     const desc = useRef();
     const read_more = useRef();
     const location = useLocation();
-    const {name, image_link, price, description, group_name} = location.state;
+    const { id } = useSelector((store) => store.user);
+    const {_id, name, image_link, price, description, group_name} = location.state;
 
     const showMore= () => {
         setShowMore((prev) => !prev);
@@ -42,12 +47,16 @@ function Product(){
             <div className="product-cart-details">
                 <div className="product-quantity">
                     <label htmlFor="quantity">Quantity</label>
-                    <button className="quantity-no">&minus;</button>
+                    {/* <button className="quantity-no">&minus;</button> */}
                     <input type="number" name="quantity" id="" placeholder="1"/>
-                    <button className="quantity-no">+</button>
+                    {/* <button className="quantity-no">+</button> */}
                 </div>
                 <div className="product-cart-btn">
-                    <button className="secondary-btn">Add to Cart</button>
+                    <button className="secondary-btn"
+                    onClick={() => {
+                        id && dispatch(addToCart({_id, name, image_link, price}));
+                        !id && navigate("/login");
+                        }}>Add to Cart</button>
                 </div>
             </div>
         </div>

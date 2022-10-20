@@ -39,7 +39,7 @@ class SideBarOptions extends Component {
                     {/* {this.state.productsDropDown &&
                      <SideBarProductsOptions toogleSideBar={this.props.toogleSideBar}/> } */}
                      <SideBarProductsOptions show={this.state.productsDropDown}
-                     toogleSideBar={this.props.toogleSideBar}/>
+                     toogleSideBar={this.props.toogleSideBar} hideProducts={this.showMore}/>
                     
                 </div>
                 <Link onClick={this.props.toogleSideBar} to={`/services`} className="options"> <span >  SERVICES</span></Link>

@@ -14,6 +14,7 @@ export const createUser = createAsyncThunk("user/createUser", async(user, {rejec
     .catch((err) => rejectWithValue(err.response.data))
 })
 export const getUser = createAsyncThunk("user/getUser", async(user, {rejectWithValue}) => {
+    console.log(user)
     return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/login`,
     {
         method: "POST", 
@@ -35,9 +36,13 @@ export const getGuest = createAsyncThunk("user/getGuest", async(user, {rejectWit
 })
 
 export const deleteUser = createAsyncThunk("user/deleteUser", async(user_id, {rejectWithValue}) => {
+    const token = localStorage.getItem("token");
     return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/users/${user_id}`,
     {
-        method: "DELETE"
+        method: "DELETE",
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
     })
     .then(res => res.json())
     .catch((err) => rejectWithValue(err.response.data))

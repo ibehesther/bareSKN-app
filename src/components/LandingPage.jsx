@@ -87,6 +87,7 @@ function LandingPage(){
                             <Card
                             key={key}
                             name = {product.name}
+                            description = {product.description}
                             image_link = {product.image_link}
                             price = {product.price} 
                             rating = {product.rating}/>

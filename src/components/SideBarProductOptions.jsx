@@ -19,6 +19,11 @@ function SideBarProductsOptions(props) {
         setSubCategoryDropDown1, setSubCategoryDropDown2, setSubCategoryDropDown3
     ];
     
+    const toogleAll = () => {
+        console.log("here")
+        props.toogleSideBar();
+        // props.hideProducts();
+    }
     useEffect(() => {
         fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/categories`)
         .then((res) => res.json())
@@ -53,7 +58,9 @@ function SideBarProductsOptions(props) {
                 <ul className={`sidebar-products-option ${subCategoryDropDownList[index] && "sidebar-show"}`} >
                     {subCategories.map(({name, key}, sub_index) => 
                         <li className="sub-products" key={key}>
-                            <Link  onClick={props.toogleSideBar} 
+                            <Link  
+                            // onClick={() => toogleAll()} 
+                            onClick={props.toogleSideBar}
                             to={`subcategories/subcat_${encodeURIComponent(subCategoryProducts[index])}_0${encodeURIComponent(sub_index +1)}/products`}
                             state={{key, 
                             index: sub_index + 1,

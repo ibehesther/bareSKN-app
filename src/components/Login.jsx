@@ -58,15 +58,6 @@ function Login(props){
     useEffect(() =>  {
         dispatch(getCart(id));
     }, [id]);
-    
-    useEffect(() => {
-        if (type == "guest"){
-            console.log(id, type, email, password)
-            console.log("Creating new cart for", id)
-            dispatch(createCart(id));
-        //    (() => navigate("/"))();
-        }
-    }, [id]);
 
 
     return(
@@ -98,8 +89,13 @@ function Login(props){
             </form>
             <p>Don't have an account? <Link to={`/signup`}>Sign up</Link></p>
             <p className="seperator"><span></span>or <span></span></p>
-            <button onClick={() => {
-                dispatch(getGuest());
+            <button onClick={async() => {
+                // await dispatch(getGuest());
+                await dispatch(getGuest())
+                .then(({payload}) =>{
+                    dispatch(createCart(payload.user._id));
+                })
+                .catch(console.log)
                 navigate('/');
                 
             }} className="secondary-btn">

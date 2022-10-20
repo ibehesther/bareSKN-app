@@ -12,6 +12,9 @@
         flex-direction: row;
         margin-top: 0;
     }
+    .nav-bar{
+        max-width: 100%;
+    }
     .app-name {
         flex: 2;
         padding-left: 2em;
@@ -83,7 +86,7 @@
         font-size: .8em;
     }
     .card-details{
-        /* height: 90%; */
+        height: 30%;
         padding: 1em 0;
     }
     .options {

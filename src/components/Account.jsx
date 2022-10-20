@@ -1,10 +1,12 @@
 import {Link} from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom"
 import { useEffect } from "react";
 import { getUser,deleteUser, logout } from '../redux/features/user/userSlice';
 
 function Account(props){
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { id,type, first_name, last_name, email, phone_number, address, password} = useSelector(store => store.user);
     
     return(
@@ -15,16 +17,18 @@ function Account(props){
             <section className="account-heading">
                 <h2> HI {first_name}</h2>
                 <p>Not you? 
-                    <a  href="/bareSKN-app" onClick={() => {
+                    <Link  to="/" onClick={async() => {
                         if(type === "guest"){
-                            dispatch(deleteUser(id))
-                            dispatch(logout())
+                            console.log(id)
+                            dispatch(deleteUser(id));
+                            dispatch(logout());
                         }else{
                             dispatch(logout())
                         }
+                        
                         }}>
                         Logout
-                    </a>
+                    </Link>
                 </p>
             </section>
             <section className="account-details">
