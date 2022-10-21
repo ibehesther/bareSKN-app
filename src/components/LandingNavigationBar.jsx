@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import SideBarOptions from './SideBarOptions';
 import {useSelector} from "react-redux";

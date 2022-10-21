@@ -1,18 +1,15 @@
 import {Link} from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom"
-import { useEffect } from "react";
-import { getUser,deleteUser, logout } from '../redux/features/user/userSlice';
+import { deleteUser, logout } from '../redux/features/user/userSlice';
 
 function Account(props){
     const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const { id,type, first_name, last_name, email, phone_number, address, password} = useSelector(store => store.user);
+    const { id,type, first_name, last_name, email, phone_number, address } = useSelector(store => store.user);
     
     return(
         <div className="account-container">
             <Link to={'/edit'}>
-                <img className='navbar-icon' src={require("../icons/edit.png")}/>
+                <img className='navbar-icon' alt="edit" src={require("../icons/edit.png")}/>
             </Link>
             <section className="account-heading">
                 <h2> HI {first_name}</h2>

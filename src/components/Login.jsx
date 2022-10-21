@@ -9,11 +9,11 @@ function Login(props){
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [inputEmailSelected, setInputEmailSelected] = useState(false);
-    const [inputPasswordSelected, setInputPasswordSelected] = useState(false);
+    // const [inputPasswordSelected, setInputPasswordSelected] = useState(false);
     const [inputEmail, setInputEmail] = useState("");
     const [inputPassword, setInputPassword] = useState("");
     const [passwordError, setPasswordError] = useState("")
-    const { id, type, email, password, error } = useSelector((store) => store.user);
+    const { id, error } = useSelector((store) => store.user);
     const handleChange = (e) => {
         switch(e.target.name){
             case("login_email"):
@@ -21,8 +21,10 @@ function Login(props){
                 setInputEmail(e.target.value);
                 break;
             case("login_password"):
-                setInputPasswordSelected(true);
+                // setInputPasswordSelected(true);
                 setInputPassword(e.target.value);
+                break;
+            default:
                 break;
         }
     }
@@ -46,7 +48,7 @@ function Login(props){
                 setInputEmail("");
                 setInputPassword("");
                 setInputEmailSelected(false);
-                setInputPasswordSelected(false);
+                // setInputPasswordSelected(false);
 
                 // Attempt to get user 
                 dispatch(getUser({email, password}));
@@ -63,11 +65,11 @@ function Login(props){
     return(
         <div className="login-container">
             <span className="login-title">Login</span>
-            <form  onSubmit={(e) =>{
+            <form  onSubmit={async(e) =>{
                 const correctInput = checkInputEntered(e);
                 if(correctInput){  
-                    dispatch(login({e}));
-                    navigate("/")
+                    await dispatch(login({e}))
+                    navigate('/');
                 }
                 }} >
                 <fieldset>
@@ -90,13 +92,13 @@ function Login(props){
             <p>Don't have an account? <Link to={`/signup`}>Sign up</Link></p>
             <p className="seperator"><span></span>or <span></span></p>
             <button onClick={async() => {
-                // await dispatch(getGuest());
                 await dispatch(getGuest())
                 .then(({payload}) =>{
                     dispatch(createCart(payload.user._id));
+                    navigate('/');
                 })
                 .catch(console.log)
-                navigate('/');
+                
                 
             }} className="secondary-btn">
                 GUEST LOGIN

@@ -1,5 +1,4 @@
 import React, {useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import Images from "./Images";
 import Card from './Card';
 import CollectionCard from "./CollectionCard";
@@ -8,7 +7,7 @@ import {CollectionsLoading } from "./Loading";
 
 
 function LandingPage(){
-    const { isLoading: loading, id } = useSelector((store) => store.cart);
+    // const { isLoading: loading, id } = useSelector((store) => store.cart);
    
     const [collections, setCollections] = useState([]);
     const [products, setProducts] = useState([]);
@@ -16,8 +15,6 @@ function LandingPage(){
     const [isLoading, setIsLoading] = useState([]);
     const [pageNo, setPageNo] = useState(1);
     const [maxPage, setMaxPage] = useState(0);
-
-    const dispatch = useDispatch();
     useEffect(() => {
         const getCollections = fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/collections`)
         .then(res => res.json());

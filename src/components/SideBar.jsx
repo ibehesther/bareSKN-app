@@ -42,10 +42,10 @@ function SideBar(props){
                 }
                 <SideBarOptions toogleSideBar={props.toogleSideBar} isSideBarOpen = {props.isSideBarOpen}/>
                 <div className="sidebar-socials">
-                    <a href="mailto:estheribeh5@gmail.com" className="fa fa-envelope"></a>
-                    <a href="https://www.github.com/ibehesther" target='_blank' className="fa fa-github"></a>
-                    <a href="https://www.linkedin.com/in/ibehesther" target='_blank' className="fa fa-linkedin"></a>
-                    <a href="https://www.twitter.com/thee_essie" target='_blank' className="fa fa-twitter"></a>
+                    <a href="mailto:estheribeh5@gmail.com" ><span className="fa fa-envelope"></span></a>
+                    <a href="https://www.github.com/ibehesther" target='_blank' rel="noreferrer" ><span className="fa fa-github"></span></a>
+                    <a href="https://www.linkedin.com/in/ibehesther" target='_blank' rel="noreferrer" ><span className="fa fa-linkedin"></span></a>
+                    <a href="https://www.twitter.com/thee_essie" target='_blank' rel="noreferrer" ><span className="fa fa-twitter"></span></a>
                     
                 </div>
             </div>

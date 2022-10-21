@@ -19,11 +19,6 @@ function SideBarProductsOptions(props) {
         setSubCategoryDropDown1, setSubCategoryDropDown2, setSubCategoryDropDown3
     ];
     
-    const toogleAll = () => {
-        console.log("here")
-        props.toogleSideBar();
-        // props.hideProducts();
-    }
     useEffect(() => {
         fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/categories`)
         .then((res) => res.json())
