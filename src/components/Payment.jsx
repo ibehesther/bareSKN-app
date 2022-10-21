@@ -154,9 +154,9 @@ class Payment extends Component{
     checkCardValidity = () => {
         let { card_no, card_exp_start, card_exp_end, card_cvv, cardType} = this.state;
         if(card_no && card_exp_start && card_exp_end && card_cvv && cardType) {
-            return true
+            return true;
         }else{
-            return false
+            return false;
         }
     }
    
