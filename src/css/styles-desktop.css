@@ -19,6 +19,9 @@
         flex: 2;
         padding-left: 2em;
     }
+    .navbar-search-tab-container{
+        width: 50%;
+    }
     .navbar-center{
         flex: 2;
         padding-right: 2em;
@@ -37,6 +40,7 @@
     .image-container{
         height: calc(100vh - 6em);
     }
+    
     .page-section-title{
         font-size: 1.5em;
     }
@@ -123,5 +127,20 @@
     }
     .product-quantity > input{
         flex: .5;
+    }
+    .login-container,.signup-container, .side-align-img{
+        flex: 1;
+        max-width: 46%;
+    }
+    .side-align-img{
+        background-color: rgba(0, 0, 0, .6);
+        display: flex;
+    }
+    .side-align-img > img{
+        display: block;
+        margin: 2em 5em;
+        width: calc(100% - 10em);
+        max-height: 500px;
+        max-width: 100%;
     }
 }

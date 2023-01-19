@@ -2,13 +2,13 @@ import { useState } from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import {createUser} from "../redux/features/user/userSlice";
-import { createCart } from '../redux/features/cart/cartSlice';
+import { getCart, createCart } from '../redux/features/cart/cartSlice';
 import { useEffect } from 'react';
 
 function SignUp(props){
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { id, error } = useSelector((store) => store.user)
+    const { id, error } = useSelector((store) => store.user);
     // Form field values
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -26,7 +26,7 @@ function SignUp(props){
     const [phoneNoError, setPhoneNoError] = useState(null);
     const [passwordError, setPasswordError] = useState(null);
     const [confirmPasswordError, setConfirmPasswordError] = useState(null);
-
+    const [formSubmitted, setFormSubmitted] = useState(false);
 
     const handleChange = (e) => {
         switch(e.target.name){
@@ -104,7 +104,7 @@ function SignUp(props){
             return false;
         }
     }
-    const handleFormSubmission =(e) => {
+    const handleFormSubmission = async(e) => {
         e.preventDefault();
         if(validateForm()){
             
@@ -114,8 +114,16 @@ function SignUp(props){
                 first_name: firstName, last_name: lastName, email, address,
                 phone_number: phoneNo, password
             }
-            dispatch(createUser(user));
-            navigate("/")
+            setFormSubmitted(true);
+            await dispatch(createUser(user))
+            .then(async ({payload}) => {
+                console.log(payload)
+                if(payload.user){
+                    dispatch(createCart(payload.user._id))
+                }
+            }).catch(console.log);
+            await getCart(id);
+            navigate('/');
         }
     }
 
@@ -133,65 +141,70 @@ function SignUp(props){
     }, [error]);
 
     useEffect(() => {
-        dispatch(createCart(id));
-    }, [id]);
+        if(formSubmitted && !error ) return 
+    }, [error])
     return(
-        <div className="signup-container">
-            <span className="signup-title">Sign Up</span>
-            <form action="" onSubmit={((e) => {handleFormSubmission(e)})}>
-                <fieldset>
-                    <div className="signup-section">
-                        <label htmlFor="firstName">First Name</label>
-                        <input type="text" name="firstName" id="firstName"
-                        placeholder='John' 
-                        onChange={(e) => handleChange(e)} value={firstName}/>
-                        <p className="error">{firstNameError && firstNameError}</p>
-                    </div>
-                    <div className="signup-section">
-                        <label htmlFor="lastName">Last Name</label>
-                        <input type="text" name="lastName" id="lastName" 
-                        placeholder='Doe'
-                        onChange={(e) => handleChange(e)} value={lastName}/>
-                        <p className="error">{lastNameError && lastNameError}</p>
-                    </div>
-                    <div className="signup-section">
-                        <label htmlFor="email">Email</label>
-                        <input type="text" name="email" id="email" 
-                        placeholder='johndoe@example.com'
-                        onChange={(e) => handleChange(e)} value={email}/>
-                        <p className="error">{emailError && emailError}</p>
-                    </div>
-                    <div className="signup-section">
-                        <label htmlFor="residence">Residential Address</label>
-                        <input type="text" name="residence" id="residence" 
-                        placeholder='No. 4 Baker Street, Victoria Island'
-                        onChange={(e) => handleChange(e)} value={address}/>
-                        <p className="error">{addressError && addressError}</p>
-                    </div>
-                    <div className="signup-section">
-                        <label htmlFor="phoneNumber">Phone No.</label>
-                        <input type="tel" name="phoneNumber" id="phoneNumber" 
-                        placeholder='+234 567 8901 234'
-                        onChange={(e) => handleChange(e)} value={phoneNo}/>
-                        <p className="error">{phoneNoError && phoneNoError}</p>
-                    </div>
-                    <div className="signup-section">
-                        <label htmlFor="password">Password</label>
-                        <input type="password" name="password" id="password" 
-                        onChange={(e) => handleChange(e)} value={password}/>
-                        <p className="error">{passwordError && passwordError}</p>
-                    </div>
-                    <div className="signup-section">
-                        <label htmlFor="confirmPassword">Confirm Password</label>
-                        <input type="password" name="confirmPassword" id="confirmPassword" 
-                        onChange={(e) => handleChange(e)} value={confirmPassword}/>
-                        <p className="error">{confirmPasswordError && confirmPasswordError}</p>
-                    </div>
-                    <p className="error">{error && "An account with this email already exists"}</p>
-                    <button type="submit">SIGN UP</button>
-                </fieldset>
-            </form>
-            <p >Already have an account? <Link to={`/login`}>Login</Link></p>
+        <div className="signup-page">
+            <div className="side-align-img">
+                <img src={require("../images/auth_image.jpg")} alt="" srcSet="" />
+            </div>
+            <div className="signup-container">
+                <span className="signup-title">Hi, there</span>
+                <form action="" onSubmit={((e) => {handleFormSubmission(e)})}>
+                    <fieldset>
+                        <div className="signup-section">
+                            <label htmlFor="firstName">First Name</label>
+                            <input type="text" name="firstName" id="firstName"
+                            placeholder='John' 
+                            onChange={(e) => handleChange(e)} value={firstName}/>
+                            <p className="error">{firstNameError && firstNameError}</p>
+                        </div>
+                        <div className="signup-section">
+                            <label htmlFor="lastName">Last Name</label>
+                            <input type="text" name="lastName" id="lastName" 
+                            placeholder='Doe'
+                            onChange={(e) => handleChange(e)} value={lastName}/>
+                            <p className="error">{lastNameError && lastNameError}</p>
+                        </div>
+                        <div className="signup-section">
+                            <label htmlFor="email">Email</label>
+                            <input type="text" name="email" id="email" 
+                            placeholder='johndoe@example.com'
+                            onChange={(e) => handleChange(e)} value={email}/>
+                            <p className="error">{emailError && emailError}</p>
+                        </div>
+                        <div className="signup-section">
+                            <label htmlFor="residence">Residential Address</label>
+                            <input type="text" name="residence" id="residence" 
+                            placeholder='No. 4 Baker Street, Victoria Island'
+                            onChange={(e) => handleChange(e)} value={address}/>
+                            <p className="error">{addressError && addressError}</p>
+                        </div>
+                        <div className="signup-section">
+                            <label htmlFor="phoneNumber">Phone No.</label>
+                            <input type="tel" name="phoneNumber" id="phoneNumber" 
+                            placeholder='+234 567 8901 234'
+                            onChange={(e) => handleChange(e)} value={phoneNo}/>
+                            <p className="error">{phoneNoError && phoneNoError}</p>
+                        </div>
+                        <div className="signup-section">
+                            <label htmlFor="password">Password</label>
+                            <input type="password" name="password" id="password" 
+                            onChange={(e) => handleChange(e)} value={password}/>
+                            <p className="error">{passwordError && passwordError}</p>
+                        </div>
+                        <div className="signup-section">
+                            <label htmlFor="confirmPassword">Confirm Password</label>
+                            <input type="password" name="confirmPassword" id="confirmPassword" 
+                            onChange={(e) => handleChange(e)} value={confirmPassword}/>
+                            <p className="error">{confirmPasswordError && confirmPasswordError}</p>
+                        </div>
+                        <p className="error">{error && "An account with this email already exists"}</p>
+                        <button type="submit">SIGN UP</button>
+                    </fieldset>
+                </form>
+                <p >Already have an account? <Link to={`/signin`}>Signin</Link></p>
+            </div>
         </div>
     );
 }

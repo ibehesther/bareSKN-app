@@ -1,6 +1,6 @@
 .fadeInOut{
     animation-name: imgFadeInOut; 
-    animation-duration: 8s; 
+    animation-duration: 10s; 
     animation-timing-function:ease-in-out;
     animation-direction: alternate;
     animation-iteration-count: infinite;
@@ -16,28 +16,31 @@
     25% {
       opacity:0;
     }
-    75% {
+    50% {
       opacity:0;
     }
+    75% {
+      opacity: 0;
+    }
     100% {
-      opacity:1;
+      opacity: 1;
     }
   }
   
   .image-container img:nth-of-type(1) {
-    animation-delay: 9s;
+    animation-delay: 10s;
   }
   .image-container img:nth-of-type(2) {
-    animation-delay: 7s;
+    animation-delay: 8s;
   }
   .image-container img:nth-of-type(3) {
-    animation-delay: 5s;
+    animation-delay: 6s;
   }
   .image-container img:nth-of-type(4) {
-    animation-delay: 3s;
+    animation-delay: 4s;
   }
   .image-container img:nth-of-type(5) {
-    animation-delay: .5s;
+    animation-delay: 2s;
   }
 
 .page-section.best .card-container{

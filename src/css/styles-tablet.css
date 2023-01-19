@@ -130,15 +130,15 @@
     .login{
         font-size: .9em;
     }
+    .login-page, .signup-page {
+        height: calc(100vh - (100px + 3em));
+    }
     .signup-title, .login-title {
         font-size: 2em;
     }
     .signup-section > label, .login-section > label,
     .signup-section > input, .login-section > input {
         font-size: 1.5em;
-    }
-    .login-container {
-        height: 17em;
     }
     .auth-form > p {
         padding: 1em 0;

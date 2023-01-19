@@ -10,7 +10,7 @@ function SearchTab(props){
         setSearchTerm(e.target.value);
     }
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/products?search_term=${encodeURIComponent(searchTerm)}`)
+        fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/products?s=${encodeURIComponent(searchTerm)}&limit=5`)
         .then((res) => res.json())
         .then(({products}) => {
             setProducts(products);
@@ -30,7 +30,7 @@ function SearchTab(props){
             <div className="navbar-search-result">
                 <ul> 
                    { (searchTerm.length > 1 && products.length == 0) ?
-                   <li>No products found</li>:
+                   <li>No products found...</li>:
                    products.map(({_id, name, image_link, price, description}, index) => 
                         <li key={index}>
                             <Link onClick={props.toogleSearchTab} to={`/products/${_id}`} 

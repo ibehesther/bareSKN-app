@@ -7,7 +7,6 @@ import BlogPosts from "./BlogPosts";
 import Cart from "./Cart";
 import Checkout from "./Checkout";
 import EditAccount from "./EditAccount";
-import Login from "./Login";
 import OrderHistory from "./OrderHistory";
 import LandingPage from "./LandingPage";
 import Payment from "./Payment";
@@ -19,21 +18,24 @@ import { useSelector, useDispatch } from "react-redux";
 import { getCart, updateCart} from "../redux/features/cart/cartSlice";
 import { verifyJWT } from '../redux/features/user/userSlice';
 import Success from "./Success";
+import Signin from "./Signin";
 
 
-function HomePage(props){
+function HomePage(){
     const {isLoading: loading, ...cart  } = useSelector((store) => store.cart);
-    const { id, type } = useSelector((store) => store.user);
+    const { id } = useSelector((store) => store.user);
     const dispatch = useDispatch();
     
     useEffect(() =>  {
-        dispatch(verifyJWT());
-        dispatch(getCart(id));
+        // if(id){
+            dispatch(verifyJWT());
+            dispatch(getCart(cart));
+        // }
        
     }, [id]);
 
     useEffect(() => {
-        dispatch(updateCart({id, cart}));
+        dispatch(updateCart(cart));
     }, [id, cart.cartItems]);
 
     return (
@@ -51,7 +53,7 @@ function HomePage(props){
                 <Route path={`blog`} element = {<Blog/>}></Route>
                 <Route path={`blog-posts`} element={<BlogPosts/>}></Route>
                 <Route path={`signup`} element = {<SignUp/>}></Route>
-                <Route path={`login`} element={<Login/>}></Route>
+                <Route path={`signin`} element={<Signin/>}></Route>
                 <Route path={`collections/:coll_name/products`} 
                 element={<CollectionProductsList/>}></Route>
                 <Route path={`subcategories/:coll_name/products`} 

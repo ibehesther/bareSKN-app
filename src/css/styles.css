@@ -427,6 +427,7 @@ nav{
 }
 .card-img {
   height: 100%;
+  max-width: 240px;
   align-self: center;
   margin: 0 auto;
 }
@@ -635,11 +636,10 @@ nav{
   padding: 0 1em;
 }
 .signup-title, .login-title, .edit-account-container > h1 {
-  font-size: 1.8em;
+  font-size: 1.5em;
   font-weight: 900;
   display: block;
   margin: .5em 0 0.2em;
-  text-align: center;
 }
 fieldset {
   border: none;
@@ -706,11 +706,20 @@ fieldset {
 }
 .login-container {
   height: fit-content;
-  height: 15em;
 }
 .signup-container > p > a, .login-container > p > a,
 .account-heading > p > a, p.login > a {
   text-decoration: underline;
+}
+.login-page, .signup-page{
+  width: 100%;
+  height: calc(100vh - (65px + 3em));
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.side-align-img > img{
+  display: none;
 }
 /*** End of CSS code for Sign up page  */
 

@@ -40,7 +40,7 @@ function Cart (){
     const { id } = useSelector((store) => store.user);
     const dispatch = useDispatch();
     useEffect(() =>  {
-        dispatch(getCart(id));
+        dispatch(getCart());
     }, [id]);
     return(
         <div className="cart-container">

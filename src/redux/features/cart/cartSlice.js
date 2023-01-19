@@ -1,24 +1,22 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-export const createCart = createAsyncThunk('cart/createCart', async(owner_id) => {
+export const createCart = createAsyncThunk('cart/createCart', async() => {
     const token = localStorage.getItem("token");
-    if(owner_id){
-        return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/carts/${owner_id}`
-        ,{
-            method: "POST",
-            headers: {
-                "Authorization": `Bearer ${token}`
-            }
-        })
-        .then(res => res.json())
-        .catch((err) => console.log(err))
-    }
+    return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/carts`
+    ,{
+        method: "POST",
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
+    })
+    .then(res => res.json())
+    .catch((err) => console.log(err))
 });
 
-export const getCart = createAsyncThunk('cart/getCart', async(owner_id, {rejectWithValue}) => {
+export const getCart = createAsyncThunk('cart/getCart', async({rejectWithValue}) => {
     const token = localStorage.getItem("token");
-    if(owner_id){
-        return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/carts/${owner_id}`,
+    if(token){
+        return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/carts`,
         {
             method: "GET",
             headers: {
@@ -30,12 +28,14 @@ export const getCart = createAsyncThunk('cart/getCart', async(owner_id, {rejectW
     }
 });
 
-export const updateCart = createAsyncThunk('cart/updateCart', async({id:owner_id, cart} , {rejectWithValue}) => {
+export const updateCart = createAsyncThunk('cart/updateCart', async(cart, {rejectWithValue}) => {
     const token = localStorage.getItem("token");
-    if(owner_id){
-        return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/carts/${owner_id}`, {
+    
+    if(cart.id && token){
+        const { cartItems, cleared } = cart
+        return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/carts/${cart.id}`, {
             method: "PATCH", 
-            body: JSON.stringify(cart),
+            body: JSON.stringify({cartItems, cleared}),
             headers: {
                 "Authorization": `Bearer ${token}`,
                 "Content-type": "application/json"
@@ -128,14 +128,28 @@ const cartSlice = createSlice({
         },
         [createCart.fulfilled]: (state, {payload}) => {
             state.isLoading=false;
+            const {_id, cartItems, amount, total} = payload;
+            state.id = _id;
+            state.cartItems = cartItems;
+            state.amount = amount;
+            state.total = total;
         },
-        [createCart.pending]: (state) => {
+        [createCart.rejected]: (state) => {
+            state.isLoading=true;
+        },
+        [getCart.pending]: (state) => {
             state.isLoading=true;
         },
         [getCart.fulfilled]: (state, {payload}) => {
-            state.isLoading=false
-            if (payload){
-                const {_id, cartItems, amount, total} = payload;
+            state.isLoading=false;
+
+            if (!payload || payload.error){
+                state.id = null;
+                state.cartItems= [];
+                state.amount= 0;
+                state.total= 0;
+            }else{
+                const {_id, cartItems, amount, total} = payload[0];
                 state.id = _id;
                 state.cartItems= cartItems;
                 state.amount= amount;
@@ -144,7 +158,6 @@ const cartSlice = createSlice({
         },
         [getCart.rejected]: (state) => {
             state.isLoading=true;
-
         },
         [updateCart.pending]: (state) => {
             state.isLoading=true;

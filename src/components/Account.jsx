@@ -1,8 +1,9 @@
-import {Link} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteUser, logout } from '../redux/features/user/userSlice';
 
 function Account(props){
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const { id,type, first_name, last_name, email, phone_number, address } = useSelector(store => store.user);
     
@@ -13,19 +14,19 @@ function Account(props){
             </Link>
             <section className="account-heading">
                 <h2> HI {first_name}</h2>
-                <p>Not you? 
-                    <Link  to="/" onClick={async() => {
+                <p >Not you? 
+                    <span  onClick={async() => {
                         if(type === "guest"){
-                            console.log(id)
                             dispatch(deleteUser(id));
                             dispatch(logout());
+                            navigate('/')
                         }else{
-                            dispatch(logout())
+                            dispatch(logout());
+                            navigate('/');
                         }
-                        
-                        }}>
+                        }} href=''>
                         Logout
-                    </Link>
+                    </span>
                 </p>
             </section>
             <section className="account-details">

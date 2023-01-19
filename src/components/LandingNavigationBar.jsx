@@ -10,7 +10,7 @@ function LandingNavigationBar(props) {
     return(
         <div className="nav-bar">
             <h1 className="app-name">
-                <a href='/bareSKN-app/'>BareSKN</a>
+                <a href='/'>BareSKN</a>
             </h1>
             <div className="navbar-center hidden-sm hidden-md">
                 <SideBarOptions/>
@@ -20,7 +20,7 @@ function LandingNavigationBar(props) {
                     <img src={require("../icons/search.png")} alt="Search" srcSet="" className="navbar-icon"/>
                 </span>
                 <span className="cart-icon-container hidden-sm" aria-label="profile">
-                    <Link to ={ id ? '/account' : '/login'} onClick={props.isSideBarOpen && props.toogleSideBar}>
+                    <Link to ={ id ? '/account' : '/signin'} onClick={props.isSideBarOpen && props.toogleSideBar}>
                     <img id= "profile" src={require("../icons/profile.png")} alt="profile" className="navbar-icon"/>
                     </Link>
                 </span>

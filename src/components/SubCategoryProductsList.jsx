@@ -15,7 +15,7 @@ export default function SubCategoryProductsList(props){
     useEffect(() => {
         fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/subcategories/subcat_${encodeURIComponent(subCategoryProducts)}_0${encodeURIComponent(index)}/products`)
         .then((res) => res.json())
-        .then(({subCategory:name, products}) => {
+        .then(({subcategory:name, products}) => {
             setIsLoading(false);
             setName(name);
             setProducts(products);

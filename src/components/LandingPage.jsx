@@ -7,7 +7,6 @@ import {CollectionsLoading } from "./Loading";
 
 
 function LandingPage(){
-    // const { isLoading: loading, id } = useSelector((store) => store.cart);
    
     const [collections, setCollections] = useState([]);
     const [products, setProducts] = useState([]);
@@ -15,6 +14,7 @@ function LandingPage(){
     const [isLoading, setIsLoading] = useState([]);
     const [pageNo, setPageNo] = useState(1);
     const [maxPage, setMaxPage] = useState(0);
+
     useEffect(() => {
         const getCollections = fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/collections`)
         .then(res => res.json());
@@ -22,22 +22,23 @@ function LandingPage(){
         const getPaginatedProducts = fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/products?limit=8&page=${encodeURIComponent(pageNo)}`)
         .then(res => res.json());
 
-        const getHighestRatedProducts = fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/products?rating=highest`)
+        const getHighestRatedProducts = fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/products`)
         .then(res => res.json());
 
         Promise.all([getCollections, getPaginatedProducts, getHighestRatedProducts])
         .then((value) => {
-            var collections = value[0];
-            var {products} = value[1];
-            var {totalLength} = value[1];
-            var {limit} = value[1];
-            var {products: highestRatedProducts} = value[2];
-            var maxPage = Math.ceil(totalLength / limit);
+            let {collections} = value[0];
+            let {products, totalLength} = value[1];
+            let {products: highestRatedProducts} = value[2];
+
+            let maxPage = Math.ceil(totalLength / 8);
+
             setIsLoading(false);
             setCollections(collections);
             setProducts(products);
             setMaxPage(maxPage);
             setHighestRatedProducts(highestRatedProducts);
+
         }).catch((err) => {
             setIsLoading(true);
         });
@@ -80,7 +81,7 @@ function LandingPage(){
                     <CollectionsLoading/>
                     :
                     <div>
-                        {highestRatedProducts.map((product, key) => 
+                        {highestRatedProducts && highestRatedProducts.map((product, key) => 
                             <Card
                             key={key}
                             name = {product.name}

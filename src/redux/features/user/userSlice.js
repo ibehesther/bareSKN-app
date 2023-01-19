@@ -14,8 +14,7 @@ export const createUser = createAsyncThunk("user/createUser", async(user, {rejec
     .catch((err) => rejectWithValue(err.response.data))
 })
 export const getUser = createAsyncThunk("user/getUser", async(user, {rejectWithValue}) => {
-    console.log(user)
-    return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/login`,
+    return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/signin`,
     {
         method: "POST", 
         body: JSON.stringify(user),
@@ -27,7 +26,7 @@ export const getUser = createAsyncThunk("user/getUser", async(user, {rejectWithV
     .catch((err) => rejectWithValue(err.response.data))
 })
 export const getGuest = createAsyncThunk("user/getGuest", async(user, {rejectWithValue}) => {
-    return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/guest`,
+    return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/signin_guest`,
     {
         method: "POST"
     })
@@ -50,15 +49,18 @@ export const deleteUser = createAsyncThunk("user/deleteUser", async(user_id, {re
 
 export const verifyJWT = createAsyncThunk("user/verifyJWT", async(user,{rejectWithValue}) => {
     const token = localStorage.getItem("token");
-    return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/verify_jwt`,
-    {
-        method: "GET",
-        headers: {
-            "Authorization": `Bearer ${token}`
-        }
-    })
-    .then(res => res.json())
-    .catch((err) => rejectWithValue(err.response.data))
+    if(token){
+        return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/verify_jwt`,
+        {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        })
+        .then(res => res.json())
+        .catch((err) => rejectWithValue(err.response.data))
+    }
+    
 })
 
 const initialState = {
@@ -109,7 +111,7 @@ const userSlice = createSlice({
             console.log("Creating user...")
             state.isloading = false;
             state.error = false;
-            if(payload.user && payload.token){
+            if(payload && payload.user && payload.token){
                 const{
                     _id: id, first_name, last_name, email,  phone_number, address, type
                 } = payload.user;
@@ -137,7 +139,7 @@ const userSlice = createSlice({
             console.log("Getting user...")
             state.isloading = false;
             state.error = false;
-            if(payload.user && payload.token){
+            if(payload && payload.user && payload.token){
                 const{
                     _id: id, first_name, last_name, email,  phone_number, address, type
                 } = payload.user;
@@ -164,7 +166,7 @@ const userSlice = createSlice({
         [getGuest.fulfilled]: (state, {payload}) => {
             console.log("Getting guest...")
             state.isloading = false;
-            if(payload.user && payload.token){
+            if(payload && payload.user && payload.token){
                 const{
                     _id: id, first_name, last_name, email,  phone_number, address, type
                 } = payload.user;
@@ -199,8 +201,7 @@ const userSlice = createSlice({
         [verifyJWT.fulfilled]: (state, {payload}) => {
             console.log("Verifying token...")
             state.isloading = false;
-
-            if(payload.user && payload.token){
+            if(payload && payload.user && payload.token){
                 const{
                     _id: id, first_name, last_name, email,  phone_number, address, type
                 } = payload.user;

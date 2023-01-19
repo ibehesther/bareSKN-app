@@ -22,14 +22,14 @@ function SideBarProductsOptions(props) {
     useEffect(() => {
         fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/categories`)
         .then((res) => res.json())
-        .then((categories) => {
+        .then(({categories}) => {
             setCategories(categories);
             setIsLoading(false);
         }).catch(() => setIsLoading(true));
         fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/subcategories/cat_0${encodeURIComponent(subCategoryIndex)}`)
         .then((res) => res.json())
-        .then(({subCategories}) => {
-            setSubCategories(subCategories);
+        .then(({subcategories}) => {
+            setSubCategories(subcategories);
             setIsLoading(false);
         }).catch(() => setIsLoading(false));
     }, [subCategoryIndex]);
@@ -51,7 +51,7 @@ function SideBarProductsOptions(props) {
                     setSubCategoryIndex={setSubCategoryIndex}/>
                 </li>
                 <ul className={`sidebar-products-option ${subCategoryDropDownList[index] && "sidebar-show"}`} >
-                    {subCategories.map(({name, key}, sub_index) => 
+                    {subCategories && subCategories.map(({name, key}, sub_index) => 
                         <li className="sub-products" key={key}>
                             <Link  
                             // onClick={() => toogleAll()} 

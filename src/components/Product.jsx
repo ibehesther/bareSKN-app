@@ -55,7 +55,7 @@ function Product(){
                     <button className="secondary-btn"
                     onClick={() => {
                         id && dispatch(addToCart({_id, name, image_link, price}));
-                        !id && navigate("/login");
+                        !id && navigate("/signin");
                         }}>Add to Cart</button>
                 </div>
             </div>

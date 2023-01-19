@@ -36,7 +36,7 @@ function SideBar(props){
                             <button className="signup">SIGN UP</button>
                         </Link>
                         <p className="login">
-                            Already have an account? <Link onClick={props.toogleSideBar} to={`/login`}>Login</Link>
+                            Already have an account? <Link onClick={props.toogleSideBar} to={`/signin`}>Signin</Link>
                         </p>
                     </div>
                 }

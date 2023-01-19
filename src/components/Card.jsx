@@ -7,7 +7,7 @@ function Card(props) {
     const navigate = useNavigate();
     const { id } = useSelector((store) => store.user);
     const {_id, name, image_link, price, description, group_name, rating} = props;
-    
+    // console.log(id);
     const getRating = (number) => {
         return [...Array(number).keys()].map(key => <span key = {key}>&#9733;</span>);
     }
@@ -24,7 +24,7 @@ function Card(props) {
                 <button className="card-add-btn secondary-btn"
                     onClick={() => {
                         id && dispatch(addToCart({_id, name, image_link, price}));
-                        !id && navigate("/login");
+                        !id && navigate("/signin");
                         }}>
                     Add to Cart
                 </button>

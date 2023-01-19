@@ -21,7 +21,7 @@ export default class ProductsList extends Component{
                     <ProductsLoading/>
                     :
                     <div className="page-section-cards">
-                        {
+                        { this.props.products &&
                         this.props.products.map(({
                            _id, name, image_link, price, description}, key) => 
                             <Card
