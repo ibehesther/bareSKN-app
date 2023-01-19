@@ -39,7 +39,7 @@ function SideBarProductsOptions(props) {
             { isLoading ? 
             <div className="sub-products"> Loading... </div>
             :
-            categories.map(({name, key}, index) => 
+            categories && categories.map(({name, key}, index) => 
             <div key={key}>
                 <li className="sub-products" >
                     <span className="sidebar-products-title">By {name}</span>
