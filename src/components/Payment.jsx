@@ -6,15 +6,15 @@ function CardDetails(props) {
     const cardExpStart = useRef();
     const cardExpEnd = useRef();
     const cardCVV = useRef();
-    const submit = useRef();
+
     let [cardType, setCardType] = useState('')
-    let [expiryDate, setExpiryDate] = useState();
+
     const handleChange =(e) => {
         const name = e.target.name;
         const value = e.target.value;
         switch(name){
             case("card_no"):
-                if(value.length == 16){
+                if(value.length === 16){
                     cardExpStart.current.focus();
                     cardNo.current.disabled = true
                 }
@@ -34,22 +34,24 @@ function CardDetails(props) {
                     setCardType("");
                     props.saveCardType(cardType);
                 }
-                if(value.length == 2){
+                if(value.length === 2){
                     cardExpStart.current.disabled = true
                     cardExpEnd.current.focus();
                 }
                 break;
             case("card_exp_end"):
-                if(value.length == 2){
+                if(value.length === 2){
                     cardExpEnd.current.disabled = true
                     cardCVV.current.focus()
                 }
                 break;
             case("card_cvv"):
-                if(value.length == 3){
+                if(value.length === 3){
                     cardCVV.current.disabled = true
                 }
                 break;
+            default:
+                break
         }
         props.saveCardDetails(name, value);
     }
@@ -184,8 +186,8 @@ class Payment extends Component{
                             Credit card
                         </span>
                         <span className="payment-icon-container right">
-                            {this.state.cardType == "MasterCard" && <img  className= 'payment-icon'src={require('../icons/mastercard.png')} alt="" />}
-                            {this.state.cardType == "Visa" && <img  className= 'payment-icon'src={require('../icons/visa.png')} alt="" />}
+                            {this.state.cardType === "MasterCard" && <img  className= 'payment-icon'src={require('../icons/mastercard.png')} alt="" />}
+                            {this.state.cardType === "Visa" && <img  className= 'payment-icon'src={require('../icons/visa.png')} alt="" />}
                         </span>
                     </div>
                     {this.state.creditCard && <CardDetails saveCardDetails={this.saveCardDetails} saveCardType={this.saveCardType}/> }

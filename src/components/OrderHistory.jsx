@@ -1,5 +1,4 @@
 import {Component} from "react";
-import { Link } from "react-router-dom";
 
 function Order(){
     return(
@@ -25,9 +24,7 @@ function Order(){
 }
 
 class OrderHistory extends Component{
-    constructor(props){
-        super(props);
-    }
+    
     render(){
         return(
             <div className="order-history-section">

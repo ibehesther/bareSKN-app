@@ -9,7 +9,6 @@ function Signin(props){
     const dispatch = useDispatch();
     const navigate = useNavigate();
     let [inputEmailSelected, setInputEmailSelected] = useState(false);
-    let [formSubmitted, setFormSubmitted] = useState(false);
     let [inputEmail, setInputEmail] = useState("");
     let [inputPassword, setInputPassword] = useState("");
     let [passwordError, setPasswordError] = useState("")
@@ -21,7 +20,6 @@ function Signin(props){
                 setInputEmail(e.target.value);
                 break;
             case("login_password"):
-                // setInputPasswordSelected(true);
                 setInputPassword(e.target.value);
                 break;
             default:
@@ -61,11 +59,6 @@ function Signin(props){
         dispatch(getCart(id));
     }, [id]);
 
-    useEffect(() => {
-        if(formSubmitted && !error ) navigate('/');
-    }, [error])
-
-
     return(
         <div className='login-page'>
             <div className="login-container">
@@ -73,7 +66,6 @@ function Signin(props){
                 <form  onSubmit={(e) =>{
                     const correctInput = checkInputEntered(e);
                     if(correctInput){  
-                        setFormSubmitted(true);
                         dispatch(login({e}));
                         navigate('/');
                     }
@@ -100,7 +92,7 @@ function Signin(props){
                 <button onClick={async() => {
                     await dispatch(getGuest())
                     .then(({payload}) =>{
-                        dispatch(createCart(payload.user._id));
+                        dispatch(createCart());
                     })
                     .catch(console.log)
                     navigate('/');

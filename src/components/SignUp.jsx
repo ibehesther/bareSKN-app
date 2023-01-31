@@ -22,7 +22,6 @@ function SignUp(props){
     const [firstNameError, setFirstNameError] = useState(null);
     const [lastNameError, setLastNameError] = useState(null);
     const [emailError, setEmailError] = useState(null);
-    const [addressError, setAddressError] = useState(null);
     const [phoneNoError, setPhoneNoError] = useState(null);
     const [passwordError, setPasswordError] = useState(null);
     const [confirmPasswordError, setConfirmPasswordError] = useState(null);
@@ -142,7 +141,7 @@ function SignUp(props){
 
     useEffect(() => {
         if(formSubmitted && !error ) return 
-    }, [error])
+    }, [formSubmitted, error])
     return(
         <div className="signup-page">
             <div className="side-align-img">
@@ -178,7 +177,7 @@ function SignUp(props){
                             <input type="text" name="residence" id="residence" 
                             placeholder='No. 4 Baker Street, Victoria Island'
                             onChange={(e) => handleChange(e)} value={address}/>
-                            <p className="error">{addressError && addressError}</p>
+                            <p className="error"></p>
                         </div>
                         <div className="signup-section">
                             <label htmlFor="phoneNumber">Phone No.</label>

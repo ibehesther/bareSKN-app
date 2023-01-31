@@ -16,6 +16,8 @@ export default function CollectionProductsList(props){
         fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/collections/${encodeURIComponent(key)}/products`)
         .then((res) => res.json())
         .then(({collection:name, products}) => {
+            if(!name || !products) throw Error();
+
             setIsLoading(false);
             setName(name);
             setProducts(products);

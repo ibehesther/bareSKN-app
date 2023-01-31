@@ -29,7 +29,7 @@ function SearchTab(props){
             </div>
             <div className="navbar-search-result">
                 <ul> 
-                   { (searchTerm.length > 1 && products.length == 0) ?
+                   { (searchTerm.length > 1 && products.length === 0) ?
                    <li>No products found...</li>:
                    products.map(({_id, name, image_link, price, description}, index) => 
                         <li key={index}>

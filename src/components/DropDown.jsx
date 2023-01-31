@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react"
+import React, { useRef } from "react"
 
 export function SubDropDown(props){
     const dropdownbar1 = useRef();
@@ -11,10 +11,11 @@ export function SubDropDown(props){
 
     const showMore = () => {
         setSubCategoryDropDownList.map((dropdown, index) => {
+            var setDropDown = dropdown;
             if(index !== props.index){
-                var setDropDown = dropdown;
-                setDropDown(false);
+                return setDropDown(false);
             }
+            // return setDropDown(true);
         })
         setSubCategoryIndex(props.index + 1);
         setSubCategoryDropDown((prev) => !prev);

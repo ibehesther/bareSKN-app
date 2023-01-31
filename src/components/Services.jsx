@@ -2,10 +2,6 @@ import { Component } from "react";
 import Images from "./Images";
 
 class Services extends Component {
-    constructor(props){
-        super(props);
-
-    }
     
     render() {
         return(

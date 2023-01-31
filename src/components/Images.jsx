@@ -1,13 +1,8 @@
 import { Component } from "react";
 
 class Images extends Component{
-    constructor(props){
-        super(props);
-    }
-    
-    componentDidMount(){
-        const imgs = document.querySelectorAll('.homepage-img');
-    }
+
+    // componentDidMount(){}
     render(){
         return(
             <div className="image-container">

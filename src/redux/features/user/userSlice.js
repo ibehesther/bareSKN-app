@@ -25,7 +25,7 @@ export const getUser = createAsyncThunk("user/getUser", async(user, {rejectWithV
     .then(res => res.json())
     .catch((err) => rejectWithValue(err.response.data))
 })
-export const getGuest = createAsyncThunk("user/getGuest", async(user, {rejectWithValue}) => {
+export const getGuest = createAsyncThunk("user/getGuest", async({rejectWithValue}) => {
     return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/signin_guest`,
     {
         method: "POST"
@@ -34,17 +34,19 @@ export const getGuest = createAsyncThunk("user/getGuest", async(user, {rejectWit
     .catch((err) => rejectWithValue(err.response.data))
 })
 
-export const deleteUser = createAsyncThunk("user/deleteUser", async(user_id, {rejectWithValue}) => {
+export const deleteUser = createAsyncThunk("user/deleteUser", async( {rejectWithValue}) => {
     const token = localStorage.getItem("token");
-    return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/users/${user_id}`,
-    {
-        method: "DELETE",
-        headers: {
-            "Authorization": `Bearer ${token}`
-        }
-    })
-    .then(res => res.json())
-    .catch((err) => rejectWithValue(err.response.data))
+    if(token){
+        return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/users`,
+        {
+            method: "DELETE",
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        })
+        .then(res => res.json())
+        .catch((err) => rejectWithValue(err.response.data))
+    }
 })
 
 export const verifyJWT = createAsyncThunk("user/verifyJWT", async(user,{rejectWithValue}) => {

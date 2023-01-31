@@ -5,7 +5,7 @@ import { deleteUser, logout } from '../redux/features/user/userSlice';
 function Account(props){
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { id,type, first_name, last_name, email, phone_number, address } = useSelector(store => store.user);
+    const { type, first_name, last_name, email, phone_number, address } = useSelector(store => store.user);
     
     return(
         <div className="account-container">
@@ -17,7 +17,7 @@ function Account(props){
                 <p >Not you? 
                     <span  onClick={async() => {
                         if(type === "guest"){
-                            dispatch(deleteUser(id));
+                            dispatch(deleteUser());
                             dispatch(logout());
                             navigate('/')
                         }else{

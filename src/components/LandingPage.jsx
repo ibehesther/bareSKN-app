@@ -3,7 +3,7 @@ import Images from "./Images";
 import Card from './Card';
 import CollectionCard from "./CollectionCard";
 import ProductsList from "./ProductsList";
-import {CollectionsLoading } from "./Loading";
+import  {CollectionsLoading } from "./Loading";
 
 
 function LandingPage(){
@@ -27,11 +27,14 @@ function LandingPage(){
 
         Promise.all([getCollections, getPaginatedProducts, getHighestRatedProducts])
         .then((value) => {
+           
             let {collections} = value[0];
             let {products, totalLength} = value[1];
             let {products: highestRatedProducts} = value[2];
 
             let maxPage = Math.ceil(totalLength / 8);
+
+            if(!collections || !products || !highestRatedProducts) throw Error()
 
             setIsLoading(false);
             setCollections(collections);
@@ -61,7 +64,7 @@ function LandingPage(){
                         <CollectionsLoading/>
                         :
                         <div className="page-section-cards">
-                            {collections.map((collection) => 
+                            {collections && collections.map((collection) => 
                             <CollectionCard 
                             image_link= {collection.image_link}
                             name= {collection.name}
