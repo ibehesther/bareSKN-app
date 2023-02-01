@@ -25,13 +25,13 @@ export const getUser = createAsyncThunk("user/getUser", async(user, {rejectWithV
     .then(res => res.json())
     .catch((err) => rejectWithValue(err.response.data))
 })
-export const getGuest = createAsyncThunk("user/getGuest", async({rejectWithValue}) => {
+export const getGuest = createAsyncThunk("user/getGuest", async() => {
     return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/signin_guest`,
     {
         method: "POST"
     })
     .then(res => res.json())
-    .catch((err) => rejectWithValue(err.response.data))
+    .catch((err) => new Error(err.response.data))
 })
 
 export const deleteUser = createAsyncThunk("user/deleteUser", async( {rejectWithValue}) => {
@@ -45,7 +45,7 @@ export const deleteUser = createAsyncThunk("user/deleteUser", async( {rejectWith
             }
         })
         .then(res => res.json())
-        .catch((err) => rejectWithValue(err.response.data))
+        .catch((err) => new Error(err.response.data))
     }
 })
 
@@ -184,8 +184,9 @@ const userSlice = createSlice({
                 localStorage.setItem("token", payload.token);
             }
         },
-        [getGuest.rejected]: (state) => {
+        [getGuest.rejected]: (state, a) => {
             state.isloading = true;
+            console.log(a)
         },
         [deleteUser.pending]: (state) => {
             state.isloading = true;

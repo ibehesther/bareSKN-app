@@ -142,8 +142,7 @@ const cartSlice = createSlice({
         },
         [getCart.fulfilled]: (state, {payload}) => {
             state.isLoading=false;
-
-            if (!payload || payload.error){
+            if (!payload || !payload.length || payload.error){
                 state.id = null;
                 state.cartItems= [];
                 state.amount= 0;

@@ -93,9 +93,9 @@ function Signin(props){
                     await dispatch(getGuest())
                     .then(({payload}) =>{
                         dispatch(createCart());
+                        navigate('/');
                     })
                     .catch(console.log)
-                    navigate('/');
                     
                 }} className="secondary-btn">
                     GUEST SIGNIN
