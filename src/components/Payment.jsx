@@ -1,106 +1,6 @@
 import { useRef, useState, Component  } from "react";
 import {Link } from 'react-router-dom';
 
-function CardDetails(props) {
-    const cardNo = useRef();
-    const cardExpStart = useRef();
-    const cardExpEnd = useRef();
-    const cardCVV = useRef();
-
-    let [cardType, setCardType] = useState('')
-
-    const handleChange =(e) => {
-        const name = e.target.name;
-        const value = e.target.value;
-        switch(name){
-            case("card_no"):
-                if(value.length === 16){
-                    cardExpStart.current.focus();
-                    cardNo.current.disabled = true
-                }
-                if(value.match(/^4/)){
-                    setCardType("Visa");
-                }
-                else if (value.match(/^51/) || value.match(/^55/)){
-                    setCardType("MasterCard");
-                }
-                else{
-                    setCardType("")
-                }
-                props.saveCardType(cardType);
-                break;
-            case("card_exp_start"):
-                if( cardNo.current.value.length < 16){
-                    setCardType("");
-                    props.saveCardType(cardType);
-                }
-                if(value.length === 2){
-                    cardExpStart.current.disabled = true
-                    cardExpEnd.current.focus();
-                }
-                break;
-            case("card_exp_end"):
-                if(value.length === 2){
-                    cardExpEnd.current.disabled = true
-                    cardCVV.current.focus()
-                }
-                break;
-            case("card_cvv"):
-                if(value.length === 3){
-                    cardCVV.current.disabled = true
-                }
-                break;
-            default:
-                break
-        }
-        props.saveCardDetails(name, value);
-    }
-
-    const enableFields = () => {
-        cardNo.current.disabled = false;
-        cardExpStart.current.disabled = false;
-        cardExpEnd.current.disabled = false;
-        cardCVV.current.disabled = false;
-    }
-    return(
-        <form className="">
-            <button type="reset" id="card-reset" onClick={() => enableFields()}>&#8635;</button>
-            <div className="credit-card-form">
-            <div>
-                <label htmlFor="card_no">
-                    Card number
-                </label>
-                <input type="number" name="card_no" id="" ref={cardNo} disabled={false}
-                    placeholder="**** **** **** ****" onChange={(e) => handleChange(e)}/>
-            </div>
-            <div>
-                <label htmlFor="card_exp_start">
-                    Expiration date
-                </label>
-                <div className="card-exp-date">
-                    <input type="number" name="card_exp_start" id=""
-                        ref={cardExpStart} placeholder="MM" onChange={(e) => {
-                            handleChange(e);
-                        }}/>
-                    <span >/</span>
-                    <input type="number" name="card_exp_end" id=""
-                        ref={cardExpEnd} placeholder="YY" onChange={(e) => {
-                            handleChange(e);
-                        }}/>
-                </div>
-            </div>
-            <div>
-                <label htmlFor="card_cvv">
-                    Security code
-                </label>
-                <input type="number" name="card_cvv" id="" minLength={3} maxLength={3}
-                    ref={cardCVV} placeholder="CVV" onChange={(e) => handleChange(e)}/>
-            </div>
-            </div>
-        </form>
-    )
-}
-
 class Payment extends Component{
     constructor(props){
         super(props)
@@ -109,11 +9,6 @@ class Payment extends Component{
             creditCard : false
 
         }
-    }
-    
-    cardDetails = () => {
-        let { card_no, card_exp_start, card_exp_end, cardType } = this.state;
-        return { card_no, card_exp_start, card_exp_end, cardType };
     }
 
     selectPayOnDeliveryOption = () =>{
@@ -145,23 +40,9 @@ class Payment extends Component{
         }
     }
 
-    saveCardDetails = (name, value) => {
-        this.setState({[name]: value});
+    paymentMethod = () => {
+        return this.state.payOnDelivery ? "Pay on Delivery" : "Pay with Paystack"
     }
-
-    saveCardType = (type) => {
-        this.setState({cardType: type})
-    }
-    
-    checkCardValidity = () => {
-        let { card_no, card_exp_start, card_exp_end, card_cvv, cardType} = this.state;
-        if(card_no && card_exp_start && card_exp_end && card_cvv && cardType) {
-            return true;
-        }else{
-            return false;
-        }
-    }
-   
     render(){
         return(
             <div className="payment-container ">
@@ -177,7 +58,15 @@ class Payment extends Component{
                         Pay on delivery
                     </span>
                 </div>
-                <div  >
+                <div className="payment-section" id="card">
+                    <span>
+                        <input type="radio" name="payment_option" checked={this.state.creditCard} onChange={this.selectCreditCardOption} />
+                    </span>
+                    <span>
+                        Pay with Paystack
+                    </span>
+                </div>
+                {/* <div  >
                     <div className="payment-section" id="card">
                         <span>
                             <input type="radio" name="payment_option" checked={this.state.creditCard}  onChange={this.selectCreditCardOption}/>
@@ -191,11 +80,11 @@ class Payment extends Component{
                         </span>
                     </div>
                     {this.state.creditCard && <CardDetails saveCardDetails={this.saveCardDetails} saveCardType={this.saveCardType}/> }
-                </div>
+                </div> */}
                 <Link  to={`/checkout`}
-                    state={this.cardDetails()}
+                    state={this.paymentMethod()}
                     >
-                    <button disabled={!this.state.payOnDelivery && !this.checkCardValidity()? true : false}>
+                    <button disabled={!this.state.payOnDelivery && !this.state.creditCard? true : false}>
                         Confirm and continue
                     </button>
                 </Link>

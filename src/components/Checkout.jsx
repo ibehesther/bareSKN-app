@@ -1,12 +1,34 @@
-import { Component } from "react";
+import { useState } from "react";
 import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from "react-redux";
 
+
+
 const Checkout = (props) =>{
     const location = useLocation();
-    const { card_no, card_exp_start, card_exp_end, cardType } = location.state;
+    const [redirectUrl, setRedirectUrl] = useState(null);
+    const paymentMethod = location.state;
     const { amount } = useSelector((store) => store.cart);
-    const { first_name, last_name, address } = useSelector((store) => store.user);
+    const { first_name, last_name, address, email } = useSelector((store) => store.user);
+
+
+    const payWithPaystack = async(email, amount) => {
+        if(paymentMethod === "Pay with Paystack"){
+            return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/paystack/pay`, {
+                method: "POST", 
+                body: JSON.stringify({email, amount}),
+                headers: {
+                    "Content-type": "application/json"
+                }
+            })
+            .then(res => res.json())
+            .then(({redirectUrl}) => {
+                setRedirectUrl(redirectUrl)
+            })
+            .catch((err) => setRedirectUrl(null))
+        }
+    }
+
     return(
         <div className="checkout-container">
             <h3>Please confirm and submit your order</h3>
@@ -24,28 +46,11 @@ const Checkout = (props) =>{
                             <Link to={"/payment"}>Edit</Link>
                         </span> 
                     </div>
-                    <div className="checkout-section-payment ">
-                        {cardType !== "None" &&
-                        <>
-                            <span >
-                                **** {card_no.slice(-4)} 
-                            </span>
-                            <span className="payment-icon-container">
-                                {cardType == "MasterCard" && <img  className= 'payment-icon'src={require('../icons/mastercard.png')} alt="" />}
-                                {cardType == "Visa" && <img  className= 'payment-icon'src={require('../icons/visa.png')} alt="" />}
-                            </span>
-                            <span >
-                                {card_exp_start}/{card_exp_end}
-                            </span>
-                        </> 
-                        }
-                        {cardType === "None" &&
-                            <div className="payment-icon-container">
-                                Payment on Delivery
-                            </div>
-                        }
+                    <div className="checkout-section-payment">
+                        <div className="payment-icon-container">
+                            {paymentMethod}
+                        </div>
                     </div>
-                    
                 </section>
                 <section>
                     <div className="checkout-section heading">
@@ -85,9 +90,16 @@ const Checkout = (props) =>{
                     </div>
                 </section>
             </div>
-            <Link to="/success">
+            {/* <Link to="/success">
                 <button>Submit order</button>
-            </Link>
+            </Link> */}
+            <a href={redirectUrl}>
+                <button
+                 onClick={() => payWithPaystack(email, amount+20)}>
+                    Submit order
+                </button>
+            </a>
+            
         </div>
     )
 }

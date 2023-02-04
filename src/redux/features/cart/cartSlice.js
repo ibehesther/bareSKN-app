@@ -46,6 +46,7 @@ export const updateCart = createAsyncThunk('cart/updateCart', async(cart, {rejec
     }
 });
 
+
 var initialState = {
     id: null,
     cartItems: [],
