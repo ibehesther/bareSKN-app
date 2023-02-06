@@ -30,7 +30,7 @@ function HomePage(){
     useEffect(() =>  {
         dispatch(verifyJWT());
         dispatch(getCart(cart_id));
-    });
+    }, [id, cart_id]);
 
     useEffect(() => {
         dispatch(updateCart(cart));
