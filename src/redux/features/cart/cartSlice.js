@@ -130,7 +130,6 @@ const cartSlice = createSlice({
         },
         [createCart.fulfilled]: (state, {payload}) => {
             state.isLoading=false;
-            console.log(payload)
             const {_id, cartItems, amount, total} = payload;
             state.id = _id;
             state.cartItems = cartItems;

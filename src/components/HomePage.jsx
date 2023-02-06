@@ -28,10 +28,9 @@ function HomePage(){
     const dispatch = useDispatch();
     
     useEffect(() =>  {
-        console.log(cart_id)
         dispatch(verifyJWT());
         dispatch(getCart(cart_id));
-    }, [id]);
+    });
 
     useEffect(() => {
         dispatch(updateCart(cart));
