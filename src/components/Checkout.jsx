@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 
 
 const Checkout = (props) =>{
     const location = useLocation();
+
     const [redirectUrl, setRedirectUrl] = useState(null);
+
     const paymentMethod = location.state;
     const { amount } = useSelector((store) => store.cart);
     const { first_name, last_name, address, email } = useSelector((store) => store.user);
@@ -14,7 +17,7 @@ const Checkout = (props) =>{
 
     const payWithPaystack = async(email, amount) => {
         if(paymentMethod === "Pay with Paystack"){
-            return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/paystack/pay`, {
+            fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/paystack/pay`, {
                 method: "POST", 
                 body: JSON.stringify({email, amount}),
                 headers: {
@@ -25,9 +28,10 @@ const Checkout = (props) =>{
             .then(({redirectUrl}) => {
                 setRedirectUrl(redirectUrl)
             })
-            .catch((err) => setRedirectUrl(null))
+            .catch((err) => setRedirectUrl(null));
         }
     }
+
 
     return(
         <div className="checkout-container">

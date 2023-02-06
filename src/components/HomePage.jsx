@@ -19,19 +19,18 @@ import { getCart, updateCart} from "../redux/features/cart/cartSlice";
 import { verifyJWT } from '../redux/features/user/userSlice';
 import Success from "./Success";
 import Signin from "./Signin";
+import Failure from "./Failure";
 
 
 function HomePage(){
-    const {isLoading: loading, ...cart  } = useSelector((store) => store.cart);
+    const {isLoading: loading, id: cart_id,...cart  } = useSelector((store) => store.cart);
     const { id } = useSelector((store) => store.user);
     const dispatch = useDispatch();
     
     useEffect(() =>  {
-        // if(id){
-            dispatch(verifyJWT());
-            dispatch(getCart(cart));
-        // }
-       
+        console.log(cart_id)
+        dispatch(verifyJWT());
+        dispatch(getCart(cart_id));
     }, [id]);
 
     useEffect(() => {
@@ -59,6 +58,7 @@ function HomePage(){
                 <Route path={`subcategories/:coll_name/products`} 
                 element={<SubCategoryProductsList/>}></Route>
                 <Route path={"/success"} element={<Success/>}></Route>
+                <Route path={"/failure"} element={<Failure/>}></Route>
                 <Route path={'*'} element={
                     <main style={{ padding: "1rem" }}>
                         <p>Oops! nothing to see here.</p>

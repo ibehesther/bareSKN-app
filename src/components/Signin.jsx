@@ -13,6 +13,7 @@ function Signin(props){
     let [inputPassword, setInputPassword] = useState("");
     let [passwordError, setPasswordError] = useState("")
     let { id, error } = useSelector((store) => store.user);
+    let { id: cart_id } = useSelector((store) => store.cart);
     let handleChange = (e) => {
         switch(e.target.name){
             case("login_email"):
@@ -56,8 +57,8 @@ function Signin(props){
     }
 
     useEffect(() =>  {
-        dispatch(getCart(id));
-    }, [id]);
+        dispatch(getCart(cart_id));
+    }, [cart_id]);
 
     return(
         <div className='login-page'>

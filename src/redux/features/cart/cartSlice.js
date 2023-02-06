@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const createCart = createAsyncThunk('cart/createCart', async() => {
     const token = localStorage.getItem("token");
+    
     return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/carts`
     ,{
         method: "POST",
@@ -13,10 +14,10 @@ export const createCart = createAsyncThunk('cart/createCart', async() => {
     .catch((err) => console.log(err))
 });
 
-export const getCart = createAsyncThunk('cart/getCart', async({rejectWithValue}) => {
+export const getCart = createAsyncThunk('cart/getCart', async(id, {rejectWithValue}) => {
     const token = localStorage.getItem("token");
     if(token){
-        return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/carts`,
+        return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/carts/${id}`,
         {
             method: "GET",
             headers: {
@@ -129,6 +130,7 @@ const cartSlice = createSlice({
         },
         [createCart.fulfilled]: (state, {payload}) => {
             state.isLoading=false;
+            console.log(payload)
             const {_id, cartItems, amount, total} = payload;
             state.id = _id;
             state.cartItems = cartItems;

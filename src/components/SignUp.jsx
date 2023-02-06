@@ -9,6 +9,7 @@ function SignUp(props){
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { id, error } = useSelector((store) => store.user);
+    const { id: cart_id } = useSelector((store) => store.cart);
     // Form field values
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -116,12 +117,12 @@ function SignUp(props){
             setFormSubmitted(true);
             await dispatch(createUser(user))
             .then(async ({payload}) => {
-                console.log(payload)
                 if(payload.user){
                     dispatch(createCart(payload.user._id))
                 }
             }).catch(console.log);
-            await getCart(id);
+            
+            getCart(cart_id);
             navigate('/');
         }
     }
