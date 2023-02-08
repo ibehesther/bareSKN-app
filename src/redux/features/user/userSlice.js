@@ -34,7 +34,7 @@ export const getGuest = createAsyncThunk("user/getGuest", async() => {
     .catch((err) => new Error(err.response.data))
 })
 
-export const deleteUser = createAsyncThunk("user/deleteUser", async( {rejectWithValue}) => {
+export const deleteUser = createAsyncThunk("user/deleteUser", async() => {
     const token = localStorage.getItem("token");
     if(token){
         return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/users`,

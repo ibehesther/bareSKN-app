@@ -92,9 +92,10 @@ function Signin(props){
                 <p className="seperator"><span></span>or <span></span></p>
                 <button onClick={async() => {
                     await dispatch(getGuest())
-                    .then(({payload}) =>{
-                        dispatch(createCart());
-                        navigate('/');
+                    .then(async({payload}) =>{
+                        await dispatch(createCart())
+                        .then(() => navigate('/'))
+                        // navigate('/');
                     })
                     .catch(console.log)
                     

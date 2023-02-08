@@ -29,6 +29,9 @@ const Checkout = (props) =>{
                 setRedirectUrl(redirectUrl)
             })
             .catch((err) => setRedirectUrl(null));
+        }else{
+            setRedirectUrl("/success");
+            return;
         }
     }
 

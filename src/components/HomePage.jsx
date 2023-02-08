@@ -23,18 +23,21 @@ import Failure from "./Failure";
 
 
 function HomePage(){
-    const {isLoading: loading, id: cart_id,...cart  } = useSelector((store) => store.cart);
+    const {isLoading: loading,...cart  } = useSelector((store) => store.cart);
     const { id } = useSelector((store) => store.user);
     const dispatch = useDispatch();
     
     useEffect(() =>  {
         dispatch(verifyJWT());
-        dispatch(getCart(cart_id));
-    }, [id, cart_id]);
+    }, [id]);
+
+    useEffect(() =>  {
+        dispatch(getCart(cart.id));
+    }, [cart.id]);
 
     useEffect(() => {
         dispatch(updateCart(cart));
-    }, [id, cart.cartItems]);
+    }, [cart.cartItems]);
 
     return (
         <>

@@ -5,7 +5,6 @@ import { getCart, removeFromCart, increase, decrease} from "../redux/features/ca
 function CartItem(props) {
     const {dispatch, _id, name,  price, quantity, image_link} = props;
     
-   
 
     return(
         <div className="cart-item-container">

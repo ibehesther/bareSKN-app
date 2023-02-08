@@ -9,13 +9,20 @@ const Success = (props) => {
     const { id } = useSelector((store) => store.user);
     const { id: cart_id } = useSelector((store) => store.cart);
 
+
     useEffect(() =>  {
         dispatch(updateCart({id:cart_id, cleared: true}));
-        
-        dispatch(createCart())
-        dispatch(getCart(cart_id));
 
-    }, [id, cart_id]);
+    }, [id]);
+
+    useEffect(() => {
+        dispatch(createCart())
+    }, [])
+
+    useEffect(() =>  {
+        console.log(cart_id)
+        dispatch(getCart(cart_id));
+    }, [cart_id]);
     return (
         <div className="success-container">
             <img src={require("../images/success.png")} alt="Big tick" />       

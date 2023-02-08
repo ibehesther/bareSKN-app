@@ -17,7 +17,7 @@ export const createCart = createAsyncThunk('cart/createCart', async() => {
 export const getCart = createAsyncThunk('cart/getCart', async(id, {rejectWithValue}) => {
     const token = localStorage.getItem("token");
     if(token){
-        return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/carts/${id}`,
+        return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/carts`,
         {
             method: "GET",
             headers: {
@@ -31,7 +31,6 @@ export const getCart = createAsyncThunk('cart/getCart', async(id, {rejectWithVal
 
 export const updateCart = createAsyncThunk('cart/updateCart', async(cart, {rejectWithValue}) => {
     const token = localStorage.getItem("token");
-    
     if(cart.id && token){
         const { cartItems, cleared } = cart
         return fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/carts/${cart.id}`, {
