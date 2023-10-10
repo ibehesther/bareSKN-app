@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 function SignUp(props){
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { id, error } = useSelector((store) => store.user);
+    const { error } = useSelector((store) => store.user);
     const { id: cart_id } = useSelector((store) => store.cart);
     // Form field values
     const [firstName, setFirstName] = useState("");

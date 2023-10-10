@@ -2,9 +2,6 @@ import { Component } from "react";
 import { Link } from "react-router-dom";
 
 class CollectionCard extends Component{
-    constructor(props){
-        super(props)
-    }
     render(){
         const {name, image_link, collection_key:key} = this.props;
         return(

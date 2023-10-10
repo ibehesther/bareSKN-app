@@ -15,7 +15,6 @@ export function SubDropDown(props){
             if(index !== props.index){
                 return setDropDown(false);
             }
-            // return setDropDown(true);
         })
         setSubCategoryIndex(props.index + 1);
         setSubCategoryDropDown((prev) => !prev);

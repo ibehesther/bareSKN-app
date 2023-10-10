@@ -88,6 +88,9 @@
         padding: .2em 0;
     }
     .products-navigation > span{
+        font-size: 1.3em;
+    }
+    .products-navigation > .current-page{
         font-size: 1.8em;
     }
     .cart-item-container{
@@ -97,18 +100,21 @@
         flex: 1;
     }
     .card-details{
-        height: 30%;
+        height: 45%;
     }
     .card-rating, .card-price{
         font-size: 1.2em;
         margin-bottom: 1em;
     }
+    
     .card-title, .card-add-btn{
         font-size: 1.2em;
     }
-    /* .sidebar-profile{
-        display: none;
-    } */
+    .card-title {
+		flex: 1;
+		max-height: 50px;
+		overflow: hidden;
+	}
     .sidebar-main-options{
         padding: 2em 1em;
         width: calc(100% - 2em);

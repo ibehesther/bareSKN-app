@@ -12,7 +12,7 @@ function Signin(props){
     let [inputEmail, setInputEmail] = useState("");
     let [inputPassword, setInputPassword] = useState("");
     let [passwordError, setPasswordError] = useState("")
-    let { id, error } = useSelector((store) => store.user);
+    let { error } = useSelector((store) => store.user);
     let { id: cart_id } = useSelector((store) => store.cart);
     let handleChange = (e) => {
         switch(e.target.name){
@@ -47,7 +47,6 @@ function Signin(props){
                 setInputEmail("");
                 setInputPassword("");
                 setInputEmailSelected(false);
-                // setInputPasswordSelected(false);
 
                 // Attempt to get user 
                 dispatch(getUser({email, password}));
@@ -95,7 +94,6 @@ function Signin(props){
                     .then(async({payload}) =>{
                         await dispatch(createCart())
                         .then(() => navigate('/'))
-                        // navigate('/');
                     })
                     .catch(console.log)
                     

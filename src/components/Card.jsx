@@ -7,7 +7,6 @@ function Card(props) {
     const navigate = useNavigate();
     const { id } = useSelector((store) => store.user);
     const {_id, name, image_link, price, description, group_name, rating} = props;
-    // console.log(id);
     const getRating = (number) => {
         return [...Array(number).keys()].map(key => <span key = {key}>&#9733;</span>);
     }
