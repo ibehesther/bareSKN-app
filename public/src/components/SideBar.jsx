@@ -3,9 +3,6 @@ import {Link} from "react-router-dom"
 import SideBarOptions from "./SideBarOptions"
 
 class SideBar extends Component {
-    constructor(props){
-        super(props)
-    }
     render(){
         return(
             <aside className="sidebar-section">

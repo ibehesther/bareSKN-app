@@ -45,9 +45,6 @@ input[type="text"]:focus {
 .hidden-sm {
 	display: none;
 }
-/* .primary-btn {
-
-} */
 .secondary-btn.secondary-btn {
 	color: black;
 	font-weight: bolder;
@@ -145,6 +142,9 @@ nav {
 	width: 1.5em;
 	height: 1.5em;
 }
+.navbar-icon:hover, button:hover {
+	cursor: pointer;
+}
 .cart-icon-container {
 	position: relative;
 }
@@ -162,6 +162,24 @@ nav {
 	text-align: center;
 	border: 2px solid white;
 }
+.overlay,
+.dropdown-overlay {
+	position: fixed;
+	z-index: 999;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+.dropdown-overlay {
+	background-color: rgba(0, 0, 0, 0);
+}
+
+.navbar-search-container {
+	width: 100vw;
+	height: 100vh;
+}
 
 .navbar-search-tab-container {
 	width: 90vw;
@@ -171,16 +189,13 @@ nav {
 	right: 0;
 	left: 0;
 	margin: 0 auto;
-	background-color: rgba(255, 255, 255, 1);
-	border-radius: 10px;
 }
 .navbar-search-tab {
-	/* background-color: rgb(242,242,242); */
 	height: 3em;
 	padding: 0.5em;
 	display: flex;
 	border: 0.2px solid rgba(0, 0, 0, 0.4);
-	border-radius: 10px;
+	background-color: rgba(255, 255, 255, 1);
 }
 
 .search-tab {
@@ -195,8 +210,17 @@ nav {
 .navbar-search-result > ul {
 	list-style: none;
 }
+.navbar-search-all {
+	background-color: #fff;
+	padding: 0.8em 1em;
+	text-align: right;
+}
+.navbar-search-result {
+	display: flex;
+	flex-direction: column;
+}
 .navbar-search-result li {
-	/* height: 3em; */
+	background-color: rgba(255, 255, 255, 1);
 	padding: 0.8em 1em;
 	border: 0.2px solid rgba(0, 0, 0, 0.8);
 	border-top: 0;
@@ -210,6 +234,9 @@ nav {
 	height: 100%;
 	background-color: rgba(255, 255, 255, 1);
 	border: none;
+}
+#cancel:hover {
+	cursor: pointer;
 }
 /*** End of CSS code for Navigation Bar  */
 
@@ -271,7 +298,6 @@ nav {
 	color: rgba(0, 0, 0, 0.7);
 }
 .login > a {
-	/* color:rgba(250, 131, 79, .6); */
 	color: black;
 }
 .sidebar-products-container {
@@ -280,6 +306,7 @@ nav {
 }
 .sidebar-products {
 	display: flex;
+	align-items: center;
 }
 .sidebar-title {
 	flex: 6;
@@ -293,6 +320,10 @@ nav {
 .sidebar-show-more-icon:focus .sidebar-show-more-line-1 {
 	transform: rotate(45deg);
 }
+.sidebar-show-more-line-1:hover,
+.sidebar-show-more-line-2:hover {
+	cursor: pointer;
+}
 .sidebar-show-more-line-1,
 .sidebar-show-more-line-2 {
 	width: 0.15em;
@@ -304,13 +335,11 @@ nav {
 }
 .sidebar-show-more-line-1 {
 	transform: rotate(-45deg);
-	/* animation: showmore1 1.5s 1; */
 	animation-duration: 0.5s;
 	animation-fill-mode: forwards;
 }
 .sidebar-show-more-line-2 {
 	transform: rotate(45deg);
-	/* animation: showmore2 1.5s 1; */
 	animation-duration: 0.5s;
 	animation-fill-mode: forwards;
 }
@@ -322,7 +351,6 @@ nav {
 	justify-content: space-between;
 }
 .fa {
-	/* flex: 1; */
 	max-width: 3em;
 	font-size: 0.9em;
 	background-color: white;
@@ -349,22 +377,21 @@ nav {
 }
 .sub-products {
 	display: flex;
-	padding: 0.5em 1em;
-	margin: 0.5em 0;
+	padding: 1em;
 	font-size: 0.8em;
-	/* border: 1px solid rgba(233, 138, 96, .5); */
 	border-left: 0;
 	border-right: 0;
 	border-bottom: 0;
-	/* display: none; */
 	transition: all 0.5s;
 }
 .sidebar-products-title {
 	flex: 9;
+	text-align: start;
 	text-transform: uppercase;
 }
 
 .sidebar-products-option {
+	z-index: 9999;
 	height: 0;
 	opacity: 0;
 	transition: all 0.5s linear;
@@ -430,7 +457,6 @@ nav {
 }
 .card-img {
 	height: 100%;
-	/* max-width: 240px; */
 	align-self: center;
 	margin: 0 auto;
 }
@@ -768,8 +794,6 @@ p.login > a {
 
 .select-auth {
 	border-bottom: 3px solid rgba(250, 131, 79, 0.6);
-	/* border: .5px solid rgba(92,92,92,.6);
-  border-bottom: px solid white; */
 	font-size: 1.3em;
 	font-weight: 600;
 	animation: fadeInRight 0.5s;
@@ -820,12 +844,6 @@ td {
 	font-weight: 300;
 	margin: 1em 0;
 }
-/* .appointment-container > section:last-child{
-    margin: 10em 0 0;
-    border: 1px solid rgb(192, 192, 192);
-    padding: 2em 1em;
-    box-shadow: .2px .5px 5px;
-  } */
 .appointment-container > section:last-child > h3 {
 	text-align: center;
 	font-size: 1.5em;
@@ -855,7 +873,6 @@ td {
 	height: 20em;
 }
 .appointment-form > label {
-	/* margin: .5em 0; */
 	flex: 1;
 	font-size: 1.2em;
 }
@@ -875,7 +892,6 @@ td {
 	outline: 0.2px solid rgba(250, 131, 79, 1);
 }
 .appointment-form option {
-	/* height: 100%; */
 	background-color: transparent;
 	padding: 0.25em 0;
 }
@@ -1055,14 +1071,11 @@ td {
 	border-radius: 50%;
 }
 .blog-post-text {
-	/* width: 100%; */
 	height: 85%;
 	max-width: 65%;
 	overflow: hidden;
 	flex: 5;
 	font-size: 0.7em;
-	/* white-space: nowrap; */
-	/* text-overflow: ellipsis; */
 }
 /*** End of CSS code for Blog page */
 
@@ -1256,7 +1269,6 @@ td {
 	border-radius: 10px;
 	font-size: 1.2em;
 	padding: 1em 0;
-	/* position: absolute; */
 	bottom: 8em;
 	background-color: rgba(250, 131, 79, 0.6);
 	color: white;
@@ -1265,7 +1277,6 @@ td {
 .payment-section {
 	margin: 3em 0;
 	display: flex;
-	/* justify-content: space-between; */
 }
 .payment-section > span {
 	font-size: 1.3em;
@@ -1431,7 +1442,6 @@ input[type="radio"]:checked::before {
 .order-history-item {
 	display: flex;
 	flex-direction: row;
-	/* padding: .5em 0; */
 }
 .order-history-item > div {
 	display: flex;
@@ -1442,7 +1452,6 @@ input[type="radio"]:checked::before {
 }
 .order-item-image {
 	width: 3.5em;
-	/* flex: 1; */
 }
 .order-history-delivered {
 	color: red;
@@ -1478,7 +1487,6 @@ input[type="radio"]:checked::before {
 	flex: 1;
 	font-size: 1em;
 	font-weight: bold;
-	/* padding-bottom: .8em; */
 }
 .footer-brief {
 	flex: 3;

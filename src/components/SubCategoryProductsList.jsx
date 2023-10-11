@@ -4,7 +4,7 @@ import ProductsList from "./ProductsList";
 
 export default function SubCategoryProductsList(props){
     const location = useLocation();
-    const { index, subCategoryProducts } = location.state;
+    const { index, subCategory } = location.state;
 
 
     const [name, setName] = useState('')
@@ -13,14 +13,14 @@ export default function SubCategoryProductsList(props){
   
     
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/subcategories/subcat_${encodeURIComponent(subCategoryProducts)}_0${encodeURIComponent(index)}/products`)
+        fetch(`${process.env.REACT_APP_API_URL}/api/v1.0/subcategories/subcat_${encodeURIComponent(subCategory)}_0${encodeURIComponent(index)}/products`)
         .then((res) => res.json())
         .then(({subcategory:name, products}) => {
             setIsLoading(false);
             setName(name);
             setProducts(products);
         }).catch(() => setIsLoading(true));
-    }, [index, subCategoryProducts]);
+    }, [index, subCategory]);
     return (
         <div style={{width: "100%"}}>
             <section className="page-section">

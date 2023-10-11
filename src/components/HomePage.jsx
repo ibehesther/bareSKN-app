@@ -20,6 +20,7 @@ import { verifyJWT } from "../redux/features/user/userSlice";
 import Success from "./Success";
 import Signin from "./Signin";
 import Failure from "./Failure";
+import SearchProductsList from "./SearchProductList";
 
 function HomePage() {
 	const { isLoading: loading, ...cart } = useSelector((store) => store.cart);
@@ -48,6 +49,10 @@ function HomePage() {
 				<Route path={`account`} element={<Account />}></Route>
 				<Route path={`order-history`} element={<OrderHistory />}></Route>
 				<Route path={`edit`} element={<EditAccount />}></Route>
+				<Route
+					path={`/products/search/:searchTerm`}
+					element={<SearchProductsList />}
+				></Route>
 				<Route path={`products/:id`} element={<Product />}></Route>
 				<Route path={`services`} element={<Services />}></Route>
 				<Route path={`blog`} element={<Blog />}></Route>
@@ -59,7 +64,7 @@ function HomePage() {
 					element={<CollectionProductsList />}
 				></Route>
 				<Route
-					path={`subcategories/:coll_name/products`}
+					path={`subcategories/:cat_name/products`}
 					element={<SubCategoryProductsList />}
 				></Route>
 				<Route path={"/success"} element={<Success />}></Route>

@@ -32,6 +32,10 @@ export const getCollections = createAsyncThunk(
 const initialState = {
 	products: [],
 	categories: [],
+	subcategoryProducts: {
+		name: "",
+		products: "",
+	},
 	collections: [],
 	isLoading: true,
 	error: {},

@@ -43,9 +43,6 @@ function LandingPage() {
 	const prev = () => {
 		setPage((pageNo) => pageNo - 1);
 	};
-	const hey = Array.from({ length: maxPage }).map((_, x) => x++);
-	console.log(hey, maxPage);
-
 	return (
 		<div className="page-container">
 			<Images imageType="skincare" />

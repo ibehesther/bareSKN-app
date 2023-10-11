@@ -8,12 +8,19 @@
 	.hidden-lg {
 		display: none;
 	}
+	.sidebar-product{
+		position: absolute;
+		margin-top: 3rem;
+		height: fit-content;
+	}
 	.sidebar-options {
 		flex-direction: row;
+		align-items: center;
 		margin-top: 0;
 	}
 	.nav-bar {
 		max-width: 100%;
+		align-items: center;
 	}
 	.app-name {
 		flex: 2;
@@ -36,6 +43,7 @@
 	.sub-products {
 		border: 0;
 		border-top: 0.5px solid black;
+		justify-content: center;
 	}
 	.image-container {
 		height: calc(100vh - 6em);
