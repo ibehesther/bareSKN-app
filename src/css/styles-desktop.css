@@ -87,22 +87,22 @@
 	}
 	.card-title {
 		font-size: 0.8em;
-		flex: 1;
+		flex: 3;
 		max-height: 32px;
 		overflow: hidden;
 	}
 	.card-price {
 		font-size: 0.8em;
-		flex: 1;
-		margin-bottom: 1em;
+		/* flex: 1; */
+		/* margin-bottom: 1em; */
 	}
 	.card-add-btn {
-		flex: 1;
-		padding: 1em 2em;
+		flex: 0.5;
+		padding: 0em 2em;
 		font-size: 0.8em;
 	}
 	.card-details {
-		height: 40%;
+		height: 35%;
 		padding: 0 1em;
 	}
 	.options {

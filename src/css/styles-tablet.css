@@ -97,14 +97,13 @@
         height: 35%;
     }
     .card-price {
-        flex: 1;
+        flex: 0.5;
     }
     .card-details{
         height: 45%;
     }
     .card-rating, .card-price{
         font-size: 1.2em;
-        margin-bottom: 1em;
     }
     
     .card-title, .card-add-btn{
